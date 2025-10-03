@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3v1flw4tc1q1" path="res://Levels/test_fight.gd" id="1_3s1ur"]
 [ext_resource type="Script" uid="uid://csgt6qywykds" path="res://Levels/card_manager.gd" id="2_kpqo2"]
-[ext_resource type="PackedScene" uid="uid://c3piouhj4xuq0" path="res://Card/Card.tscn" id="3_54eh7"]
+[ext_resource type="PackedScene" uid="uid://c3piouhj4xuq0" path="res://Card/TestCard.tscn" id="3_54eh7"]
 
 [node name="Fight Scene" type="Node2D"]
 script = ExtResource("1_3s1ur")
@@ -28,5 +28,8 @@ script = ExtResource("2_kpqo2")
 
 [node name="TestCard" parent="CardManager" instance=ExtResource("3_54eh7")]
 position = Vector2(184, 208)
+
+[node name="TestCard" parent="." instance=ExtResource("3_54eh7")]
+position = Vector2(264, 504)
 
 [connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]
