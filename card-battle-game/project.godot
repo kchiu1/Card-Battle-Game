@@ -11,5 +11,17 @@ config_version=5
 [application]
 
 config/name="Card Battle Game"
+run/main_scene="uid://dp388d5qhkvx7"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
+window/size/sharp_corners=true
+window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
