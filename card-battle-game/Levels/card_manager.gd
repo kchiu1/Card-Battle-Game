@@ -5,6 +5,8 @@ const COLLISION_MASK_CARD = 1
 var card_being_dragged
 var screen_size
 
+var is_hovering_on_card
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     screen_size=  get_viewport_rect().size
@@ -22,9 +24,45 @@ func _input(event):
         if event.is_pressed():
             var card = raycast_check_for_card()
             if card:
-                card_being_dragged = card
+                start_drag(card)
         else:
-            card_being_dragged = null
+            finish_drag()
+
+func start_drag(card):
+    card.scale = Vector2(1, 1)
+    card_being_dragged = card
+    
+    
+func finish_drag():
+    card_being_dragged.scale = Vector2(1.05, 1.05)
+    card_being_dragged = null
+
+func connect_card_signals(card):
+    card.connect("hovered", on_hovered_over_card)
+    card.connect("hovered_off", on_hovered_off_card)
+
+func on_hovered_over_card(card):
+    if !is_hovering_on_card:
+        highlight_card(card, true)
+        is_hovering_on_card = true
+    
+func on_hovered_off_card(card):
+    if !card_being_dragged:
+        highlight_card(card, false)
+        var new_card_hovered = raycast_check_for_card()
+        if new_card_hovered:
+            highlight_card(new_card_hovered, true)
+        else:
+            is_hovering_on_card = false
+    
+func highlight_card(card, hovered):
+    if hovered:
+        card.scale = Vector2(1.05, 1.05)
+        card.z_index = 2
+    else:
+        card.scale = Vector2(1, 1)
+        card.z_index = 1
+        
 
 func raycast_check_for_card():
     var space_state = get_world_2d().direct_space_state
@@ -34,5 +72,16 @@ func raycast_check_for_card():
     parameters.collision_mask = COLLISION_MASK_CARD
     var result= space_state.intersect_point(parameters)
     if result.size() > 0:
-        return result[0].collider.get_parent()
+        return get_card_with_highest_z_index(result)
     return null
+
+func get_card_with_highest_z_index(cards):
+    var highest_z_card = cards[0].collider.get_parent()
+    var highest_z_index = highest_z_card.z_index
+    
+    for i in range(1, cards.size()):
+        var curr_card = cards[i].collider.get_parent()
+        if curr_card.z_index > highest_z_index:
+            highest_z_card = curr_card
+            highest_z_index = curr_card.z_index
+    return highest_z_card

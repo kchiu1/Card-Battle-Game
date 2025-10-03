@@ -27,9 +27,9 @@ text = "Esc"
 script = ExtResource("2_kpqo2")
 
 [node name="TestCard" parent="CardManager" instance=ExtResource("3_54eh7")]
-position = Vector2(184, 208)
+position = Vector2(544, 480)
 
-[node name="TestCard" parent="." instance=ExtResource("3_54eh7")]
+[node name="TestCard2" parent="CardManager" instance=ExtResource("3_54eh7")]
 position = Vector2(264, 504)
 
 [connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]
