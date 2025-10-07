@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cio3ox5dum7c4"
+
+[deps]
+
+files=["res://Data/CardList.name.translation", "res://Data/CardList.type.translation", "res://Data/CardList.min.translation", "res://Data/CardList.max.translation", "res://Data/CardList.effects.translation", "res://Data/CardList.attached.translation"]
+
+source_file="res://Data/CardList.csv"
+dest_files=["res://Data/CardList.name.translation", "res://Data/CardList.type.translation", "res://Data/CardList.min.translation", "res://Data/CardList.max.translation", "res://Data/CardList.effects.translation", "res://Data/CardList.attached.translation"]
+
+[params]
+
+compress=true
+delimiter=0
