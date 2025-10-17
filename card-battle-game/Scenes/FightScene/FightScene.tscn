@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cioy56aw0fbtj"]
 
-[ext_resource type="Script" uid="uid://3v1flw4tc1q1" path="res://Scenes/fight_scene.gd" id="1_vfxem"]
-[ext_resource type="PackedScene" uid="uid://dvuiqd31xytkr" path="res://Scenes/Board.tscn" id="2_7gx8k"]
+[ext_resource type="Script" uid="uid://3v1flw4tc1q1" path="res://Scenes/FightScene/fight_scene.gd" id="1_vfxem"]
+[ext_resource type="PackedScene" uid="uid://dvuiqd31xytkr" path="res://Scenes/BoardScene/Board.tscn" id="2_7gx8k"]
 
 [node name="Fight Scene" type="Node2D"]
 script = ExtResource("1_vfxem")

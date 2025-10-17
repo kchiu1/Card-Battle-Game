@@ -3,6 +3,8 @@ extends Node2D
 signal hovered
 signal hovered_off
 
+var hand_position
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     get_parent().connect_card_signals(self)
@@ -14,8 +16,10 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_2d_mouse_entered() -> void:
+    print(1)
     emit_signal("hovered", self)
 
 
 func _on_area_2d_mouse_exited() -> void:
+    print(0)
     emit_signal("hovered_off", self)
