@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bplesolho2c1n"]
+[gd_scene load_steps=3 format=3 uid="uid://bplesolho2c1n"]
 
 [ext_resource type="Script" uid="uid://b02ldbwcnj3r3" path="res://Scenes/Battle.gd" id="1_r5x4d"]
+[ext_resource type="Script" uid="uid://d106y0er8ldqr" path="res://Scripts/Cards/CardDatabase.gd" id="2_qebdi"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_r5x4d")
+
+[node name="CardDatabase" type="Node2D" parent="."]
+script = ExtResource("2_qebdi")

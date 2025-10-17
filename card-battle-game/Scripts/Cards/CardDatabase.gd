@@ -4,7 +4,7 @@ class_name CardDatabase
 var cards: Dictionary = {}
 
 func _ready():
-	var file = FileAccess.open("res://data/CardList.csv", FileAccess.READ)
+	var file = FileAccess.open("res://Data/CardList.csv", FileAccess.READ)
 	if file:
 		var header = file.get_line().strip_edges().split(",")
 		while not file.eof_reached():
@@ -29,8 +29,11 @@ func get_card(card_id: int) -> Card:
 		return null
 
 	var card = cards[card_id]
+	#print card and stats
+	#print("Loaded card: %s" % card["card_name"], " Min:", card["value_min"], " Max:", card["value_max"], " Type:", card["type"], " Effects:", card["effects"])
+
 	return Card.new(
-		card["name"],
+		card["card_name"],
 		int(card["value_min"]),
 		int(card["value_max"]),
 		card["type"],
