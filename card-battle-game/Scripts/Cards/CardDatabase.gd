@@ -29,6 +29,7 @@ func get_card(card_id: int) -> Card:
 		return null
 
 	var card = cards[card_id]
+	# print("Retrieving card ID: %d, name: %s" % [card_id, card["card_name"]])
 	#print card and stats
 	#print("Loaded card: %s" % card["card_name"], " Min:", card["value_min"], " Max:", card["value_max"], " Type:", card["type"], " Effects:", card["effects"])
 

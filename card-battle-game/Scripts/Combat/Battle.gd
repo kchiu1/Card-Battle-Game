@@ -5,13 +5,13 @@ class_name Battle
 @export var card_database: CardDatabase
 
 # Basic card-vs-card battle
-func battle_cards(card_a: Card, card_b: Card) -> int:
+func battle_cards(card_a: Card, card_b: Card) -> (int, int):
 
 	if card_a == null:
-		return card_b.roll()
+		return (0, card_b.roll())
 
 	if card_b == null:
-		return card_a.roll()
+		return (card_a.roll(), 0)
 
 	var roll_a = card_a.roll()
 	var roll_b = card_b.roll()

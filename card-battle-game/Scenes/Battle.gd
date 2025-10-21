@@ -5,13 +5,13 @@ class_name Battle
 @export var card_database: CardDatabase
 
 # Basic card-vs-card battle
-func battle_cards(card_a: Card, card_b: Card) -> int:
+func battle_cards(card_a: Card, card_b: Card) -> Array:
 
 	if card_a == null:
-		return card_b.roll()
+		return [1, card_b.roll()]
 
 	if card_b == null:
-		return card_a.roll()
+		return [2, card_a.roll()]
 		
 	print ("player 1 used %s" % card_a.card_name)
 	print ("player 2 used %s" % card_b.card_name)
@@ -21,19 +21,25 @@ func battle_cards(card_a: Card, card_b: Card) -> int:
 
 	
 	print ("Card A rolled: %d, Card B rolled: %d" % [roll_a, roll_b])
+	if(roll_a > roll_b):
+		return [1, roll_a]
+	elif(roll_b > roll_a):
+		return [2, roll_b]
 	while(roll_a == roll_b):
 		roll_a = card_a.roll()
 		roll_b = card_b.roll()
 		print ("Card A rolled: %d, Card B rolled: %d" % [roll_a, roll_b])
 		if(roll_a > roll_b):
-			return roll_a
+			return [1, roll_a]
 		elif(roll_b > roll_a):
-			return roll_b
-	return 0
+			return [2, roll_b]
+	return [0, 0] #should never hit here to begin with.
 
 func buildDeck(card_ids: Array) -> Array:
 	var deck = []
+
 	for id in card_ids:
+		print ("Building deck, adding card ID: %d" % id)
 		var card = card_database.get_card(id)
 		if card:
 			deck.append(card)
@@ -65,12 +71,16 @@ func testBattle():
 		var card2 = deck2.pop_front()
 		var result = battle_cards(card1, card2)
 		
-		if result == card1.roll():
-			print("Player 1 wins the round! Player 2 loses %d HP" % result)
-			p2_hp -= result
-		else:
-			print("Player 2 wins the round! Player 1 loses %d HP" % result)
-			p1_hp -= result 
+		var winner = result[0]
+		var damage = result[1]
+
+		if winner == 1:
+			print("Player 1 wins the round! Player 2 loses %d HP" % damage)
+			p2_hp -= damage
+		elif winner == 2:
+			print("Player 2 wins the round! Player 1 loses %d HP" % damage)
+			p1_hp -= damage 
+		print()
 
 		print("Player 1 HP: %d, Player 2 HP: %d" % [p1_hp, p2_hp])
 
