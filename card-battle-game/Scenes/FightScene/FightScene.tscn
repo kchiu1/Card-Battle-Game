@@ -16,10 +16,10 @@ value = 50.0
 show_percentage = false
 
 [node name="Main Menu" type="Button" parent="."]
-offset_left = 1104.0
-offset_top = 8.0
-offset_right = 1144.0
-offset_bottom = 32.0
+offset_left = 1864.0
+offset_top = 32.0
+offset_right = 1904.0
+offset_bottom = 63.0
 text = "Esc"
 
 [node name="Board" parent="." instance=ExtResource("2_7gx8k")]

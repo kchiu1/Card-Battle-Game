@@ -6,17 +6,17 @@
 script = ExtResource("1_q6prn")
 
 [node name="start" type="Button" parent="."]
-offset_left = 448.0
-offset_top = 192.0
-offset_right = 704.0
-offset_bottom = 256.0
+offset_left = 896.0
+offset_top = 272.0
+offset_right = 1152.0
+offset_bottom = 336.0
 text = "Start"
 
 [node name="quit" type="Button" parent="."]
-offset_left = 448.0
-offset_top = 384.0
-offset_right = 704.0
-offset_bottom = 448.0
+offset_left = 896.0
+offset_top = 520.0
+offset_right = 1152.0
+offset_bottom = 584.0
 text = "Quit"
 
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
