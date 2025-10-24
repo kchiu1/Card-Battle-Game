@@ -46,6 +46,11 @@ func buildDeck(card_ids: Array) -> Array:
 			print("Added card to deck: %s" % card.card_name)
 	return deck
 
+func shuffle (deck: Array) -> Array:
+	var shuffled_deck = deck.duplicate()
+	shuffled_deck.shuffle()
+	return shuffled_deck
+
 func testBattle():
 
 	var deck1_ids = [1,1,1,2,2,10,10,10]
@@ -60,13 +65,18 @@ func testBattle():
 	deck1 = buildDeck(deck1_ids)
 	deck2 = buildDeck(deck2_ids)
 
+	deck1 = shuffle(deck1)
+	deck2 = shuffle(deck2)
+
 	while p1_hp > 0 and p2_hp > 0:
 		if(deck1.size() == 0):
 			deck1_ids = [1,1,1,2,2,10,10,10]
 			deck1 = buildDeck(deck1_ids)
+			deck1 = shuffle(deck1)
 		if(deck2.size() == 0):
 			deck2_ids = [1,1,2,2,2,2,12,12]
 			deck2 = buildDeck(deck2_ids)
+			deck2 = shuffle(deck2)
 		var card1 = deck1.pop_front()
 		var card2 = deck2.pop_front()
 		var result = battle_cards(card1, card2)
