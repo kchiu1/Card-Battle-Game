@@ -13,8 +13,8 @@ func battle_cards(card_a: Card, card_b: Card) -> Array:
 	if card_b == null:
 		return [2, card_a.roll()]
 		
-	print ("player 1 used %s" % card_a.card_name)
-	print ("player 2 used %s" % card_b.card_name)
+	print ("player 1 used %s, type: %s" % [card_a.card_name, card_a.card_type])
+	print ("player 2 used %s, type: %s" % [card_b.card_name, card_b.card_type])
 
 	var roll_a = card_a.roll()
 	var roll_b = card_b.roll()
