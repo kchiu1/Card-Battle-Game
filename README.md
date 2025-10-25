@@ -42,10 +42,9 @@ Combat is based on *Library of Ruina*-style **clashes**:
 ---
 
 ## Technical Details
-*(Add or edit when ready)*  
-- **Engine / Framework:** (e.g., Unity, Godot, Unreal, or custom engine)  
-- **Language:** (e.g., C#, Python, JavaScript, etc.)  
-- **Platform:** (Windows, macOS, Linux, Web, etc.)
+- **Engine / Framework:** Godot
+- **Language:** GDScript 
+- **Platform:** Windows
 
 ---
 
