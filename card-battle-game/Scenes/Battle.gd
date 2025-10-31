@@ -82,14 +82,23 @@ func testBattle():
 		var result = battle_cards(card1, card2)
 		
 		var winner = result[0]
+
 		var damage = result[1]
 
 		if winner == 1:
-			print("Player 1 wins the round! Player 2 loses %d HP" % damage)
-			p2_hp -= damage
+			if(card1.card_type == "Attack"):
+				print("Dealing %d damage to Player 2" % damage)
+				p2_hp -= damage
+			elif(card1.card_type == "Defense"):
+				print("Healing %d HP to Player 1" % damage)
+				p1_hp += damage
 		elif winner == 2:
-			print("Player 2 wins the round! Player 1 loses %d HP" % damage)
-			p1_hp -= damage 
+			if(card2.card_type == "Attack"):
+				print("Dealing %d damage to Player 1" % damage)
+				p1_hp -= damage
+			elif(card2.card_type == "Defense"):
+				print("Healing %d HP to Player 2" % damage)
+				p2_hp += damage
 		print()
 
 		print("Player 1 HP: %d, Player 2 HP: %d" % [p1_hp, p2_hp])
