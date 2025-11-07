@@ -34,9 +34,9 @@ func get_card(card_id: int) -> Card:
 	#print("Loaded card: %s" % card["card_name"], " Min:", card["value_min"], " Max:", card["value_max"], " Type:", card["type"], " Effects:", card["effects"])
 
 	return Card.new(
-		card["card_name"],
+		card["card_name"].strip_edges(),
 		int(card["value_min"]),
 		int(card["value_max"]),
-		card["type"],
+		card["card_type"].strip_edges(),
 		card["effects"].split(";", false)
 	)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bplesolho2c1n"]
+[gd_scene load_steps=4 format=3 uid="uid://bplesolho2c1n"]
 
 [ext_resource type="Script" uid="uid://b02ldbwcnj3r3" path="res://Scenes/Battle.gd" id="1_r5x4d"]
+[ext_resource type="Script" uid="uid://d106y0er8ldqr" path="res://Scripts/Cards/CardDatabase.gd" id="2_qebdi"]
 [ext_resource type="Script" uid="uid://cbgfg7uletqrx" path="res://Scenes/cardBattle.gd" id="3_a40df"]
 
 [node name="Main Battle" type="Node2D"]
@@ -9,4 +10,5 @@ script = ExtResource("1_r5x4d")
 [node name="BattleManager" type="Node2D" parent="."]
 script = ExtResource("3_a40df")
 
-[node name="CardDatabase" type="Node2D" parent="."]
+[node name="Card Databse" type="Node2D" parent="."]
+script = ExtResource("2_qebdi")

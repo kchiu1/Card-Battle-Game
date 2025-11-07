@@ -1,5 +1,5 @@
-extends Node
-class_name Battle
+extends Node2D
+class_name CardBattle
 
 @export var card_database: CardDatabase
 
@@ -74,8 +74,8 @@ func play_turn(state: Dictionary) -> Dictionary:
 
 	var result = battle_cards(draw1.card, draw2.card)
 	var event = {
-		"card1": draw1.card,
-		"card2": draw2.card,
+		"card1": draw1.card.card_name,
+		"card2": draw2.card.card_name,
 		"winner": result.winner,
 		"damage": result.damage,
 		"roll_a": result.roll_a,
@@ -83,14 +83,14 @@ func play_turn(state: Dictionary) -> Dictionary:
 	}
 
 	if result.winner == 1:
-		if draw1.card.card_type == "Attack":
+		if draw1.card.type == "attack":
 			state.p2_hp -= result.damage
-		elif draw1.card.card_type == "Defense":
+		elif draw1.card.type == "defense":
 			state.p1_hp += result.damage
 	elif result.winner == 2:
-		if draw2.card.card_type == "Attack":
+		if draw2.card.type == "attack":
 			state.p1_hp -= result.damage
-		elif draw2.card.card_type == "Defense":
+		elif draw2.card.type == "defense":
 			state.p2_hp += result.damage
 
 	state.turn_result = event

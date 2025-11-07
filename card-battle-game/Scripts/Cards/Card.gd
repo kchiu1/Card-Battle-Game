@@ -1,11 +1,11 @@
-extends Node2D
+extends Resource
 class_name Card
 
 # Card properties
 @export var card_name: String = "Strike"
 @export var lower: int = 0
 @export var upper: int = 0
-@export var type: String = "Attack" # Can be "Attack", "Defense", "Magic", etc.
+@export var type: String = "attack" # Can be "Attack", "Defense", "Magic", etc.
 @export var effects: Array = []  
 @export var attached_items: Array = [] # Items that can be used with this card
 
