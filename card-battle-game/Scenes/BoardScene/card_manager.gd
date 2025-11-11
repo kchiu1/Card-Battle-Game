@@ -28,8 +28,8 @@ func start_drag(card):
     var card_slot_found = raycast_check_for_card_slot()
     if card_slot_found:
         card_slot_found.card_in_slot = false
-    card.scale = Vector2(1, 1)
     card_being_dragged = card
+    card.scale = Vector2(1, 1)
     
     
 func finish_drag():
@@ -90,7 +90,7 @@ func raycast_check_for_card():
     parameters.position = get_global_mouse_position()
     parameters.collide_with_areas = true
     parameters.collision_mask = COLLISION_MASK_CARD
-    var result= space_state.intersect_point(parameters)
+    var result = space_state.intersect_point(parameters)
     if result.size() > 0:
         return get_card_with_highest_z_index(result)
     return null

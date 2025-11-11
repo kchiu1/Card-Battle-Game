@@ -30,15 +30,22 @@ func raycast_at_cursor():
     var result= space_state.intersect_point(parameters)
     print(result)
     if result.size() > 0:
-        var result_collision_mask = result[0].collider.collision_mask
-        if result_collision_mask == COLLISION_MASK_CARD:
+        var card_found: Node = null
+        var deck_found: Node = null
+
+        for hit in result:
+            var mask = hit.collider.collision_mask
+            if mask == COLLISION_MASK_CARD:
+                # Prefer the card that’s visually on top
+                var candidate = hit.collider.get_parent()
+                if card_found == null or candidate.z_index > card_found.z_index:
+                    card_found = candidate
+            elif mask == COLLISION_MASK_CARD_DECK:
+                deck_found = hit.collider.get_parent()
+        if card_found:
             print("card clicked")
-            # Card clicked
-            var card_found = result[0].collider.get_parent()
-            if card_found:
-                card_manager_reference.start_drag(card_found)
-        elif result_collision_mask == COLLISION_MASK_CARD_DECK:
-            # Deck clicked
+            card_manager_reference.start_drag(card_found)
+        elif deck_found:
             print("deck clicked")
             deck_reference.draw_card()
             
