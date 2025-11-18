@@ -50,3 +50,5 @@ text = "End Turn
 
 [node name="OpponentDeck" parent="." instance=ExtResource("6_5gban")]
 position = Vector2(1200, -496)
+
+[connection signal="pressed" from="EndTurn" to="CardManager" method="_on_end_turn_pressed"]

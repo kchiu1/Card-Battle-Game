@@ -28,7 +28,7 @@ func raycast_at_cursor():
     parameters.position = get_global_mouse_position()
     parameters.collide_with_areas = true
     var result= space_state.intersect_point(parameters)
-    print(result)
+    #print(result)
     if result.size() > 0:
         var card_found: Node = null
         var deck_found: Node = null
@@ -43,9 +43,9 @@ func raycast_at_cursor():
             elif mask == COLLISION_MASK_CARD_DECK:
                 deck_found = hit.collider.get_parent()
         if card_found:
-            print("card clicked")
+            #print("card clicked")
             card_manager_reference.start_drag(card_found)
         elif deck_found:
-            print("deck clicked")
+            #print("deck clicked")
             deck_reference.draw_card()
             

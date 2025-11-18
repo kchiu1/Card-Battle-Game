@@ -35,7 +35,6 @@ func load_cards():
                 
         var id = int(card_data["id"])
         cards[id] = card_data
-    print(cards)
     file.close()
 
 func get_card(card_id: int) -> Card:

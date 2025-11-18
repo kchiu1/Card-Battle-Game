@@ -37,10 +37,14 @@ func finish_drag():
     var card_slot_found = raycast_check_for_card_slot()
     if card_slot_found and not card_slot_found.card_in_slot:
         card_being_dragged.position = card_slot_found.position
+        card_being_dragged.in_card_slot = true
         #card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
         card_slot_found.card_in_slot = true
+        print(card_being_dragged.in_card_slot)
     else:
         player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
+        card_being_dragged.in_card_slot = false
+        print(card_being_dragged.in_card_slot)
     card_being_dragged = null
 
 func connect_card_signals(card):
@@ -105,3 +109,9 @@ func get_card_with_highest_z_index(cards):
             highest_z_card = curr_card
             highest_z_index = curr_card.z_index
     return highest_z_card
+
+
+func _on_end_turn_pressed() -> void:
+    for card in player_hand_reference:
+        if card.in_card_slot:
+            pass
