@@ -12,7 +12,7 @@ offset_top = 318.45203
 offset_right = 318.45203
 offset_bottom = 345.45203
 rotation = -1.5707964
-value = 50.0
+value = 100.0
 show_percentage = false
 
 [node name="Main Menu" type="Button" parent="."]

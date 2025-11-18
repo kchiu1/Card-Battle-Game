@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://csgt6qywykds" path="res://Scenes/BoardScene/card_manager.gd" id="1_37q8m"]
 [ext_resource type="Script" uid="uid://b2i6k128qmmkp" path="res://Scenes/BoardScene/player_hand.gd" id="3_37q8m"]
 [ext_resource type="PackedScene" uid="uid://k6d085dajdi" path="res://Scenes/BoardScene/card_slot.tscn" id="3_ekcd8"]
-[ext_resource type="PackedScene" uid="uid://dhswr4bkc1v30" path="res://Scenes/Deck/deck.tscn" id="4_ld0d1"]
+[ext_resource type="PackedScene" uid="uid://dhswr4bkc1v30" path="res://Scenes/Deck/Deck.tscn" id="4_ld0d1"]
 [ext_resource type="Script" uid="uid://b3orjos4qscw7" path="res://Scenes/BoardScene/input_manager.gd" id="6_d28g4"]
 
 [node name="Board" type="Node2D"]
