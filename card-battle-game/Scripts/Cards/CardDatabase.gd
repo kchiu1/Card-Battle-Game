@@ -1,38 +1,41 @@
-extends Node2D
+extends Resource
 class_name CardDatabase
 
-var cards: Dictionary = {}
+@export var csv_path := "res://Data/CardList.csv"
+
+var cards := {}  # Dictionary: id → Card
 
 func _ready():
-	var file = FileAccess.open("res://data/CardList.csv", FileAccess.READ)
-	if file:
-		var header = file.get_line().strip_edges().split(",")
-		while not file.eof_reached():
-			var line = file.get_line().strip_edges()
-			if line == "":
-				continue
-			var data = line.split(",")
-			if data.size() < header.size():
-				continue
-			var card_data = {}
-			for i in range(header.size()):
-				card_data[header[i]] = data[i]
-			var id = int(card_data["id"])
-			cards[id] = card_data
-		file.close()
-	else:
-		print("Failed to open CardList.csv")
+	load_cards()
 
-func get_card(card_id: int) -> Card:
-	if not cards.has(card_id):
-		print("Card not found: %d" % card_id)
+func load_cards():
+	var file = FileAccess.open(csv_path, FileAccess.READ)
+	if not file:
+		push_error("Failed to load card CSV at: " + csv_path)
+		return
+
+	var header := file.get_csv_line()  # skip header
+
+	while not file.eof_reached():
+		var row := file.get_csv_line()
+		if row.size() < 7:
+			continue
+
+		var c := Card.new()
+		c.id = int(row[0])
+		c.card_name = row[1]
+		c.card_type = row[2]
+		c.value_min = int(row[3])
+		c.value_max = int(row[4])
+		c.effects = row[5].split(";") if row[5] != "" else []
+		c.attached_items = row[6].split(";") if row[6] != "" else []
+
+		cards[c.id] = c  # store by ID
+
+	file.close()
+	print("Loaded %d cards" % cards.size())
+
+func get_card(id: int) -> Card:
+	if not cards.has(id):
 		return null
-
-	var card = cards[card_id]
-	return Card.new(
-		card["name"],
-		int(card["value_min"]),
-		int(card["value_max"]),
-		card["type"],
-		card["effects"].split(";", false)
-	)
+	return cards[id].duplicate()
