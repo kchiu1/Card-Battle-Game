@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhswr4bkc1v30"]
 
-[ext_resource type="Script" uid="uid://blt34lyg812mj" path="res://Scenes/BoardScene/deck.gd" id="1_hg2h8"]
+[ext_resource type="Script" uid="uid://blt34lyg812mj" path="res://Scenes/Deck/deck.gd" id="1_hg2h8"]
 [ext_resource type="Texture2D" uid="uid://dkn7vvyu4xcf4" path="res://Assets/CardBack.png" id="2_pg743"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gban"]
@@ -17,15 +17,15 @@ position = Vector2(360, 760)
 scale = Vector2(0.53333336, 0.60377353)
 texture = ExtResource("2_pg743")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Transform"]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+
 [node name="Area2D" type="Area2D" parent="Transform"]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transform/Area2D"]
 shape = SubResource("RectangleShape2D_5gban")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Transform/Area2D"]
-offset_left = -24.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = 24.0

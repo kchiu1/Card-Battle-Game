@@ -1,7 +1,7 @@
 extends Node2D
 
-const CARD_SCENE_PATH = "res://Common/Cards/TestCard.tscn"
-const CARD_DRAW_SPEED = 0.5
+const CARD_SCENE_PATH = "res://Common/Cards/Card.tscn"
+const CARD_DRAW_SPEED = 0.3
 const PLAYER_HAND_SIZE = 3
 
 var player_deck = [1, 1, 1, 1, 2, 2, 2, 3, 4]
@@ -34,6 +34,7 @@ func draw_card():
         new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_drawn]["min"]) + "-" + str(card_database_reference.cards[card_drawn]["max"])
         new_card.get_node("Name").text = card_database_reference.cards[card_drawn]["name"]
         $"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+        new_card.get_node("AnimationPlayer").play("card_flip")
         
         $"../CardManager".add_child(new_card)
         new_card.name = "Card"

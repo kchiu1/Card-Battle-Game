@@ -1,24 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvuiqd31xytkr"]
+[gd_scene load_steps=7 format=3 uid="uid://dvuiqd31xytkr"]
 
 [ext_resource type="Script" uid="uid://csgt6qywykds" path="res://Scenes/BoardScene/card_manager.gd" id="1_37q8m"]
 [ext_resource type="Script" uid="uid://b2i6k128qmmkp" path="res://Scenes/BoardScene/player_hand.gd" id="3_37q8m"]
 [ext_resource type="PackedScene" uid="uid://k6d085dajdi" path="res://Scenes/BoardScene/card_slot.tscn" id="3_ekcd8"]
 [ext_resource type="PackedScene" uid="uid://dhswr4bkc1v30" path="res://Scenes/Deck/Deck.tscn" id="4_ld0d1"]
+[ext_resource type="PackedScene" uid="uid://dr4u3d6q3lccg" path="res://Scenes/Deck/OpponentDeck.tscn" id="6_5gban"]
 [ext_resource type="Script" uid="uid://b3orjos4qscw7" path="res://Scenes/BoardScene/input_manager.gd" id="6_d28g4"]
 
 [node name="Board" type="Node2D"]
 
 [node name="CardManager" type="Node2D" parent="."]
 script = ExtResource("1_37q8m")
-
-[node name="Card Slot" parent="." instance=ExtResource("3_ekcd8")]
-position = Vector2(816, 656)
-
-[node name="Card Slot2" parent="." instance=ExtResource("3_ekcd8")]
-position = Vector2(960, 656)
-
-[node name="Card Slot3" parent="." instance=ExtResource("3_ekcd8")]
-position = Vector2(1104, 656)
 
 [node name="PlayerHand" type="Node2D" parent="."]
 script = ExtResource("3_37q8m")
@@ -27,3 +19,34 @@ script = ExtResource("3_37q8m")
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("6_d28g4")
+
+[node name="CardSlots" type="Node2D" parent="."]
+
+[node name="Card Slot" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+position = Vector2(816, 656)
+
+[node name="Card Slot2" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+position = Vector2(960, 656)
+
+[node name="Card Slot3" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+position = Vector2(1104, 656)
+
+[node name="Card Slot4" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+position = Vector2(816, 432)
+
+[node name="Card Slot5" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+position = Vector2(960, 432)
+
+[node name="Card Slot6" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+position = Vector2(1104, 432)
+
+[node name="EndTurn" type="Button" parent="."]
+offset_left = 1240.0
+offset_top = 528.0
+offset_right = 1318.0
+offset_bottom = 559.0
+text = "End Turn
+"
+
+[node name="OpponentDeck" parent="." instance=ExtResource("6_5gban")]
+position = Vector2(1200, -496)
