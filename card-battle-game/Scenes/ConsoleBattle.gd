@@ -1,33 +1,39 @@
-extends Node2D
+extends Node
 class_name ConsoleBattle
 
 @export var card_database: CardDatabase
 @export var battle: CardBattle
 
-# Mode:
-# true = interactive (player chooses cards)
-# false = auto-play (random selection)
-var interactive_mode := true
+var interactive_mode := true  # true = player picks cards; false = random
 
+func _ready():
+	run_console_battle()
 
 func run_console_battle():
 	print("=== CARD BATTLE START ===")
 
-	# Example decks for testing (replace with real IDs)
+	# 1. Safety Check for Card Database
+	# This prevents the "Nonexistent function 'get_card' in base 'Nil'" error
+	if card_database == null:
+		print("ERROR: CardDatabase resource is not assigned to ConsoleBattle node.")
+		print("Please assign the CardDatabase resource in the Inspector to continue.")
+		return
+		
+	# 2. Initialize CardBattle if it wasn't set in the Inspector
+	# This prevents the "Invalid assignment of property... on a base object of type 'Nil'" error
+	if battle == null:
+		battle = CardBattle.new()
+	
 	var player_ids = [1,2,10,11,12]
 	var enemy_ids = [1,2,10,11,12]
 
-	# Start the battle
+	battle.card_database = card_database
 	battle.start_battle(player_ids, enemy_ids)
 
 	var turn = 1
 	while not battle.is_battle_over():
 		print("\n--- TURN %d ---" % turn)
 		print("Player HP:", battle.player_hp, " Enemy HP:", battle.enemy_hp)
-		
-		# Enemy draws 3 cards
-		var enemy_cards = battle.get_enemy_hand(3)
-		print("Enemy has played 3 cards.")
 
 		# Player chooses cards
 		var chosen_indexes: Array = []
@@ -36,17 +42,15 @@ func run_console_battle():
 			_print_player_hand()
 			print("Select 0–3 cards to play (space-separated indexes, Enter to pass):")
 			var input = OS.read_string_from_stdin().strip_edges()
-
 			if input != "":
 				for s in input.split(" "):
 					var idx = int(s)
 					if idx >= 0 and idx < battle.player_hand.size():
 						chosen_indexes.append(idx)
 		else:
-			# Auto pick up to 3 random cards
+			# Randomly pick up to 3 cards
 			var hand_size = battle.player_hand.size()
 			var num_to_play = randi_range(0, min(3, hand_size))
-			chosen_indexes = []
 			var available_indexes = []
 			for i in range(hand_size):
 				available_indexes.append(i)
@@ -87,7 +91,6 @@ func run_console_battle():
 		print("\n=== ENEMY WINS! ===")
 	else:
 		print("\n=== DRAW ===")
-
 
 func _print_player_hand():
 	print("Your Hand:")
