@@ -1,7 +1,9 @@
-extends Node2D
+extends Resource
 class_name CardDatabase
 
-var cards: Dictionary = {}
+@export var csv_path := "res://Data/CardList.csv"
+
+var cards := {}  # Dictionary: id → Card
 
 func _ready():
     load_cards()

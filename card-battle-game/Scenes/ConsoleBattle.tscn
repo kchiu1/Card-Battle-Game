@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvkutpatp1sex"]
+
+[ext_resource type="Script" uid="uid://ddo3sf76lctdf" path="res://Scenes/ConsoleBattle.gd" id="1_6omeg"]
+[ext_resource type="Script" uid="uid://d106y0er8ldqr" path="res://Scripts/Cards/CardDatabase.gd" id="2_6omeg"]
+[ext_resource type="Script" uid="uid://doexaikdmqu73" path="res://Scenes/CardBattle.gd" id="3_2qifp"]
+
+[node name="ConsoleBattle" type="Node2D"]
+script = ExtResource("1_6omeg")
+
+[node name="CardBattle" type="Node" parent="."]
+script = ExtResource("3_2qifp")
+
+[node name="CardDatabase" type="Node" parent="."]
+script = ExtResource("2_6omeg")

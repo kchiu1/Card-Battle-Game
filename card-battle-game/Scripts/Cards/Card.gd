@@ -1,24 +1,13 @@
-extends Node2D
+extends Resource
 class_name Card
 
-# Card properties
-@export var card_name: String = "Strike"
-@export var min: int = 0
-@export var max: int = 0
-@export var type: String = "Attack" # Can be "Attack", "Defense", "Magic", etc.
-@export var effects: Array = []  
-@export var attached_items: Array = [] # Items that can be used with this card
+@export var id: int
+@export var card_name: String
+@export var card_type: String # "attack" | "defense" | etc
+@export var value_min: int
+@export var value_max: int
+@export var effects: Array = []
+@export var attached_items: Array = []
 
-#initialization
-func _init( _card_name: String = "Strike", _min: int = 0, _max: int = 0, _type: String = "Attack", _effects: Array = []):
-	card_name = card_name
-
-	min = _min
-	max = _max
-	
-	type = _type
-	effects = _effects.duplicate()
-	attached_items = []
-	
 func roll() -> int:
-	return randi() % (max - min + 1) + min
+	return randi_range(value_min, value_max)
