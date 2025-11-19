@@ -1,4 +1,4 @@
-id,name,type,min,max,effects,attached_items
+id,card_name,type,min,max,effects,attached_items
 1,Slash,attack,1,4,[],[]
 2,Block,defense,2,3,[],[]
 3,Atk Up,utility,,,[],[]

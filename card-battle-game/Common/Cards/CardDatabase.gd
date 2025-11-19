@@ -1,9 +1,6 @@
-extends Resource
-class_name CardDatabase
 
-@export var csv_path := "res://Data/CardList.csv"
 
-var cards := {}  # Dictionary: id → Card
+var cards: Dictionary = {}
 
 func _ready():
     load_cards()
@@ -37,6 +34,7 @@ func load_cards():
                 
         var id = int(card_data["id"])
         cards[id] = card_data
+    print(cards)
     file.close()
 
 func get_card(card_id: int) -> Card:
@@ -46,7 +44,7 @@ func get_card(card_id: int) -> Card:
 
     var card = cards[card_id]
     return Card.new(
-        card["name"],
+        card["card_name"],
         int(card["min"]),
         int(card["max"]),
         card["type"],

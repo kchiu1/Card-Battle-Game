@@ -12,7 +12,7 @@ var card_scene = preload(CARD_SCENE_PATH)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     player_deck.shuffle()
-    var CardDatabase = preload("res://Scripts/Cards/CardDatabase.gd")
+    var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
     card_database_reference = CardDatabase.new()
     card_database_reference.load_cards()
 
@@ -29,10 +29,10 @@ func draw_card():
         discard.append(player_deck.pop_front())
         
         var new_card = card_scene.instantiate()
-        var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["name"] + "Card.png")
+        var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["card_name"] + "Card.png")
         new_card.get_node("CardImage").texture = load(card_image_path)
         new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_drawn]["min"]) + "-" + str(card_database_reference.cards[card_drawn]["max"])
-        new_card.get_node("Name").text = card_database_reference.cards[card_drawn]["name"]
+        new_card.get_node("Name").text = card_database_reference.cards[card_drawn]["card_name"]
         $"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
         new_card.get_node("AnimationPlayer").play("card_flip")
         
