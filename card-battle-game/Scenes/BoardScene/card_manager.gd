@@ -33,14 +33,18 @@ func start_drag(card):
     
     
 func finish_drag():
-    card_being_dragged.scale = Vector2(1.05, 1.05)
+    if card_being_dragged == null:
+        return
+    highlight_card(card_being_dragged, false)
+    is_hovering_on_card = false
     var card_slot_found = raycast_check_for_card_slot()
     if card_slot_found and not card_slot_found.card_in_slot:
+        player_hand_reference.remove_card_from_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
         card_being_dragged.position = card_slot_found.position
+        card_being_dragged.z_index = -1
         card_being_dragged.in_card_slot = true
         #card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
         card_slot_found.card_in_slot = true
-        print(card_being_dragged.in_card_slot)
     else:
         player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
         card_being_dragged.in_card_slot = false
