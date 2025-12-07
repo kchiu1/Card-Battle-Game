@@ -116,6 +116,7 @@ func get_card_with_highest_z_index(cards):
 
 
 func _on_end_turn_pressed() -> void:
-    for card in player_hand_reference:
+    for card in player_hand_reference.player_hand:
         if card.in_card_slot:
             pass
+    

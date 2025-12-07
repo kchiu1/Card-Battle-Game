@@ -15,12 +15,12 @@ func _ready() -> void:
     var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
     card_database_reference = CardDatabase.new()
     card_database_reference.load_cards()
-    draw_card()
+    while($"../PlayerHand".player_hand.size() < PLAYER_HAND_SIZE):
+        draw_card()
 
 
 func draw_card():
-    
-    while($"../PlayerHand".player_hand.size() < PLAYER_HAND_SIZE):
+    if $"../PlayerHand".player_hand.size() < PLAYER_HAND_SIZE:
         if(player_deck.is_empty()):
             discard.shuffle()
             player_deck.append_array(discard)
