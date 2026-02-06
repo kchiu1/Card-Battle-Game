@@ -5,5 +5,5 @@
 [node name="Enemy" type="Node2D"]
 
 [node name="GoblinNormal" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_8q37v")
