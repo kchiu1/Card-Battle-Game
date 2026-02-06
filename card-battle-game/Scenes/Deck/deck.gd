@@ -2,7 +2,7 @@ extends Node2D
 
 const CARD_SCENE_PATH = "res://Common/Cards/Card.tscn"
 const CARD_DRAW_SPEED = 0.3
-const PLAYER_HAND_SIZE = 3
+const PLAYER_HAND_SIZE = 5
 
 var player_deck = [1, 1, 1, 1, 2, 2, 2, 3, 4]
 var discard = []
