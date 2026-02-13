@@ -1,18 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp388d5qhkvx7"]
+[gd_scene format=3 uid="uid://dp388d5qhkvx7"]
 
 [ext_resource type="Script" uid="uid://cvxavuqa5hvy4" path="res://main/main_menu.gd" id="1_q6prn"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Node2D" unique_id=135261386]
 script = ExtResource("1_q6prn")
 
-[node name="start" type="Button" parent="."]
+[node name="start" type="Button" parent="." unique_id=1202057570]
 offset_left = 832.0
 offset_top = 328.0
 offset_right = 1088.0
 offset_bottom = 392.0
 text = "Start"
 
-[node name="quit" type="Button" parent="."]
+[node name="quit" type="Button" parent="." unique_id=1300951170]
 offset_left = 832.0
 offset_top = 576.0
 offset_right = 1088.0

@@ -1,6 +1,3 @@
-extends Resource
-class_name CardBattle
-
 @export var card_database: CardDatabase
 
 var player_hp: int
@@ -50,7 +47,7 @@ func pick_card(deck: Array, index := 0):
 	return card                
 
 
-
+# i feel like these two functions can be merged -Vo
 func get_hand(deck: Array, size: int) -> Array:
 	var h: Array = []
 	for i in range(size):

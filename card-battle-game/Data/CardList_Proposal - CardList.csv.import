@@ -15,3 +15,5 @@ dest_files=["res://Data/CardList_Proposal - CardList.card.translation", "res://D
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true
