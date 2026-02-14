@@ -24,7 +24,7 @@ func _init( _card_name: String = "", _min: int = 0, _max: int = 0, _type: String
 
 func roll() -> int:
     return randi_range(min, max)
-    
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     get_parent().connect_card_signals(self)

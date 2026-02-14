@@ -27,7 +27,6 @@ func draw_card():
             discard.clear()
         
         var card_drawn = enemy_deck[0]
-        discard.append(enemy_deck.pop_front())
         
         var new_card = card_scene.instantiate()
         var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["card_name"] + "Card.png")
