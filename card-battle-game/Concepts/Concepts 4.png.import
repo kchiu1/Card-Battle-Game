@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gsjv5bhoprv4"
-path="res://.godot/imported/Concepts 4.png-6127ccde3f0f9f02bbb93c156982b081.ctex"
+path="res://.godot/imported/Concepts 4.png-5faf8f4866d4de4cc6bc0c4a85e92a48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pictures/Concepts 4.png"
-dest_files=["res://.godot/imported/Concepts 4.png-6127ccde3f0f9f02bbb93c156982b081.ctex"]
+source_file="res://Concepts/Concepts 4.png"
+dest_files=["res://.godot/imported/Concepts 4.png-5faf8f4866d4de4cc6bc0c4a85e92a48.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4bv67egmf4ie"
-path="res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"
+uid="uid://cbckstkhl6k8v"
+path="res://.godot/imported/Untitled_Artwork (6).png-99a562947bcddaf174c0c0f7f12a624f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Concepts/Concepts 2.png"
-dest_files=["res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"]
+source_file="res://Assets/Enemy/Untitled_Artwork (6).png"
+dest_files=["res://.godot/imported/Untitled_Artwork (6).png-99a562947bcddaf174c0c0f7f12a624f.ctex"]
 
 [params]
 

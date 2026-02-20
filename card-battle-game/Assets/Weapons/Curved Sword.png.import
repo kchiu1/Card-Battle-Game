@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4bv67egmf4ie"
-path="res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"
+uid="uid://coufcean1uufw"
+path="res://.godot/imported/Curved Sword.png-9ba1b5780551bbea9ad41cf70acab3d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Concepts/Concepts 2.png"
-dest_files=["res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"]
+source_file="res://Assets/Weapons/Curved Sword.png"
+dest_files=["res://.godot/imported/Curved Sword.png-9ba1b5780551bbea9ad41cf70acab3d9.ctex"]
 
 [params]
 

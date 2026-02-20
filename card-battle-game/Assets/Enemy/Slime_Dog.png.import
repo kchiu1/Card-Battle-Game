@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4bv67egmf4ie"
-path="res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"
+uid="uid://53pdmqjv0ewb"
+path="res://.godot/imported/Slime_Dog.png-fa0eed0cb8b9c085ada4d48b2379f4b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Concepts/Concepts 2.png"
-dest_files=["res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"]
+source_file="res://Assets/Enemy/Slime_Dog.png"
+dest_files=["res://.godot/imported/Slime_Dog.png-fa0eed0cb8b9c085ada4d48b2379f4b2.ctex"]
 
 [params]
 

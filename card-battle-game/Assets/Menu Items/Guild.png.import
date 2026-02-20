@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4bv67egmf4ie"
-path="res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"
+uid="uid://d16djm6cyef7i"
+path="res://.godot/imported/Guild.png-8723348d407d6b7c3c4111426574a286.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Concepts/Concepts 2.png"
-dest_files=["res://.godot/imported/Concepts 2.png-9b466b9a71bc3427acd0bf68b7eaa684.ctex"]
+source_file="res://Assets/Menu Items/Guild.png"
+dest_files=["res://.godot/imported/Guild.png-8723348d407d6b7c3c4111426574a286.ctex"]
 
 [params]
 
