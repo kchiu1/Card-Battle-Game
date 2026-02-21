@@ -2,14 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://m7skpxp03ft4"
+uid="uid://bn2cdgm3cgj70"
 
 [deps]
 
-files=["res://Data/CardList_Proposal - CardList.card.translation", "res://Data/CardList_Proposal - CardList.type.translation", "res://Data/CardList_Proposal - CardList.min.translation", "res://Data/CardList_Proposal - CardList.max.translation", "res://Data/CardList_Proposal - CardList.effects.translation", "res://Data/CardList_Proposal - CardList.attached.translation", "res://Data/CardList_Proposal - CardList.tags.translation"]
+files=["res://Data/CardList_Proposal - CardList.card.translation", "res://Data/CardList_Proposal - CardList.type.translation", "res://Data/CardList_Proposal - CardList.min.translation", "res://Data/CardList_Proposal - CardList.max.translation", "res://Data/CardList_Proposal - CardList.effects.translation", "res://Data/CardList_Proposal - CardList.attached.translation"]
 
 source_file="res://Data/CardList_Proposal - CardList.csv"
-dest_files=["res://Data/CardList_Proposal - CardList.card.translation", "res://Data/CardList_Proposal - CardList.type.translation", "res://Data/CardList_Proposal - CardList.min.translation", "res://Data/CardList_Proposal - CardList.max.translation", "res://Data/CardList_Proposal - CardList.effects.translation", "res://Data/CardList_Proposal - CardList.attached.translation", "res://Data/CardList_Proposal - CardList.tags.translation"]
+dest_files=["res://Data/CardList_Proposal - CardList.card.translation", "res://Data/CardList_Proposal - CardList.type.translation", "res://Data/CardList_Proposal - CardList.min.translation", "res://Data/CardList_Proposal - CardList.max.translation", "res://Data/CardList_Proposal - CardList.effects.translation", "res://Data/CardList_Proposal - CardList.attached.translation"]
 
 [params]
 
