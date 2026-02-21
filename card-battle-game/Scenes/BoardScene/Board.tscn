@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvuiqd31xytkr"]
+[gd_scene load_steps=14 format=3 uid="uid://dvuiqd31xytkr"]
 
 [ext_resource type="Script" uid="uid://csgt6qywykds" path="res://Scenes/BoardScene/card_manager.gd" id="1_37q8m"]
 [ext_resource type="Script" uid="uid://b2i6k128qmmkp" path="res://Scenes/BoardScene/player_hand.gd" id="3_37q8m"]
@@ -9,8 +9,10 @@
 [ext_resource type="Script" uid="uid://s38jcvwuk0j1" path="res://Scenes/BoardScene/enemy_hand.gd" id="6_vu8wt"]
 [ext_resource type="PackedScene" uid="uid://b4etcgn3osoi2" path="res://Scenes/BoardScene/enemy_card_slot.tscn" id="7_5gban"]
 [ext_resource type="Script" uid="uid://dwgt12spieec1" path="res://Scenes/BoardScene/enemy_card_slot.gd" id="7_ckelv"]
+[ext_resource type="PackedScene" uid="uid://lu4t8q3kl5t" path="res://Scenes/Deck/Discard.tscn" id="8_mhidy"]
 [ext_resource type="Script" uid="uid://pcbqguu4064m" path="res://Scenes/Deck/enemy_deck.gd" id="10_cllvr"]
 [ext_resource type="Script" uid="uid://caxjrbawykj7a" path="res://Scenes/BoardScene/battle_manager.gd" id="10_iapmq"]
+[ext_resource type="PackedScene" uid="uid://dupi3ct5ljd1e" path="res://Scenes/Deck/EnemyDiscard.tscn" id="13_uqcn3"]
 
 [node name="Board" type="Node2D"]
 
@@ -48,6 +50,15 @@ script = ExtResource("6_vu8wt")
 
 [node name="Deck" parent="." instance=ExtResource("4_ld0d1")]
 
+[node name="Discard" parent="." instance=ExtResource("8_mhidy")]
+position = Vector2(496, 760)
+
+[node name="EnemyDeck" parent="." instance=ExtResource("6_5gban")]
+script = ExtResource("10_cllvr")
+
+[node name="EnemyDiscard" parent="." instance=ExtResource("13_uqcn3")]
+position = Vector2(1424, 328)
+
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("6_d28g4")
 
@@ -58,9 +69,6 @@ offset_right = 1318.0
 offset_bottom = 559.0
 text = "End Turn
 "
-
-[node name="EnemyDeck" parent="." instance=ExtResource("6_5gban")]
-script = ExtResource("10_cllvr")
 
 [node name="BattleManager" type="Node" parent="."]
 script = ExtResource("10_iapmq")

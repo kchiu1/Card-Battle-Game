@@ -10,13 +10,18 @@ var screen_size
 var is_hovering_on_card
 var player_hand_reference
 var enemy_hand_reference
+var battle_manager_reference
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     screen_size=  get_viewport_rect().size
     player_hand_reference = $"../PlayerHand"
-    enemy_hand_reference = $"res://Scenes/BoardScene/enemy_hand.gd"
+    enemy_hand_reference = $"../EnemyHand"
+    battle_manager_reference = $"../BattleManager"
     $"../InputManager".connect("left_mouse_button_released", on_left_click_released)
+    var battle_manager := get_node("../BattleManager")
+    battle_manager.ended_turn.connect(_end_turn_discard)
+    
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -52,7 +57,6 @@ func finish_drag():
     else:
         player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
         card_being_dragged.in_card_slot = false
-        print(card_being_dragged.in_card_slot)
     card_being_dragged = null
 
 func connect_card_signals(card):
@@ -118,12 +122,31 @@ func get_card_with_highest_z_index(cards):
             highest_z_index = curr_card.z_index
     return highest_z_card
 
+func _end_turn_discard() -> void:
+    for slot in battle_manager_reference.player_card_slots:
+        if slot.card != null:
+            var card = slot.card
 
-func _on_end_turn_pressed() -> void:
-    for card in player_hand_reference.player_hand:
-        if card.in_card_slot:
-            $"../Deck".discard.append(card)
-    for enemy_card in enemy_hand_reference.player_hand:
-        if enemy_card.in_card_slot:
-            $"../EnemyDeck".discard.append(enemy_card)
+            # Send to discard pile
+            $"../Discard".move_to_discard(card)
+
+            # Reset CARD state
+            card.in_card_slot = false
+
+            # Clear SLOT state
+            slot.card = null
+            slot.card_in_slot = false
+            
+    for slot in battle_manager_reference.enemy_card_slots:
+        if slot.card != null:
+            var card = slot.card
+
+            $"../EnemyDiscard".move_to_discard(card)
+
+            card.in_card_slot = false
+            card.z_index = 1
+            card.scale = Vector2.ONE
+
+            slot.card = null
+            slot.card_in_slot = false
     

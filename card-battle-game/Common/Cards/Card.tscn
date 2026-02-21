@@ -186,6 +186,7 @@ offset_right = 48.0
 offset_bottom = -40.0
 text = "Deck"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ClashValue" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 0)
@@ -195,6 +196,7 @@ offset_right = 24.0
 offset_bottom = 96.0
 text = "2-3"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

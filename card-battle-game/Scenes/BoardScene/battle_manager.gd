@@ -8,12 +8,18 @@ var is_enemy_turn = false
 var battle_timer
 
 var enemy_card_slots = []
-var enemy_active_cards = []
 var player_card_slots = []
-var player_active_cards = []
+
+var player_health_bar
+var enemy_health_bar
+
+signal ended_turn()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    player_health_bar = $"../../Player Health"
+    enemy_health_bar =$"../../Enemy Health"
+    
     battle_timer = $"../BattleTimer"
     battle_timer.one_shot = true
     battle_timer.wait_time = 1.0
@@ -36,15 +42,16 @@ func _ready() -> void:
 
 func _on_end_turn_pressed() -> void:
     #resolve function that calculates the roll, takes the higher one, and subtracts it from the player/enemy HP bar
+    #see card manager for discard
     
     # Clash
     #check for defense cards to taunt attacks (do later)
-    for lane in range(player_card_slots):
-        var player_card = player_card_slots[lane]
-        var enemy_card = enemy_card_slots[lane]
+    for lane in range(len(player_card_slots)):
+        var player_card = player_card_slots[lane].card
+        var enemy_card = enemy_card_slots[lane].card
         clash(player_card, enemy_card)
-        
     
+    emit_signal("ended_turn")
     
     # wait 1 second
     battle_timer.start()
@@ -77,8 +84,7 @@ func play_cards():
         end_opponent_turn()
         return
     var random_card_slot = randi_range(1, enemy_card_slots.size())-1
-    var random_enemy_card_slot = enemy_card_slots[random_card_slot]
-    enemy_card_slots.erase(random_enemy_card_slot)
+    var random_enemy_card_slot = get_random_empty_enemy_slot()
     
     var selected_card = enemy_hand[0]
     
@@ -105,15 +111,39 @@ func end_opponent_turn():
 
 func clash(player_card, enemy_card):
     if(player_card==null and enemy_card == null):
+        print("2 nulls")
         pass
     elif(player_card==null and enemy_card != null):
-        resolve(enemy_card, $"../../Player Health")
+        print("player null")
+        resolve(enemy_card, player_health_bar, enemy_card.roll())
     elif(player_card!=null and enemy_card == null):
-        resolve(player_card, $"../../Enemy Health")
+        print("enemy null")
+        resolve(player_card, enemy_health_bar, player_card.roll())
+    else:
+        var p_roll = player_card.roll()
+        var e_roll = enemy_card.roll()
+        print("proll %d, eroll %d", p_roll, e_roll)
+        if(p_roll < e_roll):
+            resolve(enemy_card, player_health_bar, e_roll)
+        elif(e_roll < p_roll):
+            resolve(player_card, enemy_health_bar, p_roll)
+        else:
+            print("same roll")
+            pass
 
-func resolve(card, health):
+func resolve(card, health_bar, roll):
     if card.type == "attack":
-        health -= card.roll()
+        print("hit")
+        health_bar.value = max(health_bar.value - roll, 0) # Prevent negative
+        print(health_bar.value)
     elif card.type == "util":
-        #code individual util
+        #code later
         pass
+    elif card.type == "defense":
+        print("DEFENDED")
+
+func get_random_empty_enemy_slot():
+    var empty_slots = enemy_card_slots.filter(func(s): return s.card == null)
+    if empty_slots.is_empty():
+        return null
+    return empty_slots.pick_random()

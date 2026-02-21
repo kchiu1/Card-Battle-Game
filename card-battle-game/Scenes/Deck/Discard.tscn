@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://lu4t8q3kl5t"]
+
+[ext_resource type="Script" uid="uid://wuqsk072qa8v" path="res://Scenes/Deck/discard.gd" id="1_taccx"]
+[ext_resource type="Texture2D" uid="uid://dkn7vvyu4xcf4" path="res://Assets/CardBack.png" id="2_qxs3u"]
+
+[node name="Discard" type="Node2D"]
+script = ExtResource("1_taccx")
+
+[node name="Transform" type="Node2D" parent="."]
+z_index = -2
+
+[node name="Sprite2D" type="Sprite2D" parent="Transform"]
+visible = false
+scale = Vector2(0.53333336, 0.60377353)
+texture = ExtResource("2_qxs3u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Transform"]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+metadata/_edit_use_anchors_ = true
