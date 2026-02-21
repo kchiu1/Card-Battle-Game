@@ -1,24 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvuiqd31xytkr"]
+[gd_scene load_steps=14 format=3 uid="uid://dvuiqd31xytkr"]
 
 [ext_resource type="Script" uid="uid://csgt6qywykds" path="res://Scenes/BoardScene/card_manager.gd" id="1_37q8m"]
 [ext_resource type="Script" uid="uid://b2i6k128qmmkp" path="res://Scenes/BoardScene/player_hand.gd" id="3_37q8m"]
 [ext_resource type="PackedScene" uid="uid://k6d085dajdi" path="res://Scenes/BoardScene/card_slot.tscn" id="3_ekcd8"]
 [ext_resource type="PackedScene" uid="uid://dhswr4bkc1v30" path="res://Scenes/Deck/Deck.tscn" id="4_ld0d1"]
-[ext_resource type="PackedScene" uid="uid://dr4u3d6q3lccg" path="res://Scenes/Deck/OpponentDeck.tscn" id="6_5gban"]
+[ext_resource type="PackedScene" uid="uid://dr4u3d6q3lccg" path="res://Scenes/Deck/EnemyDeck.tscn" id="6_5gban"]
 [ext_resource type="Script" uid="uid://b3orjos4qscw7" path="res://Scenes/BoardScene/input_manager.gd" id="6_d28g4"]
+[ext_resource type="Script" uid="uid://s38jcvwuk0j1" path="res://Scenes/BoardScene/enemy_hand.gd" id="6_vu8wt"]
+[ext_resource type="PackedScene" uid="uid://b4etcgn3osoi2" path="res://Scenes/BoardScene/enemy_card_slot.tscn" id="7_5gban"]
+[ext_resource type="Script" uid="uid://dwgt12spieec1" path="res://Scenes/BoardScene/enemy_card_slot.gd" id="7_ckelv"]
+[ext_resource type="PackedScene" uid="uid://lu4t8q3kl5t" path="res://Scenes/Deck/Discard.tscn" id="8_mhidy"]
+[ext_resource type="Script" uid="uid://pcbqguu4064m" path="res://Scenes/Deck/enemy_deck.gd" id="10_cllvr"]
+[ext_resource type="Script" uid="uid://caxjrbawykj7a" path="res://Scenes/BoardScene/battle_manager.gd" id="10_iapmq"]
+[ext_resource type="PackedScene" uid="uid://dupi3ct5ljd1e" path="res://Scenes/Deck/EnemyDiscard.tscn" id="13_uqcn3"]
 
 [node name="Board" type="Node2D"]
 
 [node name="CardManager" type="Node2D" parent="."]
 script = ExtResource("1_37q8m")
-
-[node name="PlayerHand" type="Node2D" parent="."]
-script = ExtResource("3_37q8m")
-
-[node name="Deck" parent="." instance=ExtResource("4_ld0d1")]
-
-[node name="InputManager" type="Node2D" parent="."]
-script = ExtResource("6_d28g4")
 
 [node name="CardSlots" type="Node2D" parent="."]
 
@@ -31,14 +30,37 @@ position = Vector2(960, 656)
 [node name="Card Slot3" parent="CardSlots" instance=ExtResource("3_ekcd8")]
 position = Vector2(1104, 656)
 
-[node name="Card Slot4" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+[node name="Enemy Card Slot" parent="CardSlots" instance=ExtResource("7_5gban")]
 position = Vector2(816, 432)
+script = ExtResource("7_ckelv")
 
-[node name="Card Slot5" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+[node name="Enemy Card Slot2" parent="CardSlots" instance=ExtResource("7_5gban")]
 position = Vector2(960, 432)
+script = ExtResource("7_ckelv")
 
-[node name="Card Slot6" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+[node name="Enemy Card Slot3" parent="CardSlots" instance=ExtResource("7_5gban")]
 position = Vector2(1104, 432)
+script = ExtResource("7_ckelv")
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("3_37q8m")
+
+[node name="EnemyHand" type="Node2D" parent="."]
+script = ExtResource("6_vu8wt")
+
+[node name="Deck" parent="." instance=ExtResource("4_ld0d1")]
+
+[node name="Discard" parent="." instance=ExtResource("8_mhidy")]
+position = Vector2(496, 760)
+
+[node name="EnemyDeck" parent="." instance=ExtResource("6_5gban")]
+script = ExtResource("10_cllvr")
+
+[node name="EnemyDiscard" parent="." instance=ExtResource("13_uqcn3")]
+position = Vector2(1424, 328)
+
+[node name="InputManager" type="Node2D" parent="."]
+script = ExtResource("6_d28g4")
 
 [node name="EndTurn" type="Button" parent="."]
 offset_left = 1240.0
@@ -48,7 +70,10 @@ offset_bottom = 559.0
 text = "End Turn
 "
 
-[node name="OpponentDeck" parent="." instance=ExtResource("6_5gban")]
-position = Vector2(1200, -496)
+[node name="BattleManager" type="Node" parent="."]
+script = ExtResource("10_iapmq")
+
+[node name="BattleTimer" type="Timer" parent="."]
 
 [connection signal="pressed" from="EndTurn" to="CardManager" method="_on_end_turn_pressed"]
+[connection signal="pressed" from="EndTurn" to="BattleManager" method="_on_end_turn_pressed"]

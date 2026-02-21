@@ -31,7 +31,7 @@ func raycast_at_cursor():
     #print(result)
     if result.size() > 0:
         var card_found: Node = null
-        var deck_found: Node = null
+        #var deck_found: Node = null
 
         for hit in result:
             var mask = hit.collider.collision_mask
@@ -40,12 +40,12 @@ func raycast_at_cursor():
                 var candidate = hit.collider.get_parent()
                 if card_found == null or candidate.z_index > card_found.z_index:
                     card_found = candidate
-            elif mask == COLLISION_MASK_CARD_DECK:
-                deck_found = hit.collider.get_parent()
-        if card_found:
+            #elif mask == COLLISION_MASK_CARD_DECK:
+                #deck_found = hit.collider.get_parent()
+        if card_found and not $"../BattleManager".is_enemy_turn:
             #print("card clicked")
             card_manager_reference.start_drag(card_found)
-        elif deck_found:
-            #print("deck clicked")
-            deck_reference.draw_card()
+        #elif deck_found:
+            ##print("deck clicked")
+            #deck_reference.draw_card()
             
