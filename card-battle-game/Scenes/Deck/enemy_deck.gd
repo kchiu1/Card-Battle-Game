@@ -22,25 +22,26 @@ func _ready() -> void:
 
 
 func draw_card():
-    if $"../EnemyHand".enemy_hand.size() < MAX_HAND_SIZE:
-        if(enemy_deck.is_empty()):
-            discard.shuffle()
-            enemy_deck.append_array(discard)
-            discard.clear()
-        
-        var card_drawn = enemy_deck.pop_front()
-        
-        var new_card = card_scene.instantiate()
-        var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["card_name"] + "Card.png")
-        new_card.get_node("CardImage").texture = load(card_image_path)
-        new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_drawn]["min"]) + "-" + str(card_database_reference.cards[card_drawn]["max"])
-        new_card.get_node("Name").text = card_database_reference.cards[card_drawn]["card_name"]
-        new_card.type = card_database_reference.cards[card_drawn]["type"]
-        new_card.min = card_database_reference.cards[card_drawn]["min"]
-        new_card.max = card_database_reference.cards[card_drawn]["max"]
-        
-        $"../CardManager".add_child(new_card)
-        new_card.name = "Card"
-        
-        $"../EnemyHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
-    
+	if $"../EnemyHand".enemy_hand.size() < ENEMY_HAND_SIZE:
+		if(enemy_deck.is_empty()):
+			discard.shuffle()
+			enemy_deck.append_array(discard)
+			discard.clear()
+		
+		var card_drawn = enemy_deck[0]
+		
+		var new_card = card_scene.instantiate()
+		var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["card_name"] + "Card.png")
+		new_card.get_node("CardImage").texture = load(card_image_path)
+		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")
+		new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_drawn]["min"]) + "-" + str(card_database_reference.cards[card_drawn]["max"])
+		new_card.get_node("Name").text = card_database_reference.cards[card_drawn]["card_name"]
+		new_card.type = card_database_reference.cards[card_drawn]["type"]
+		new_card.min = card_database_reference.cards[card_drawn]["min"]
+		new_card.max = card_database_reference.cards[card_drawn]["max"]
+		
+		$"../CardManager".add_child(new_card)
+		new_card.name = "Card"
+		
+		$"../EnemyHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+	
