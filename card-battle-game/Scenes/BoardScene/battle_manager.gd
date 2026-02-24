@@ -61,24 +61,24 @@ func _on_end_turn_pressed() -> void:
 
 
 func enemy_turn():
-    is_enemy_turn = true
-    $"../EndTurn".disabled = true
-    $"../EndTurn".visible = false
-    
-    $"../EnemyDeck".draw_card()
-    $"../EnemyDeck".draw_card()
-    
-    # wait 1 second
-    battle_timer.start()
-    await battle_timer.timeout
-    
-    # Play Enemy cards
-    var starting_size = randi_range(1,enemy_card_slots.size())
-    for i in range(starting_size):
-        await play_cards()
-    
-    end_opponent_turn()
-    
+	is_enemy_turn = true
+	$"../EndTurn".disabled = true
+	$"../EndTurn".visible = false
+	
+	$"../EnemyDeck".draw_card()
+	$"../EnemyDeck".draw_card()
+	
+	# wait 1 second
+	battle_timer.start()
+	await battle_timer.timeout
+	
+	# Play Enemy cards
+	var starting_size = randi_range(1,enemy_card_slots.size())
+	for i in range(starting_size):
+		await play_cards()
+	
+	end_opponent_turn()
+	
 func play_cards():
 	var enemy_hand = $"../EnemyHand".enemy_hand
 	if enemy_hand.size() == 0:
@@ -104,32 +104,32 @@ func play_cards():
 	return selected_card
 	
 func end_opponent_turn():
-    # reset player deck draw
-    $"../Deck".draw_card()
-    $"../Deck".draw_card()
-        
-    is_enemy_turn = false
-    $"../EndTurn".disabled = false
-    $"../EndTurn".visible = true
+	# reset player deck draw
+	$"../Deck".draw_card()
+	$"../Deck".draw_card()
+		
+	is_enemy_turn = false
+	$"../EndTurn".disabled = false
+	$"../EndTurn".visible = true
 
 func clash(player_card, enemy_card):
-    if(player_card==null and enemy_card == null):
-        pass
-    elif(player_card==null and enemy_card != null):
-        resolve(enemy_card, player_health_bar, enemy_card.roll())
-    elif(player_card!=null and enemy_card == null):
-        resolve(player_card, enemy_health_bar, player_card.roll())
-    else:
-        var p_roll = player_card.roll()
-        var e_roll = enemy_card.roll()
-        print("proll %d, eroll %d" %[p_roll, e_roll])
-        if(p_roll < e_roll):
-            resolve(enemy_card, player_health_bar, e_roll)
-        elif(e_roll < p_roll):
-            resolve(player_card, enemy_health_bar, p_roll)
-        else:
-            print("same roll")
-            pass    
+	if(player_card==null and enemy_card == null):
+		pass
+	elif(player_card==null and enemy_card != null):
+		resolve(enemy_card, player_health_bar, enemy_card.roll())
+	elif(player_card!=null and enemy_card == null):
+		resolve(player_card, enemy_health_bar, player_card.roll())
+	else:
+		var p_roll = player_card.roll()
+		var e_roll = enemy_card.roll()
+		print("proll %d, eroll %d" %[p_roll, e_roll])
+		if(p_roll < e_roll):
+			resolve(enemy_card, player_health_bar, e_roll)
+		elif(e_roll < p_roll):
+			resolve(player_card, enemy_health_bar, p_roll)
+		else:
+			print("same roll")
+			pass    
 
 func resolve(card, health_bar, roll):
 	if card.type == "attack":
