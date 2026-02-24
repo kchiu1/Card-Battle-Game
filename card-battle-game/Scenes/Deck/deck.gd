@@ -36,6 +36,7 @@ func draw_card():
         var new_card = card_scene.instantiate()
         var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["card_name"] + "Card.png")
         new_card.get_node("CardImage").texture = load(card_image_path)
+        new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")
         new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_drawn]["min"]) + "-" + str(card_database_reference.cards[card_drawn]["max"])
         new_card.get_node("Name").text = card_database_reference.cards[card_drawn]["card_name"]
         new_card.type = card_database_reference.cards[card_drawn]["type"]
