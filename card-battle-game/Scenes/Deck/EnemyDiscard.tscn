@@ -11,6 +11,7 @@ z_index = -2
 rotation = 3.1415927
 
 [node name="Sprite2D" type="Sprite2D" parent="Transform"]
+visible = false
 scale = Vector2(0.53333336, 0.60377353)
 texture = ExtResource("1_cojmn")
 

@@ -2,7 +2,8 @@ extends Node2D
 
 const CARD_SCENE_PATH = "res://Common/Cards/Card.tscn"
 const CARD_DRAW_SPEED = 0.3
-const PLAYER_HAND_SIZE = 5
+const STARTING_PLAYER_HAND_SIZE = 5
+const MAX_HAND_SIZE = 7
 
 var player_deck = [1, 1, 1, 1, 2, 2, 2, 3, 4]
 var discard
@@ -16,12 +17,12 @@ func _ready() -> void:
     var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
     card_database_reference = CardDatabase.new()
     card_database_reference.load_cards()
-    while($"../PlayerHand".player_hand.size() < PLAYER_HAND_SIZE):
+    while($"../PlayerHand".player_hand.size() < STARTING_PLAYER_HAND_SIZE):
         draw_card()
 
 
 func draw_card():
-    if $"../PlayerHand".player_hand.size() < PLAYER_HAND_SIZE:
+    if $"../PlayerHand".player_hand.size() < MAX_HAND_SIZE:
         if(player_deck.is_empty()):
             discard.shuffle()
             player_deck.append_array(discard)
