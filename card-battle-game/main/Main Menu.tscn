@@ -1,23 +1,91 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp388d5qhkvx7"]
+[gd_scene load_steps=13 format=3 uid="uid://dp388d5qhkvx7"]
 
 [ext_resource type="Script" uid="uid://cvxavuqa5hvy4" path="res://main/main_menu.gd" id="1_q6prn"]
+[ext_resource type="Texture2D" uid="uid://balf3b3lhj460" path="res://Assets/Menu Items/Explore.png" id="2_7bk7q"]
+[ext_resource type="Texture2D" uid="uid://4ncrc74r4ujs" path="res://Assets/Menu Items/Shop.png" id="3_1l56o"]
+[ext_resource type="Texture2D" uid="uid://d16djm6cyef7i" path="res://Assets/Menu Items/Guild.png" id="4_r0u5t"]
+[ext_resource type="Texture2D" uid="uid://ywmb064dl7yy" path="res://Assets/Menu Items/quit.png" id="5_r0u5t"]
+[ext_resource type="Texture2D" uid="uid://cbckstkhl6k8v" path="res://Assets/Enemy/Untitled_Artwork (6).png" id="6_fghh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bk7q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0u5t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fghh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nhatj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uco4v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lnv6"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_q6prn")
 
-[node name="start" type="Button" parent="."]
-offset_left = 832.0
-offset_top = 328.0
-offset_right = 1088.0
-offset_bottom = 392.0
-text = "Start"
+[node name="explore" type="Button" parent="."]
+offset_left = 194.0
+offset_top = 697.0
+offset_right = 764.0
+offset_bottom = 1106.0
+scale = Vector2(0.8155677, 0.80045134)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7bk7q")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="explore"]
+position = Vector2(282.01212, 209.88159)
+scale = Vector2(1.2261398, 1.2492951)
+texture = ExtResource("2_7bk7q")
+
+[node name="guild" type="Button" parent="."]
+offset_left = 706.0
+offset_top = 690.0
+offset_right = 1276.0
+offset_bottom = 1099.0
+scale = Vector2(0.8155677, 0.80045134)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7bk7q")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="guild"]
+position = Vector2(282.01212, 209.88159)
+scale = Vector2(1.2261398, 1.2492951)
+texture = ExtResource("4_r0u5t")
+
+[node name="shop" type="Button" parent="."]
+offset_left = 1231.0001
+offset_top = 689.00006
+offset_right = 1801.0001
+offset_bottom = 1098.0001
+scale = Vector2(0.8155677, 0.80045134)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7bk7q")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="shop"]
+position = Vector2(282.0118, 209.88136)
+scale = Vector2(1.2261398, 1.2492951)
+texture = ExtResource("3_1l56o")
 
 [node name="quit" type="Button" parent="."]
-offset_left = 832.0
-offset_top = 576.0
-offset_right = 1088.0
-offset_bottom = 640.0
-text = "Quit"
+offset_left = 1733.0
+offset_top = 25.0
+offset_right = 1989.0
+offset_bottom = 89.0
+scale = Vector2(0.46135178, 2.493968)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r0u5t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fghh7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_nhatj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uco4v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6lnv6")
+flat = true
 
-[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[node name="Sprite2D" type="Sprite2D" parent="quit"]
+position = Vector2(162.56567, 43.705452)
+scale = Vector2(2.1675434, 0.40096745)
+texture = ExtResource("5_r0u5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(993, 530)
+texture = ExtResource("6_fghh7")
+
+[connection signal="pressed" from="explore" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
