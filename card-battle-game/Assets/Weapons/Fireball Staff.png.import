@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ig0mflh1ohdg"
-path="res://.godot/imported/quit.png-320c41c9c1922c93735684a8755d2957.ctex"
+uid="uid://bh1a1ey5q0o0f"
+path="res://.godot/imported/Fireball Staff.png-56a7a7382d345c92736ae51cd7543b4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Menu Items/quit.png"
-dest_files=["res://.godot/imported/quit.png-320c41c9c1922c93735684a8755d2957.ctex"]
+source_file="res://Assets/Weapons/Fireball Staff.png"
+dest_files=["res://.godot/imported/Fireball Staff.png-56a7a7382d345c92736ae51cd7543b4b.ctex"]
 
 [params]
 
