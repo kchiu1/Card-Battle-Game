@@ -5,7 +5,7 @@ const CARD_DRAW_SPEED = 0.3
 const STARTING_ENEMY_HAND_SIZE = 3
 const MAX_HAND_SIZE = 7
 
-var enemy_deck = [1, 1, 1, 1, 1, 1, 1, 3, 3]
+var enemy_deck = [1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3]
 var discard
 var card_database_reference
 var card_scene = preload(CARD_SCENE_PATH)
@@ -31,6 +31,7 @@ func draw_card():
 		var card_drawn = enemy_deck.pop_front()
 		
 		var new_card = card_scene.instantiate()
+		# error 15: no checks for drawing on empty deck. discard should reshuffle and move to deck when this happens -V
 		var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["card_name"] + "Card.png")
 		new_card.get_node("CardImage").texture = load(card_image_path)
 		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")

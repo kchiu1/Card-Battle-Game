@@ -34,6 +34,7 @@ func draw_card():
 		#TODO!! INSTANTIATE IN ONREADY TO MAKE THE DECK FIRST
 		#FIX CARD INTERNAL DATA
 		var new_card = card_scene.instantiate()
+		# error 15: see enemy_deck.gd -V
 		var card_image_path = str("res://Assets/" + card_database_reference.cards[card_drawn]["card_name"] + "Card.png")
 		new_card.get_node("CardImage").texture = load(card_image_path)
 		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")
