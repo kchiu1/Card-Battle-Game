@@ -13,23 +13,23 @@ var in_card_slot = false
 
 #initialization
 func _init( _card_name: String = "", _min: int = 0, _max: int = 0, _type: String = "", _effects: Array = []):
-    card_name = card_name
+	card_name = card_name
 
-    min = _min
-    max = _max
-    
-    type = _type
-    effects = _effects.duplicate()
-    attached_items = []
+	min = _min
+	max = _max
+	
+	type = _type
+	effects = _effects.duplicate()
+	attached_items = []
 
 func roll() -> int:
-    return randi_range(min, max)
+	return randi_range(min, max)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    get_parent().connect_card_signals(self)
+	get_parent().connect_card_signals(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-    pass
+	pass
