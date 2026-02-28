@@ -2,7 +2,7 @@ extends Node2D
 
 const CARD_SCENE_PATH = "res://Common/Cards/EnemyCard.tscn"
 const CARD_DRAW_SPEED = 0.3
-const STARTING_ENEMY_HAND_SIZE = 5
+const STARTING_ENEMY_HAND_SIZE = 3
 const MAX_HAND_SIZE = 7
 
 var enemy_deck = [1, 1, 1, 1, 1, 1, 1, 3, 3]
