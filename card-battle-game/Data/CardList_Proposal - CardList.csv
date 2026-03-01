@@ -12,3 +12,8 @@ id,card_name,type,min,max,effects,attached_items,tags
 16,Pot of Reed,utility,,,[draw_2],[],[utility]
 17,Ignite,attack,0,1,[burn],[],[spell]
 18,Curved Sword,attack,1,4,[atk_right],[],[sword]
+19,Ice Lance,attack,2,4,[freeze],[],[spell]
+20,Lightning Bolt,attack,3,6,[],[],[spell]
+21,Heavy Strike,attack,3,6,[],[],[sword]
+22,Earthquake,attack,2,5,[splash],[],[spell]
+23,Axe,attack,1,4,[],[],[axe]
