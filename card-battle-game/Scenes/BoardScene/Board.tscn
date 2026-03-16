@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvuiqd31xytkr"]
+[gd_scene format=3 uid="uid://dvuiqd31xytkr"]
 
 [ext_resource type="Script" uid="uid://csgt6qywykds" path="res://Scenes/BoardScene/card_manager.gd" id="1_37q8m"]
 [ext_resource type="Script" uid="uid://b2i6k128qmmkp" path="res://Scenes/BoardScene/player_hand.gd" id="3_37q8m"]
@@ -14,55 +14,108 @@
 [ext_resource type="Script" uid="uid://caxjrbawykj7a" path="res://Scenes/BoardScene/battle_manager.gd" id="10_iapmq"]
 [ext_resource type="PackedScene" uid="uid://dupi3ct5ljd1e" path="res://Scenes/Deck/EnemyDiscard.tscn" id="13_uqcn3"]
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Node2D" unique_id=959679200]
 
-[node name="CardManager" type="Node2D" parent="."]
+[node name="CardManager" type="Node2D" parent="." unique_id=1535417751]
 script = ExtResource("1_37q8m")
 
-[node name="CardSlots" type="Node2D" parent="."]
+[node name="CardSlots" type="Node2D" parent="." unique_id=833961509]
 
-[node name="Card Slot" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+[node name="Clash 1" type="Label" parent="CardSlots" unique_id=246373479]
+visible = false
+offset_left = 796.0
+offset_top = 532.0
+offset_right = 836.0
+offset_bottom = 555.0
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clash 2" type="Label" parent="CardSlots" unique_id=480220999]
+visible = false
+offset_left = 939.0
+offset_top = 532.0
+offset_right = 979.0
+offset_bottom = 555.0
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clash 3" type="Label" parent="CardSlots" unique_id=1072026435]
+visible = false
+offset_left = 1083.0
+offset_top = 532.0
+offset_right = 1123.0
+offset_bottom = 555.0
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy Number 1" type="Label" parent="CardSlots" unique_id=1508181934]
+visible = false
+offset_left = 796.0
+offset_top = 421.0
+offset_right = 836.0
+offset_bottom = 444.0
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player Number1" type="Label" parent="CardSlots" unique_id=712434901]
+visible = false
+offset_left = 796.0
+offset_top = 645.0
+offset_right = 836.0
+offset_bottom = 668.0
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Card Slot" parent="CardSlots" unique_id=1759383102 instance=ExtResource("3_ekcd8")]
 position = Vector2(816, 656)
 
-[node name="Card Slot2" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+[node name="Card Slot2" parent="CardSlots" unique_id=1491117423 instance=ExtResource("3_ekcd8")]
 position = Vector2(960, 656)
 
-[node name="Card Slot3" parent="CardSlots" instance=ExtResource("3_ekcd8")]
+[node name="Card Slot3" parent="CardSlots" unique_id=1772558777 instance=ExtResource("3_ekcd8")]
 position = Vector2(1104, 656)
 
-[node name="Enemy Card Slot" parent="CardSlots" instance=ExtResource("7_5gban")]
+[node name="Enemy Card Slot" parent="CardSlots" unique_id=1426567179 instance=ExtResource("7_5gban")]
 position = Vector2(816, 432)
 script = ExtResource("7_ckelv")
 
-[node name="Enemy Card Slot2" parent="CardSlots" instance=ExtResource("7_5gban")]
+[node name="Enemy Card Slot2" parent="CardSlots" unique_id=70291037 instance=ExtResource("7_5gban")]
 position = Vector2(960, 432)
 script = ExtResource("7_ckelv")
 
-[node name="Enemy Card Slot3" parent="CardSlots" instance=ExtResource("7_5gban")]
+[node name="Enemy Card Slot3" parent="CardSlots" unique_id=1205413253 instance=ExtResource("7_5gban")]
 position = Vector2(1104, 432)
 script = ExtResource("7_ckelv")
 
-[node name="PlayerHand" type="Node2D" parent="."]
+[node name="Enemy Card Label" type="Node2D" parent="CardSlots" unique_id=560873011]
+position = Vector2(816, 432)
+
+[node name="PlayerHand" type="Node2D" parent="." unique_id=743328090]
 script = ExtResource("3_37q8m")
 
-[node name="EnemyHand" type="Node2D" parent="."]
+[node name="EnemyHand" type="Node2D" parent="." unique_id=580251403]
 script = ExtResource("6_vu8wt")
 
-[node name="Deck" parent="." instance=ExtResource("4_ld0d1")]
+[node name="Deck" parent="." unique_id=1626436590 instance=ExtResource("4_ld0d1")]
 
-[node name="Discard" parent="." instance=ExtResource("8_mhidy")]
+[node name="Discard" parent="." unique_id=692782994 instance=ExtResource("8_mhidy")]
 position = Vector2(496, 760)
 
-[node name="EnemyDeck" parent="." instance=ExtResource("6_5gban")]
+[node name="EnemyDeck" parent="." unique_id=1320519155 instance=ExtResource("6_5gban")]
 script = ExtResource("10_cllvr")
 
-[node name="EnemyDiscard" parent="." instance=ExtResource("13_uqcn3")]
+[node name="EnemyDiscard" parent="." unique_id=1172135608 instance=ExtResource("13_uqcn3")]
 position = Vector2(1424, 328)
 
-[node name="InputManager" type="Node2D" parent="."]
+[node name="InputManager" type="Node2D" parent="." unique_id=817540955]
 script = ExtResource("6_d28g4")
 
-[node name="EndTurn" type="Button" parent="."]
+[node name="EndTurn" type="Button" parent="." unique_id=1679165180]
 offset_left = 1240.0
 offset_top = 528.0
 offset_right = 1318.0
@@ -70,10 +123,10 @@ offset_bottom = 559.0
 text = "End Turn
 "
 
-[node name="BattleManager" type="Node" parent="."]
+[node name="BattleManager" type="Node" parent="." unique_id=1064832509]
 script = ExtResource("10_iapmq")
 
-[node name="BattleTimer" type="Timer" parent="."]
+[node name="BattleTimer" type="Timer" parent="." unique_id=1652863078]
 
 [connection signal="pressed" from="EndTurn" to="CardManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="EndTurn" to="BattleManager" method="_on_end_turn_pressed"]
