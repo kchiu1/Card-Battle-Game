@@ -12,7 +12,9 @@ var player_card_slots = []
 
 var player_health_bar
 var enemy_health_bar
-
+var player_number_labels = []
+var enemy_number_labels = []
+var clash_labels = []
 signal ended_turn()
 
 # Called when the node enters the scene tree for the first time.
@@ -36,7 +38,15 @@ func _ready() -> void:
 	$"../CardSlots/Card Slot2".pos = 2
 	player_card_slots.append($"../CardSlots/Card Slot3")
 	$"../CardSlots/Card Slot3".pos = 3
-	
+	enemy_number_labels.append($"../CardSlots/Enemy Number1")
+	#enemy_number_labels.append($"../CardSlots/Enemy Number2")
+	#enemy_number_labels.append($"../CardSlots/Enemy Number3")
+	player_number_labels.append($"../CardSlots/Player Number1")
+	#player_number_labels.append($"../CardSlots/Player Number2")
+	#player_number_labels.append($"../CardSlots/Player Number3")
+	clash_labels.append($"../CardSlots/Clash 1")
+	clash_labels.append($"../CardSlots/Clash 2")
+	clash_labels.append($"../CardSlots/Clash 3")
 	enemy_turn()
 
 
@@ -112,34 +122,58 @@ func end_opponent_turn():
 	$"../EndTurn".disabled = false
 	$"../EndTurn".visible = true
 
-func clash(player_card, enemy_card):
+func lanewait():
+	battle_timer.start()
+	await battle_timer.timeout
+# TODO -V
+# fix 0 on attack vs defend
+# make clash text color based on winner
+# work on individual card numbers
+func clash(player_card, enemy_card, lane):
 	if(player_card==null and enemy_card == null):
 		pass
 	elif(player_card==null and enemy_card != null):
-		resolve(enemy_card, player_health_bar, enemy_card.roll())
+		resolve(enemy_card, player_health_bar, enemy_card.roll(), lane)
+		await lanewait()
 	elif(player_card!=null and enemy_card == null):
-		resolve(player_card, enemy_health_bar, player_card.roll())
-	else:
+		resolve(player_card, enemy_health_bar, player_card.roll(), lane)
+		await lanewait()
+	else: #clash
 		var p_roll = player_card.roll()
 		var e_roll = enemy_card.roll()
 		print("proll %d, eroll %d" %[p_roll, e_roll])
-		if(p_roll < e_roll):
-			resolve(enemy_card, player_health_bar, e_roll)
+		#player_number_labels[lane].text = str(p_roll)
+		#player_number_labels[lane].visible = true
+		await lanewait()
+		#enemy_number_labels[lane].text = str(e_roll)
+		#enemy_number_labels[lane].visible = true
+		await lanewait()
+		if(p_roll < e_roll): #resolve winner
+			resolve(enemy_card, player_health_bar, e_roll, lane)
 		elif(e_roll < p_roll):
-			resolve(player_card, enemy_health_bar, p_roll)
+			resolve(player_card, enemy_health_bar, p_roll, lane)
 		else:
+			clash_labels[lane].text = "0"
+			clash_labels[lane].visible = true
 			print("same roll")
 			pass    
+		#player_number_labels[lane].visible = false
+		#enemy_number_labels[lane].visible = false
+		await lanewait()
 
-func resolve(card, health_bar, roll):
+func resolve(card, health_bar, roll, lane):
 	if card.type == "attack":
 		print("hit")
+		clash_labels[lane].text = str(roll)
+		clash_labels[lane].visible = true
 		health_bar.value = max(health_bar.value - roll, 0) # Prevent negative
 		print(health_bar.value)
 	elif card.type == "util":
 		#code later
 		pass
 	elif card.type == "defense":
+		clash_labels[lane].text = "DEFENDED"
+		clash_labels[lane].visible = true
 		print("DEFENDED")
 
 func get_random_empty_enemy_slot():
