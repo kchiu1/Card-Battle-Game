@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://4ncrc74r4ujs" path="res://Assets/Menu Items/Shop.png" id="3_1l56o"]
 [ext_resource type="Texture2D" uid="uid://d16djm6cyef7i" path="res://Assets/Menu Items/Guild.png" id="4_r0u5t"]
 [ext_resource type="Texture2D" uid="uid://ciw5embmfyyqp" path="res://Assets/Menu Items/quit.png" id="5_r0u5t"]
+[ext_resource type="Texture2D" uid="uid://dfg2h1ic7a1x4" path="res://Assets/Backgrounds/Untitled_Artwork (6).png" id="6_fghh7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bk7q"]
 
@@ -83,7 +84,9 @@ texture = ExtResource("5_r0u5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1830419219]
 z_index = -1
-position = Vector2(993, 530)
+position = Vector2(960.0001, 544)
+scale = Vector2(0.8135594, 0.6634146)
+texture = ExtResource("6_fghh7")
 
 [connection signal="pressed" from="explore" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

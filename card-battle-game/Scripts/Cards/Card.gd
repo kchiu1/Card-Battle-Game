@@ -11,14 +11,14 @@ class_name Card
 
 #initialization
 func _init( _card_name: String = "Strike", _min: int = 0, _max: int = 0, _type: String = "Attack", _effects: Array = []):
-	card_name = card_name
+    card_name = card_name
 
-	min = _min
-	max = _max
-	
-	type = _type
-	effects = _effects.duplicate()
-	attached_items = []
-	
+    min = _min
+    max = _max
+    
+    type = _type
+    effects = _effects.duplicate()
+    attached_items = []
+    
 func roll() -> int:
-	return randi() % (max - min + 1) + min
+    return randi() % (max - min + 1) + min
