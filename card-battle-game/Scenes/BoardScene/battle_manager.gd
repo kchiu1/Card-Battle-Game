@@ -59,7 +59,7 @@ func _on_end_turn_pressed() -> void:
     for lane in range(len(player_card_slots)):
         var player_card = player_card_slots[lane].card
         var enemy_card = enemy_card_slots[lane].card
-        clash(player_card, enemy_card)
+        await clash(player_card, enemy_card, lane)
     
     emit_signal("ended_turn")
     
