@@ -38,6 +38,7 @@ func start_drag(card):
         card_slot_found.card = null
     card_being_dragged = card
     card.scale = Vector2(1, 1)
+    card.z_index = 2
     
     
 func finish_drag():
