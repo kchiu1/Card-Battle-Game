@@ -4,6 +4,10 @@ const SMALL_CARD_SCALE = 1
 const CARD_MOVE_SPEED = 0.2
 
 var is_enemy_turn = false
+var e_def_mod = 0
+var e_atk_mod = 0
+var p_def_mod = 0
+var p_atk_mod = 0
 
 var battle_timer
 
@@ -28,8 +32,7 @@ func _ready() -> void:
 	
 	battle_timer = $"../BattleTimer"
 	battle_timer.one_shot = true
-	battle_timer.wait_time = 1.0
-
+	battle_timer.wait_time = 0.5
 	
 	enemy_card_slots.append($"../CardSlots/Enemy Card Slot")
 	$"../CardSlots/Enemy Card Slot".pos = 1

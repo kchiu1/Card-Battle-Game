@@ -17,7 +17,7 @@ func move_to_discard(card, speed := DEFAULT_CARD_MOVE_SPEED):
 
 	# disable interaction
 	if card.has_node("Area2D"):
-		card.get_node("Area2D").monitoring = false
+		card.get_node("Area2D/CollisionShape2D").disabled = true
 
 	# Stack position
 	var target_position = global_position + CARD_STACK_OFFSET * discard_pile.size()
