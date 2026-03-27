@@ -10,12 +10,14 @@ const DECK_Y = 760
 var player_deck = [1, 1, 1, 1, 2, 2, 2, 3, 4]
 var deck_cards = []
 var discard = []
+var hand
 var card_database_reference
 var card_scene = preload(CARD_SCENE_PATH)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	discard = $"../Discard".discard_pile
+	hand = $"../PlayerHand"
 	player_deck.shuffle()
 	var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
 	card_database_reference = CardDatabase.new()
@@ -23,7 +25,7 @@ func _ready() -> void:
 		
 	populate_deck(player_deck)
 	
-	while($"../PlayerHand".player_hand.size() < STARTING_PLAYER_HAND_SIZE):
+	while(hand.player_hand.size() < STARTING_PLAYER_HAND_SIZE):
 		draw_card()
 
 func populate_deck(deck_ids):
@@ -44,22 +46,24 @@ func populate_deck(deck_ids):
 	
 func add_card_to_deck(card, speed):
 	var new_position = Vector2(DECK_X, DECK_Y)
-	$"../PlayerHand".animate_card_to_position(card, new_position, speed)
+	hand.animate_card_to_position(card, new_position, speed)
 
 func draw_card():
-	if $"../PlayerHand".player_hand.size() < MAX_HAND_SIZE:
+	if hand.player_hand.size() < MAX_HAND_SIZE:
 		if(deck_cards.is_empty()):
 			discard.shuffle()
 			var discard_size = discard.size()
 			for i in discard_size:
 				var card = discard.pop_front()
 				deck_cards.append(card)
+				card.get_node("AnimationPlayer").play("RESET")
 				add_card_to_deck(card, CARD_DRAW_SPEED)
+				
 				
 		var card_drawn = deck_cards.pop_front()
 		card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
 		
-		$"../PlayerHand".add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
+		hand.add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
 		card_drawn.get_node("AnimationPlayer").play("card_flip")
 		
 		$"../CardManager".add_child(card_drawn)

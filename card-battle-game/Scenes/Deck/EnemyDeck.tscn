@@ -10,6 +10,7 @@ position = Vector2(1560, 328)
 rotation = 3.1415927
 
 [node name="Sprite2D" type="Sprite2D" parent="Transform" unique_id=1809900477]
+z_index = 1
 rotation = 3.1415927
 scale = Vector2(0.53333336, 0.60377353)
 texture = ExtResource("1_yt4ss")
