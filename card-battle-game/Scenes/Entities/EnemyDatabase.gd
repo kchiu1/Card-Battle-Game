@@ -6,9 +6,9 @@ func _ready():
 	load_enemies()
 
 func load_enemies():
-	var file = FileAccess.open("res://data/EnemyDecklist.csv", FileAccess.READ)
+	var file = FileAccess.open("res://data/EnemyInfo.csv", FileAccess.READ)
 	if not file:
-		print("Failed to open EnemyDecklist.csv")
+		print("Failed to open EnemInfo.csv")
 		return
 		
 	var header = file.get_line().strip_edges().split(",")
@@ -31,16 +31,11 @@ func load_enemies():
 		var id = int(enemy_data["id"])
 		enemy_data["deck"] = deck_slots
 		enemies[id] = enemy_data
+		enemy_data["sprite_path"] = "res://Assets/Enemy/" + enemy_data["sprite_path"]
 	file.close()
 
-func get_enemy(enemy_id: int) -> Enemy:
+func get_enemy(enemy_id: int) -> Dictionary:
 	if not enemies.has(enemy_id):
 		print("Enemy not found: %d" % enemy_id)
-		return null
-
-	var data = enemies[enemy_id]
-	return Enemy.new(
-		int(data["id"]),
-		data["enemy_list"],
-		data["deck"]
-	)
+		return {}
+	return enemies[enemy_id]

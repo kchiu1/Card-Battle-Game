@@ -7,25 +7,27 @@ const MAX_HAND_SIZE = 7
 const DECK_X = 360
 const DECK_Y = 760
 
-var enemy_deck = [1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3]
+var enemy_deck = []
 var deck_cards = []
 var discard
 var card_database_reference
 var card_scene = preload(CARD_SCENE_PATH)
 
 # Called when the node enters the scene tree for the first time.
+# enemy_deck.gd
 func _ready() -> void:
 	discard = $"../EnemyDiscard".discard_pile
-	enemy_deck.shuffle()
 	var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
 	card_database_reference = CardDatabase.new()
 	card_database_reference.load_cards()
-	
-	populate_deck(enemy_deck)
-	
-	while($"../EnemyHand".enemy_hand.size() < STARTING_ENEMY_HAND_SIZE):
-		draw_card()
 
+func setup(deck_ids: Array) -> void:
+	enemy_deck = deck_ids.duplicate()
+	enemy_deck.shuffle()
+	populate_deck(enemy_deck)
+	while $"../EnemyHand".enemy_hand.size() < STARTING_ENEMY_HAND_SIZE:
+		draw_card()
+		
 func populate_deck(deck_ids):
 	if deck_cards.size() != 0:
 		deck_cards.clear()

@@ -1,3 +1,4 @@
-id,enemy_list,slot_1,slot_2,slot_3,slot_4,slot_5,slot_6,slot_7,slot_8,slot_9
-1,Goblin,1,1,1,2,2,2,3,4,4
-2,Slime,1,1,1,2,2,2,2,2,2
+id,enemy_list,slot_1,slot_2,slot_3,slot_4,slot_5,slot_6,slot_7,slot_8,slot_9,sprite_path
+1,Goblin,1,1,1,2,2,2,3,4,4,goblin_normal.png
+2,Slime,1,1,1,2,2,2,2,2,2,slime_dog.png
+3,Bob,1,1,1,1,1,1,1,1,1,slime_dog.png
