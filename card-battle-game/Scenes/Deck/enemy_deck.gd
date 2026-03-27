@@ -4,12 +4,13 @@ const CARD_SCENE_PATH = "res://Common/Cards/EnemyCard.tscn"
 const CARD_DRAW_SPEED = 0.3
 const STARTING_ENEMY_HAND_SIZE = 3
 const MAX_HAND_SIZE = 7
-const DECK_X = 360
-const DECK_Y = 760
+const DECK_X = 1560
+const DECK_Y = 328
 
 var enemy_deck = []
 var deck_cards = []
-var discard
+var discard = []
+var hand
 var card_database_reference
 var card_scene = preload(CARD_SCENE_PATH)
 
@@ -17,6 +18,8 @@ var card_scene = preload(CARD_SCENE_PATH)
 # enemy_deck.gd
 func _ready() -> void:
 	discard = $"../EnemyDiscard".discard_pile
+	hand = $"../EnemyHand"
+	enemy_deck.shuffle()
 	var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
 	card_database_reference = CardDatabase.new()
 	card_database_reference.load_cards()
@@ -46,10 +49,10 @@ func populate_deck(deck_ids):
 	
 func add_card_to_deck(card, speed):
 	var new_position = Vector2(DECK_X, DECK_Y)
-	$"../PlayerHand".animate_card_to_position(card, new_position, speed)
+	hand.animate_card_to_position(card, new_position, speed)
 
 func draw_card():
-	if $"../PlayerHand".player_hand.size() < MAX_HAND_SIZE:
+	if hand.enemy_hand.size() < MAX_HAND_SIZE:
 		if(deck_cards.is_empty()):
 			discard.shuffle()
 			var discard_size = discard.size()
@@ -57,11 +60,12 @@ func draw_card():
 				var card = discard.pop_front()
 				deck_cards.append(card)
 				add_card_to_deck(card, CARD_DRAW_SPEED)
+				card.get_node("AnimationPlayer").play("RESET")
 		
 		var card_drawn = deck_cards.pop_front()
 		
 		$"../CardManager".add_child(card_drawn)
 		card_drawn.name = "Card"
 		
-		$"../EnemyHand".add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
+		hand.add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
 	

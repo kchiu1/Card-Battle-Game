@@ -2,6 +2,8 @@ extends Node
 
 const SMALL_CARD_SCALE = 1
 const CARD_MOVE_SPEED = 0.2
+const PLAYER_ID = 1
+const ENEMY_ID = 2
 
 var is_enemy_turn = false
 var e_def_mod = 0
@@ -92,6 +94,12 @@ func _on_end_turn_pressed() -> void:
 	battle_timer.start()
 	await battle_timer.timeout
 	
+	
+	e_def_mod = 0
+	e_atk_mod = 0
+	p_def_mod = 0
+	p_atk_mod = 0
+	
 	enemy_turn()
 
 
@@ -157,50 +165,76 @@ func lanewait():
 # work on individual card numbers
 func clash(player_card, enemy_card, lane):
 	if(player_card==null and enemy_card == null):
-		pass
-	elif(player_card==null and enemy_card != null):
-		resolve(enemy_card, player_health_bar, enemy_card.roll(), lane)
+		return
+	elif(player_card==null):
+		resolve(enemy_card, player_health_bar, enemy_card.roll(), lane, ENEMY_ID)
 		await lanewait()
-	elif(player_card!=null and enemy_card == null):
-		resolve(player_card, enemy_health_bar, player_card.roll(), lane)
+	elif(enemy_card == null):
+		resolve(player_card, enemy_health_bar, player_card.roll(), lane, PLAYER_ID)
 		await lanewait()
 	else: #clash
-		var p_roll = player_card.roll()
-		var e_roll = enemy_card.roll()
-		print("proll %d, eroll %d" %[p_roll, e_roll])
+		var p_roll = _get_roll(player_card, PLAYER_ID)
+		var e_roll = _get_roll(enemy_card, ENEMY_ID)
+		#print("proll %d, eroll %d" %[p_roll, e_roll])
 		#player_number_labels[lane].text = str(p_roll)
 		#player_number_labels[lane].visible = true
-		await lanewait()
+		#await lanewait()
 		#enemy_number_labels[lane].text = str(e_roll)
 		#enemy_number_labels[lane].visible = true
-		await lanewait()
-		if(p_roll < e_roll): #resolve winner
-			resolve(enemy_card, player_health_bar, e_roll, lane)
-		elif(e_roll < p_roll):
-			resolve(player_card, enemy_health_bar, p_roll, lane)
-		else:
-			clash_labels[lane].text = "0"
-			clash_labels[lane].visible = true
-			print("same roll")
-			pass    
+		#await lanewait()
+		if player_card.type == "util":
+			resolve(player_card, null, p_roll, lane, PLAYER_ID)
+		if enemy_card.type == "util":
+			resolve(enemy_card, null, e_roll, lane, ENEMY_ID)
+		
+		if player_card.type != "util" and enemy_card.type != "util":
+			if p_roll > e_roll:
+				resolve(player_card, enemy_health_bar, p_roll, lane, PLAYER_ID)
+			elif e_roll > p_roll:
+				resolve(enemy_card, player_health_bar, e_roll, lane, ENEMY_ID)
+			else:
+				clash_labels[lane].text = "0"
+				clash_labels[lane].visible = true
+		elif player_card.type != "util":
+			resolve(player_card, enemy_health_bar, p_roll, lane, PLAYER_ID)
+		elif enemy_card.type != "util":
+			resolve(enemy_card, player_health_bar, e_roll, lane, ENEMY_ID)
+
 		#player_number_labels[lane].visible = false
 		#enemy_number_labels[lane].visible = false
 		await lanewait()
 
-func resolve(card, health_bar, roll, lane):
-	if card.type == "attack":
-		print("hit")
-		clash_labels[lane].text = str(roll)
-		clash_labels[lane].visible = true
-		health_bar.value = max(health_bar.value - roll, 0) # Prevent negative
-		print(health_bar.value)
-	elif card.type == "util":
-		#code later
-		pass
-	elif card.type == "defense":
-		clash_labels[lane].text = "DEFENDED"
-		clash_labels[lane].visible = true
-		print("DEFENDED")
+func resolve(card, health_bar, roll, lane, user):
+	match card.type:
+		"attack":
+			clash_labels[lane].text = str(roll)
+			clash_labels[lane].visible = true
+			health_bar.value = max(health_bar.value - roll, 0)
+		"defense":
+			clash_labels[lane].text = "DEFENDED"
+			clash_labels[lane].visible = true
+		"util":
+			_apply_util_effect(card, roll, user)
+		
+func _get_roll(card, user: int) -> int:
+	var base = card.roll()
+	match card.type:
+		"attack":
+			base += p_atk_mod if user == PLAYER_ID else e_atk_mod
+		"defense":
+			base += p_def_mod if user == PLAYER_ID else e_def_mod
+	return base
+
+func _apply_util_effect(card, roll: int, user: int) -> void:
+	match card.id:
+		3: # atk up
+			if user == PLAYER_ID: p_atk_mod += roll
+			else: e_atk_mod += roll
+			print(p_atk_mod, e_atk_mod)
+		4: # def up
+			if user == PLAYER_ID: p_def_mod += roll
+			else: e_def_mod += roll
+			print(p_def_mod, e_def_mod)
 
 func get_random_empty_enemy_slot():
 	var empty_slots = enemy_card_slots.filter(func(s): return s.card == null)
