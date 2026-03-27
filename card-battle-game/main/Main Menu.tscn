@@ -88,5 +88,12 @@ position = Vector2(960.0001, 544)
 scale = Vector2(0.8135594, 0.6634146)
 texture = ExtResource("6_fghh7")
 
+[node name="OptionButton" type="OptionButton" parent="." unique_id=1735795595]
+offset_left = 44.0
+offset_top = 32.0
+offset_right = 184.0
+offset_bottom = 101.0
+alignment = 1
+
 [connection signal="pressed" from="explore" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

@@ -59,7 +59,7 @@ func _ready() -> void:
 	clash_labels.append($"../CardSlots/Clash 3")
 	enemy_db = EnemyDB_Script.new()
 	enemy_db.load_enemies()
-	spawn_enemy(3)
+	spawn_enemy(Global.selected_enemy_id)
 	enemy_turn()
 	
 func spawn_enemy(id: int):

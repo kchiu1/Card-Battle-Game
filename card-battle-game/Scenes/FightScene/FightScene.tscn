@@ -41,6 +41,6 @@ texture = ExtResource("3_7d0qi")
 
 [node name="Enemy" parent="." unique_id=57286093 instance=ExtResource("4_7d0qi")]
 z_index = -5
-position = Vector2(960, 688)
+position = Vector2(961, 556)
 
 [connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

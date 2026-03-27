@@ -6,3 +6,4 @@
 script = ExtResource("1_jajit")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1366700625]
+scale = Vector2(0.3, 0.3)
