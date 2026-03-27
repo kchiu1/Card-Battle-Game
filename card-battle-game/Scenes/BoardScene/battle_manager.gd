@@ -59,10 +59,24 @@ func _ready() -> void:
 	clash_labels.append($"../CardSlots/Clash 3")
 	enemy_db = EnemyDB_Script.new()
 	enemy_db.load_enemies()
-	spawn_enemy(1)
+	spawn_enemy(3)
 	enemy_turn()
-
-
+	
+func spawn_enemy(id: int):
+	var enemy_data = enemy_db.get_enemy(id)
+	if enemy_data.is_empty(): return
+	print(get_tree().get_root().get_children())
+	print(get_path())
+	var enemy_instance = get_node("/root/Fight Scene/Enemy")
+	enemy_instance.enemy_id = int(enemy_data["id"])
+	enemy_instance.enemy_name = enemy_data["enemy_list"]
+	enemy_instance.deck = enemy_data["deck"]
+	enemy_instance.sprite_path = enemy_data["sprite_path"]
+	enemy_instance.apply_sprite()
+	
+	get_parent().get_node("EnemyDeck").setup(enemy_data["deck"])
+	
+	
 func _on_end_turn_pressed() -> void:
 	#resolve function that calculates the roll, takes the higher one, and subtracts it from the player/enemy HP bar
 	#see card manager for discard
@@ -227,16 +241,3 @@ func get_random_empty_enemy_slot():
 	if empty_slots.is_empty():
 		return null
 	return empty_slots.pick_random()
-
-func spawn_enemy(id: int):
-	var enemy_data = enemy_db.get_enemy(id)
-	if enemy_data == null: return
-	
-	var enemy_instance = enemy_scene.instantiate()
-	
-	enemy_instance.enemy_id = enemy_data.enemy_id
-	enemy_instance.enemy_name = enemy_data.enemy_name
-	enemy_instance.deck = enemy_data.deck
-	
-	enemy_instance.global_position = Vector2(800, 300)
-	get_parent().add_child(enemy_instance)
