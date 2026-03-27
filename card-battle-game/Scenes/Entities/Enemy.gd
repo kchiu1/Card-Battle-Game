@@ -11,6 +11,7 @@ func _ready():
 	pass
 
 func apply_sprite():
-	print("apply_sprite called: ", sprite_path)
 	if sprite_path != "":
-		$GoblinNormal.texture = load(sprite_path)
+		var tex = load(sprite_path)
+		print("texture loaded: ", tex)
+		$Sprite.texture = tex

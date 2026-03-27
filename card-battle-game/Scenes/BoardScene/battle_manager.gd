@@ -59,21 +59,19 @@ func _ready() -> void:
 	enemy_db.load_enemies()
 	spawn_enemy(3)
 	enemy_turn()
-
+	
 func spawn_enemy(id: int):
 	var enemy_data = enemy_db.get_enemy(id)
 	if enemy_data.is_empty(): return
-	
-	var enemy_instance = enemy_scene.instantiate()
-	print(enemy_instance.get_script())
+	print(get_tree().get_root().get_children())
+	print(get_path())
+	var enemy_instance = get_node("/root/Fight Scene/Enemy")
 	enemy_instance.enemy_id = int(enemy_data["id"])
 	enemy_instance.enemy_name = enemy_data["enemy_list"]
 	enemy_instance.deck = enemy_data["deck"]
-	enemy_instance.sprite_path = enemy_data["sprite_path"]  
-	print("enemy_data sprite_path: ", enemy_data["sprite_path"])
-	get_parent().add_child(enemy_instance)
+	enemy_instance.sprite_path = enemy_data["sprite_path"]
 	enemy_instance.apply_sprite()
-	enemy_instance.global_position = Vector2(800, 300)
+	
 	get_parent().get_node("EnemyDeck").setup(enemy_data["deck"])
 	
 	
