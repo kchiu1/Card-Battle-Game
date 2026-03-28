@@ -1,5 +1,4 @@
-
-
+const Card = preload("res://Common/Cards/Card.gd")
 var cards: Dictionary = {}
 
 func _ready():

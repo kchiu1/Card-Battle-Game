@@ -38,6 +38,7 @@ func populate_deck(deck_ids):
 		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")
 		new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_id]["min"]) + "-" + str(card_database_reference.cards[card_id]["max"])
 		new_card.get_node("Name").text = card_database_reference.cards[card_id]["card_name"]
+		new_card.id = card_database_reference.cards[card_id]["id"]
 		new_card.type = card_database_reference.cards[card_id]["type"]
 		new_card.min = card_database_reference.cards[card_id]["min"]
 		new_card.max = card_database_reference.cards[card_id]["max"]
@@ -65,4 +66,5 @@ func draw_card():
 		card_drawn.name = "Card"
 		
 		hand.add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
+		await get_tree().create_timer(CARD_DRAW_SPEED).timeout
 	
