@@ -1,0 +1,67 @@
+extends Node2D
+
+const CARD_SCENE_PATH = "res://Common/Cards/Card.tscn"
+const CARD_DRAW_SPEED = 0.3
+const STARTING_PLAYER_HAND_SIZE = 3
+const MAX_HAND_SIZE = 7
+const DECK_X = 360
+const DECK_Y = 760
+
+var player_deck = [1, 1, 1, 1, 2, 2, 2, 3, 4]
+var deck_cards = []
+var discard = []
+var card_database_reference
+var card_scene = preload(CARD_SCENE_PATH)
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	discard = $"../Discard".discard_pile
+	player_deck.shuffle()
+	var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
+	card_database_reference = CardDatabase.new()
+	card_database_reference.load_cards()
+		
+	populate_deck(player_deck)
+	
+	while($"../PlayerHand".player_hand.size() < STARTING_PLAYER_HAND_SIZE):
+		draw_card()
+
+func populate_deck(deck_ids):
+	if deck_cards.size() != 0:
+		deck_cards.clear()
+	for card_id in deck_ids:
+		var new_card = card_scene.instantiate()
+		var card_image_path = str("res://Assets/" + card_database_reference.cards[card_id]["card_name"] + "Card.png")
+		new_card.get_node("CardImage").texture = load(card_image_path)
+		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")
+		new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_id]["min"]) + "-" + str(card_database_reference.cards[card_id]["max"])
+		new_card.get_node("Name").text = card_database_reference.cards[card_id]["card_name"]
+		new_card.type = card_database_reference.cards[card_id]["type"]
+		new_card.min = card_database_reference.cards[card_id]["min"]
+		new_card.max = card_database_reference.cards[card_id]["max"]
+		
+		deck_cards.append(new_card)
+	
+func add_card_to_deck(card, speed):
+	var new_position = Vector2(DECK_X, DECK_Y)
+	$"../PlayerHand".animate_card_to_position(card, new_position, speed)
+
+func draw_card():
+	if $"../PlayerHand".player_hand.size() < MAX_HAND_SIZE:
+		if(deck_cards.is_empty()):
+			discard.shuffle()
+			var discard_size = discard.size()
+			for i in discard_size:
+				var card = discard.pop_front()
+				deck_cards.append(card)
+				add_card_to_deck(card, CARD_DRAW_SPEED)
+				
+		var card_drawn = deck_cards.pop_front()
+		card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
+		
+		$"../PlayerHand".add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
+		card_drawn.get_node("AnimationPlayer").play("card_flip")
+		
+		$"../CardManager".add_child(card_drawn)
+		card_drawn.name = "Card"
+	
