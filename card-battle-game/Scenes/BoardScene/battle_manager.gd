@@ -94,7 +94,6 @@ func _on_end_turn_pressed() -> void:
 	battle_timer.start()
 	await battle_timer.timeout
 	
-	
 	e_def_mod = 0
 	e_atk_mod = 0
 	p_def_mod = 0
@@ -108,8 +107,8 @@ func enemy_turn():
 	$"../EndTurn".disabled = true
 	$"../EndTurn".visible = false
 	
-	$"../EnemyDeck".draw_card()
-	$"../EnemyDeck".draw_card()
+	await $"../EnemyDeck".draw_card()
+	await $"../EnemyDeck".draw_card()
 	
 	# wait 1 second
 	battle_timer.start()
@@ -149,8 +148,8 @@ func play_cards():
 	
 func end_opponent_turn():
 	# reset player deck draw
-	$"../Deck".draw_card()
-	$"../Deck".draw_card()
+	await $"../Deck".draw_card()
+	await $"../Deck".draw_card()
 		
 	is_enemy_turn = false
 	$"../EndTurn".disabled = false
@@ -167,10 +166,10 @@ func clash(player_card, enemy_card, lane):
 	if(player_card==null and enemy_card == null):
 		return
 	elif(player_card==null):
-		resolve(enemy_card, player_health_bar, enemy_card.roll(), lane, ENEMY_ID)
+		resolve(enemy_card, player_health_bar, _get_roll(enemy_card, ENEMY_ID), lane, ENEMY_ID)
 		await lanewait()
 	elif(enemy_card == null):
-		resolve(player_card, enemy_health_bar, player_card.roll(), lane, PLAYER_ID)
+		resolve(player_card, enemy_health_bar, _get_roll(player_card, PLAYER_ID), lane, PLAYER_ID)
 		await lanewait()
 	else: #clash
 		var p_roll = _get_roll(player_card, PLAYER_ID)
@@ -218,23 +217,36 @@ func resolve(card, health_bar, roll, lane, user):
 		
 func _get_roll(card, user: int) -> int:
 	var base = card.roll()
+	print("base:\n",base)
 	match card.type:
 		"attack":
-			base += p_atk_mod if user == PLAYER_ID else e_atk_mod
+			if user == PLAYER_ID:
+				base += p_atk_mod
+			else:
+				base += e_atk_mod
 		"defense":
-			base += p_def_mod if user == PLAYER_ID else e_def_mod
+			if user == PLAYER_ID:
+				base += p_def_mod
+			else:
+				base += e_def_mod
+	print(base)
 	return base
 
 func _apply_util_effect(card, roll: int, user: int) -> void:
+	print("Apply util:\n",p_atk_mod)
 	match card.id:
 		3: # atk up
-			if user == PLAYER_ID: p_atk_mod += roll
-			else: e_atk_mod += roll
-			print(p_atk_mod, e_atk_mod)
+			if user == PLAYER_ID: 
+				p_atk_mod += roll
+			else: 
+				e_atk_mod += roll
 		4: # def up
-			if user == PLAYER_ID: p_def_mod += roll
-			else: e_def_mod += roll
-			print(p_def_mod, e_def_mod)
+			if user == PLAYER_ID: 
+				p_def_mod += roll
+			else: 
+				e_def_mod += roll
+	
+	print(p_atk_mod)
 
 func get_random_empty_enemy_slot():
 	var empty_slots = enemy_card_slots.filter(func(s): return s.card == null)

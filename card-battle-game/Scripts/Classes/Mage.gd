@@ -1,5 +1,6 @@
 extends Node2D
 class_name Mage
+const Card = preload("res://Common/Cards/Card.gd")
 # THIS IS AN EXAMPLE CLASS BASED ON WHAT I WROTE IN THE WIKI, THIS IS NOT THE FINAL FORM OF A CLASS BUT AN EXAMPLE OF HOW TO MAKE ONE
 # Basic stats
 @export var className: String = "Mage"

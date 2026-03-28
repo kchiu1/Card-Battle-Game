@@ -38,6 +38,7 @@ func populate_deck(deck_ids):
 		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")
 		new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_id]["min"]) + "-" + str(card_database_reference.cards[card_id]["max"])
 		new_card.get_node("Name").text = card_database_reference.cards[card_id]["card_name"]
+		new_card.id = card_database_reference.cards[card_id]["id"]
 		new_card.type = card_database_reference.cards[card_id]["type"]
 		new_card.min = card_database_reference.cards[card_id]["min"]
 		new_card.max = card_database_reference.cards[card_id]["max"]
@@ -59,7 +60,6 @@ func draw_card():
 				card.get_node("AnimationPlayer").play("RESET")
 				add_card_to_deck(card, CARD_DRAW_SPEED)
 				
-				
 		var card_drawn = deck_cards.pop_front()
 		card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
 		
@@ -68,4 +68,5 @@ func draw_card():
 		
 		$"../CardManager".add_child(card_drawn)
 		card_drawn.name = "Card"
+		await card_drawn.get_node("AnimationPlayer").animation_finished
 	
