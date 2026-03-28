@@ -204,6 +204,11 @@ func clash(player_card, enemy_card, lane):
 		await lanewait()
 
 func resolve(card, health_bar, roll, lane, user):
+	# determine color of clash winner
+	if user == PLAYER_ID:
+		clash_labels[lane].add_theme_color_override("font_color", Color(0, 0.5, 1)) # blue
+	else:
+		clash_labels[lane].add_theme_color_override("font_color", Color(1, 0.2, 0.2)) # red
 	match card.type:
 		"attack":
 			clash_labels[lane].text = str(roll)
