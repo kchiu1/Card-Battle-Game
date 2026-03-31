@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*uid://qjtfxwoyl3r0"
+Global="*res://Scripts/Global.gd"
 
 [display]
 
