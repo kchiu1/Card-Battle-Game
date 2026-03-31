@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://but3b1lbtq0df"
+
+[deps]
+
+files=["res://Data/EnemyInfo.enemy.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation"]
+
+source_file="res://Data/EnemyInfo.csv"
+dest_files=["res://Data/EnemyInfo.enemy.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation", "res://Data/EnemyInfo.slot.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
