@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c3piouhj4xuq0"]
 
 [ext_resource type="Script" uid="uid://cntv05t1xicpe" path="res://Common/Cards/Card.gd" id="1_rxs10"]
-[ext_resource type="Texture2D" uid="uid://dkn7vvyu4xcf4" path="res://Assets/CardBack.png" id="2_3jy0o"]
-[ext_resource type="Texture2D" uid="uid://cv1nc3yyw13ia" path="res://Assets/Card.png" id="2_v5sk6"]
+[ext_resource type="Texture2D" uid="uid://bkg7bsjyd205x" path="res://Assets/CardBack.png" id="2_3jy0o"]
+[ext_resource type="Texture2D" uid="uid://dc0ckyaxsey3t" path="res://Assets/Card.png" id="2_v5sk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ma3f"]
 size = Vector2(96, 160)
