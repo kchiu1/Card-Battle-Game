@@ -46,5 +46,6 @@ func get_card(card_id: int) -> Card:
 		int(card["min"]),
 		int(card["max"]),
 		card["type"],
-		card["effects"]
+		card["effects"],
+		card["weapon"]
 	)

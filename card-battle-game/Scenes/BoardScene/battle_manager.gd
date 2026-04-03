@@ -78,6 +78,8 @@ func spawn_enemy(id: int):
 	
 	
 func _on_end_turn_pressed() -> void:
+	$"../EndTurn".disabled = true
+	$"../EndTurn".visible = false
 	#resolve function that calculates the roll, takes the higher one, and subtracts it from the player/enemy HP bar
 	#see card manager for discard
 	

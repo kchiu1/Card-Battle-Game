@@ -13,9 +13,10 @@ var in_card_slot = false
 @export var max: int
 @export var effects: Array = []
 @export var attached_items: Array = []
+@export var weapon: String # Sword.png
 
 #initialization
-func _init( _card_name: String = "", _min: int = 0, _max: int = 0, _type: String = "", _effects: Array = []):
+func _init( _card_name: String = "", _min: int = 0, _max: int = 0, _type: String = "", _effects: Array = [], _weapon: String = ""):
 	card_name = card_name
 
 	min = _min
@@ -24,6 +25,8 @@ func _init( _card_name: String = "", _min: int = 0, _max: int = 0, _type: String
 	type = _type
 	effects = _effects.duplicate()
 	attached_items = []
+	
+	weapon = _weapon
 
 func roll() -> int:
 	return randi_range(min, max)

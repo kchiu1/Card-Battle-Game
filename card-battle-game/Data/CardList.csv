@@ -1,4 +1,4 @@
-id,card_name,type,min,max,effects,attached_items,sprite_path
+id,card_name,type,min,max,effects,attached_items,weapon
 1,Slash,attack,1,4,[],[],Sword.png
 2,Block,defense,2,3,[],[],Shield.png
 3,Atk Up,util,2,2,[],[],Shield.png

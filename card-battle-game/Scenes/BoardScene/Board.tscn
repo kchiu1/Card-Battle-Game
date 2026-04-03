@@ -14,6 +14,12 @@
 [ext_resource type="Script" uid="uid://caxjrbawykj7a" path="res://Scenes/BoardScene/battle_manager.gd" id="10_iapmq"]
 [ext_resource type="PackedScene" uid="uid://dupi3ct5ljd1e" path="res://Scenes/Deck/EnemyDiscard.tscn" id="13_uqcn3"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_mhidy"]
+keycode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_uqcn3"]
+events = [SubResource("InputEventKey_mhidy")]
+
 [node name="Board" type="Node2D" unique_id=959679200]
 
 [node name="CardManager" type="Node2D" parent="." unique_id=1535417751]
@@ -123,6 +129,7 @@ offset_left = 1240.0
 offset_top = 528.0
 offset_right = 1318.0
 offset_bottom = 559.0
+shortcut = SubResource("Shortcut_uqcn3")
 text = "End Turn
 "
 
