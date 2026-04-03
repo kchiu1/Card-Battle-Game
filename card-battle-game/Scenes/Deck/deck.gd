@@ -59,8 +59,8 @@ func draw_card():
 			var discard_size = discard.size()
 			for i in discard_size:
 				var card = discard.pop_front()
-				deck_cards.append(card)
 				card.get_node("AnimationPlayer").play("RESET")
+				deck_cards.append(card)
 				add_card_to_deck(card, CARD_DRAW_SPEED)
 				
 		var card_drawn = deck_cards.pop_front()

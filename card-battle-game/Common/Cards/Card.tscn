@@ -213,6 +213,7 @@ _data = {
 }
 
 [node name="Card" type="Node2D" unique_id=1568981312]
+z_index = -1
 position = Vector2(360, 760)
 script = ExtResource("1_rxs10")
 
