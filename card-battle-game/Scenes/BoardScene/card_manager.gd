@@ -19,6 +19,7 @@ func _ready() -> void:
 	enemy_hand_reference = $"../EnemyHand"
 	battle_manager_reference = $"../BattleManager"
 	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
+	$"../InputManager".connect("short_click", on_short_click)
 	var battle_manager := get_node("../BattleManager")
 	battle_manager.ended_turn.connect(_end_turn_discard)
 	
@@ -47,6 +48,7 @@ func finish_drag():
 	highlight_card(card_being_dragged, false)
 	is_hovering_on_card = false
 	var card_slot_found = raycast_check_for_card_slot()
+	var empty_slot = $"../BattleManager".next_empty_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_reference.remove_card_from_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 		card_being_dragged.position = card_slot_found.position
@@ -67,6 +69,27 @@ func connect_card_signals(card):
 func on_left_click_released():
 	if card_being_dragged:
 		finish_drag()
+
+func on_short_click():
+	
+	if card_being_dragged == null:
+		return
+	highlight_card(card_being_dragged, false)
+	is_hovering_on_card = false
+	var card_slot_found = raycast_check_for_card_slot()
+	var empty_slot = $"../BattleManager".next_empty_slot()
+	if not card_being_dragged.in_card_slot and empty_slot != null:
+		player_hand_reference.remove_card_from_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
+		player_hand_reference.animate_card_to_position(card_being_dragged, empty_slot.position, DEFAULT_CARD_MOVE_SPEED)
+		card_being_dragged.z_index = -1
+		card_being_dragged.in_card_slot = true
+		#card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+		empty_slot.card_in_slot = true
+		empty_slot.card = card_being_dragged
+	else:
+		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
+		card_being_dragged.in_card_slot = false
+	card_being_dragged = null
 
 func on_hovered_over_card(card):
 	if !is_hovering_on_card:
