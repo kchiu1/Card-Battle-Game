@@ -36,7 +36,10 @@ func populate_deck(deck_ids):
 		var card_image_path = str("res://Assets/" + card_database_reference.cards[card_id]["card_name"] + "Card.png")
 		new_card.get_node("CardImage").texture = load(card_image_path)
 		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/Sword.png")
-		new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_id]["min"]) + "-" + str(card_database_reference.cards[card_id]["max"])
+		if card_database_reference.cards[card_id]["min"] != card_database_reference.cards[card_id]["max"]:
+			new_card.get_node("ClashValue").text = str(card_database_reference.cards[card_id]["min"]) + "-" + str(card_database_reference.cards[card_id]["max"])
+		else:
+			new_card.get_node("ClashValue").text =  "+" + str(card_database_reference.cards[card_id]["max"])
 		new_card.get_node("Name").text = card_database_reference.cards[card_id]["card_name"]
 		new_card.id = card_database_reference.cards[card_id]["id"]
 		new_card.type = card_database_reference.cards[card_id]["type"]
