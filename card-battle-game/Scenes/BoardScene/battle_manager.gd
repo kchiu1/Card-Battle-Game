@@ -255,6 +255,12 @@ func _apply_util_effect(card, roll: int, user: int) -> void:
 	
 	print(p_atk_mod)
 
+func next_empty_slot():
+	for card_slot in player_card_slots:
+		if not card_slot.card_in_slot:
+			return card_slot
+	return null
+
 func get_random_empty_enemy_slot():
 	var empty_slots = enemy_card_slots.filter(func(s): return s.card == null)
 	if empty_slots.is_empty():
