@@ -164,8 +164,6 @@ func lanewait():
 	battle_timer.start()
 	await battle_timer.timeout
 # TODO -V
-# fix 0 on attack vs defend
-# make clash text color based on winner
 # work on individual card numbers
 func clash(player_card, enemy_card, lane):
 	if(player_card==null and enemy_card == null):
@@ -197,7 +195,10 @@ func clash(player_card, enemy_card, lane):
 			elif e_roll > p_roll:
 				resolve(enemy_card, player_health_bar, e_roll, lane, ENEMY_ID)
 			else:
-				clash_labels[lane].text = "0"
+				if player_card.type == "defense" or enemy_card.type == "defense":
+					clash_labels[lane].text = "DEFENDED"
+				else:
+					clash_labels[lane].text = "0"
 				clash_labels[lane].visible = true
 		elif player_card.type != "util":
 			resolve(player_card, enemy_health_bar, p_roll, lane, PLAYER_ID)
