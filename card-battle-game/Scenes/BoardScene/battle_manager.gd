@@ -112,8 +112,11 @@ func enemy_turn():
 	await $"../EnemyDeck".draw_card()
 	await $"../EnemyDeck".draw_card()
 	
-	# wait 1 second
+	# wait 1 second, clear lane numbers
 	battle_timer.start()
+	clash_labels[0].visible = false
+	clash_labels[1].visible = false
+	clash_labels[2].visible = false
 	await battle_timer.timeout
 	
 	# Play Enemy cards
