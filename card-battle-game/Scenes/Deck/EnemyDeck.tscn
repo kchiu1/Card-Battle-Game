@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dr4u3d6q3lccg"]
 
-[ext_resource type="Texture2D" uid="uid://dkn7vvyu4xcf4" path="res://Assets/CardBack.png" id="1_yt4ss"]
+[ext_resource type="Texture2D" uid="uid://bkg7bsjyd205x" path="res://Assets/CardBack.png" id="1_yt4ss"]
 
 [node name="OpponentDeck" type="Node2D" unique_id=2052728496]
 
@@ -12,7 +12,7 @@ rotation = 3.1415927
 [node name="Sprite2D" type="Sprite2D" parent="Transform" unique_id=1809900477]
 z_index = 1
 rotation = 3.1415927
-scale = Vector2(0.53333336, 0.60377353)
+scale = Vector2(0.65, 0.65)
 texture = ExtResource("1_yt4ss")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Transform" unique_id=303463566]

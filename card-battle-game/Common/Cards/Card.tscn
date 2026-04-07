@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://c3piouhj4xuq0"]
 
 [ext_resource type="Script" uid="uid://cntv05t1xicpe" path="res://Common/Cards/Card.gd" id="1_rxs10"]
-[ext_resource type="Texture2D" uid="uid://bkg7bsjyd205x" path="res://Assets/CardBack.png" id="2_3jy0o"]
 [ext_resource type="Texture2D" uid="uid://dc0ckyaxsey3t" path="res://Assets/Card.png" id="2_v5sk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ma3f"]
-size = Vector2(96, 160)
+size = Vector2(116, 171)
 
 [sub_resource type="Animation" id="Animation_6sc81"]
 length = 4.3333335
@@ -43,7 +42,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.53333336, 0.6037734)]
+"values": [Vector2(0.65, 0.65)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -167,7 +166,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.533, 0.604), Vector2(0.1, 0.604), Vector2(0.533, 0.604)]
+"values": [Vector2(0.65, 0.65), Vector2(0.1, 0.604), Vector2(0.65, 0.65)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -203,7 +202,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.118750006, 0.13443393), Vector2(0.055, 0.134), Vector2(0.11, 0.134)]
+"values": [Vector2(0.15, 0.15), Vector2(0.055, 0.15), Vector2(0.15, 0.15)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pwad"]
@@ -223,8 +222,7 @@ scale = Vector2(0.118750006, 0.13443393)
 
 [node name="CardBackImage" type="Sprite2D" parent="." unique_id=1594456343]
 position = Vector2(5.722046e-06, -2.0980835e-05)
-scale = Vector2(0.53333336, 0.6037734)
-texture = ExtResource("2_3jy0o")
+scale = Vector2(0.65, 0.65)
 
 [node name="CardImage" type="Sprite2D" parent="." unique_id=765411695]
 z_index = -1
@@ -234,10 +232,10 @@ texture = ExtResource("2_v5sk6")
 
 [node name="Name" type="RichTextLabel" parent="." unique_id=765993942]
 modulate = Color(0, 0, 0, 0)
-offset_left = -48.0
-offset_top = -80.0
-offset_right = 48.0
-offset_bottom = -48.0
+offset_left = -46.0
+offset_top = -85.0
+offset_right = 50.0
+offset_bottom = -53.0
 text = "Deck"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -255,6 +253,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Area2D" type="Area2D" parent="." unique_id=816106816]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=682913319]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_6ma3f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1702900068]

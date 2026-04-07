@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://lu4t8q3kl5t"]
+[gd_scene format=3 uid="uid://lu4t8q3kl5t"]
 
 [ext_resource type="Script" uid="uid://wuqsk072qa8v" path="res://Scenes/Deck/discard.gd" id="1_taccx"]
-[ext_resource type="Texture2D" uid="uid://dkn7vvyu4xcf4" path="res://Assets/CardBack.png" id="2_qxs3u"]
+[ext_resource type="Texture2D" uid="uid://bkg7bsjyd205x" path="res://Assets/CardBack.png" id="2_qxs3u"]
 
-[node name="Discard" type="Node2D"]
+[node name="Discard" type="Node2D" unique_id=1840151719]
 script = ExtResource("1_taccx")
 
-[node name="Transform" type="Node2D" parent="."]
+[node name="Transform" type="Node2D" parent="." unique_id=2070646157]
 z_index = -2
 
-[node name="Sprite2D" type="Sprite2D" parent="Transform"]
+[node name="Sprite2D" type="Sprite2D" parent="Transform" unique_id=19933120]
 visible = false
-scale = Vector2(0.53333336, 0.60377353)
+scale = Vector2(0.65, 0.65)
 texture = ExtResource("2_qxs3u")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Transform"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Transform" unique_id=120301160]
 offset_left = -24.0
 offset_top = -24.0
 offset_right = 24.0
