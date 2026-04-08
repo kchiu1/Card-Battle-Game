@@ -225,6 +225,10 @@ func resolve(card, health_bar, roll, lane, user):
 			clash_labels[lane].visible = true
 		"util":
 			_apply_util_effect(card, roll, user)
+			lanewait()
+			clash_labels[lane].add_theme_color_override("font_color", Color(0.0, 0.668, 0.376, 1.0))
+			clash_labels[lane].text = str(roll) + '+'
+			clash_labels[lane].visible = true
 		
 func _get_roll(card, user: int) -> int:
 	var base = card.roll()
@@ -256,6 +260,11 @@ func _apply_util_effect(card, roll: int, user: int) -> void:
 				p_def_mod += roll
 			else: 
 				e_def_mod += roll
+		5: # health up
+			if user == PLAYER_ID: 
+				player_health_bar.value += roll
+			else: 
+				enemy_health_bar.value += roll
 	
 	print(p_atk_mod)
 
