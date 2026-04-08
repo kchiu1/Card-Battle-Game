@@ -3,6 +3,8 @@ id,card_name,type,min,max,effects,attached_items,weapon
 2,Block,defense,2,3,[],[],Shield.png
 3,Atk Up,util,2,2,[],[],atk_up.png
 4,Def Up,util,2,2,[],[],def_up.png
+5,Heal,util,3,3,[],[],heal.png
+6,Gun,attack,5,7,[],[],gun.png
 10,Magic Missile,attack,3,5,[def_pen],[],Shield.png
 11,Mana Shield,defense,5,5,[atk_down],[],Shield.png
 12,Fireball,attack,4,6,[burn;def_pen],[],Shield.png
