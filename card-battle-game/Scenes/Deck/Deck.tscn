@@ -1,17 +1,16 @@
 [gd_scene format=3 uid="uid://dhswr4bkc1v30"]
 
 [ext_resource type="Script" uid="uid://blt34lyg812mj" path="res://Scenes/Deck/deck.gd" id="1_hg2h8"]
-[ext_resource type="Texture2D" uid="uid://bkg7bsjyd205x" path="res://Assets/CardBack.png" id="2_pg743"]
+[ext_resource type="Texture2D" uid="uid://bsvb38plkanli" path="res://Assets/CardBack.png" id="2_pg743"]
 
 [node name="Deck" type="Node2D" unique_id=906206044]
 script = ExtResource("1_hg2h8")
 
 [node name="Transform" type="Node2D" parent="." unique_id=1435326508]
-z_index = -2
 position = Vector2(360, 760)
 
 [node name="Sprite2D" type="Sprite2D" parent="Transform" unique_id=650826988]
-z_index = 1
+visible = false
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("2_pg743")
 

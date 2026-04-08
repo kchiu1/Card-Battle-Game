@@ -48,7 +48,6 @@ func finish_drag():
 	highlight_card(card_being_dragged, false)
 	is_hovering_on_card = false
 	var card_slot_found = raycast_check_for_card_slot()
-	var empty_slot = $"../BattleManager".next_empty_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_reference.remove_card_from_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 		card_being_dragged.position = card_slot_found.position
@@ -71,7 +70,6 @@ func on_left_click_released():
 		finish_drag()
 
 func on_short_click():
-	
 	if card_being_dragged == null:
 		return
 	highlight_card(card_being_dragged, false)
@@ -154,12 +152,10 @@ func _end_turn_discard() -> void:
 			# Send to discard pile
 			$"../Discard".move_to_discard(card)
 
-			# Reset CARD state
-			card.in_card_slot = false
-
 			# Clear SLOT state
 			slot.card = null
 			slot.card_in_slot = false
+	$"../Discard".refresh_z_indices()
 			
 	for slot in battle_manager_reference.enemy_card_slots:
 		if slot.card != null:
@@ -167,10 +163,7 @@ func _end_turn_discard() -> void:
 
 			$"../EnemyDiscard".move_to_discard(card)
 
-			card.in_card_slot = false
-			card.z_index = 1
-			card.scale = Vector2.ONE
-
 			slot.card = null
 			slot.card_in_slot = false
+	$"../EnemyDiscard".refresh_z_indices()
 	

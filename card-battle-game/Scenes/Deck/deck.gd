@@ -1,7 +1,7 @@
 extends Node2D
 
 const CARD_SCENE_PATH = "res://Common/Cards/Card.tscn"
-const CARD_DRAW_SPEED = 0.3
+const CARD_DRAW_SPEED = 0.35
 const STARTING_PLAYER_HAND_SIZE = 3
 const MAX_HAND_SIZE = 7
 const DECK_X = 360
@@ -16,7 +16,7 @@ var card_scene = preload(CARD_SCENE_PATH)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	discard = $"../Discard".discard_pile
+	discard = $"../Discard"
 	hand = $"../PlayerHand"
 	player_deck.shuffle()
 	var CardDatabase = preload("res://Common/Cards/CardDatabase.gd")
@@ -45,6 +45,10 @@ func populate_deck(deck_ids):
 		new_card.type = card_database_reference.cards[card_id]["type"]
 		new_card.min = card_database_reference.cards[card_id]["min"]
 		new_card.max = card_database_reference.cards[card_id]["max"]
+		if not new_card.is_inside_tree():
+			$"../CardManager".add_child(new_card)
+			new_card.name = "Card_" + str(new_card.id)
+		new_card.get_node("Area2D/CollisionShape2D").disabled = false
 		
 		deck_cards.append(new_card)
 	
@@ -55,21 +59,24 @@ func add_card_to_deck(card, speed):
 func draw_card():
 	if hand.player_hand.size() < MAX_HAND_SIZE:
 		if(deck_cards.is_empty()):
-			discard.shuffle()
-			var discard_size = discard.size()
+			var discard_size = discard.discard_pile.size()
 			for i in discard_size:
-				var card = discard.pop_front()
-				card.get_node("AnimationPlayer").play("RESET")
+				var card = discard.discard_pile.pop_back()
+				card.z_index = 0
 				deck_cards.append(card)
+				card.get_node("AnimationPlayer").play("reshuffle")
 				add_card_to_deck(card, CARD_DRAW_SPEED)
-				
-		var card_drawn = deck_cards.pop_front()
-		card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
-		
+				await get_tree().create_timer(CARD_DRAW_SPEED/2).timeout
+			deck_cards.shuffle()
+			for i in deck_cards.size():
+				deck_cards[i].z_index = -10 + i
+			
+		var card_drawn = deck_cards.pop_back()
+		card_drawn.z_index = 0
+			
 		hand.add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
 		card_drawn.get_node("AnimationPlayer").play("card_flip")
 		
-		$"../CardManager".add_child(card_drawn)
-		card_drawn.name = "Card"
 		await card_drawn.get_node("AnimationPlayer").animation_finished
+		card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
 	
