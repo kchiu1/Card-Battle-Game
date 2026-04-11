@@ -33,7 +33,7 @@ func populate_deck(deck_ids):
 		deck_cards.clear()
 	for card_id in deck_ids:
 		var new_card = card_scene.instantiate()
-		var card_image_path = str("res://Assets/" + card_database_reference.cards[card_id]["card_name"] + "Card.png")
+		var card_image_path = str("res://Assets/" + card_database_reference.cards[card_id]["type"] + ".png")
 		new_card.get_node("CardImage").texture = load(card_image_path)
 		new_card.get_node("WeaponSprite").texture = load("res://Assets/Weapons/" + card_database_reference.cards[card_id]["weapon"])
 		if card_database_reference.cards[card_id]["min"] != card_database_reference.cards[card_id]["max"]:
