@@ -48,7 +48,7 @@ func populate_deck(deck_ids):
 		if not new_card.is_inside_tree():
 			$"../CardManager".add_child(new_card)
 			new_card.name = "Card_" + str(new_card.id)
-		new_card.get_node("Area2D/CollisionShape2D").disabled = false
+		new_card.get_node("Area2D/CollisionShape2D").disabled = true
 		
 		deck_cards.append(new_card)
 	
