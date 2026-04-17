@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3v1flw4tc1q1" path="res://Scenes/FightScene/fight_scene.gd" id="1_vfxem"]
 [ext_resource type="PackedScene" uid="uid://dvuiqd31xytkr" path="res://Scenes/BoardScene/Board.tscn" id="2_7gx8k"]
-[ext_resource type="Texture2D" uid="uid://dfg2h1ic7a1x4" path="res://Assets/Backgrounds/Untitled_Artwork (6).png" id="3_7d0qi"]
+[ext_resource type="Texture2D" uid="uid://dqj6gy8rp5h0y" path="res://Assets/Backgrounds/0 Field.png" id="3_7d0qi"]
 [ext_resource type="PackedScene" uid="uid://0fwur3ydjji7" path="res://Scenes/Entities/Enemy.tscn" id="4_7d0qi"]
 
 [node name="Fight Scene" type="Node2D" unique_id=6102632]
