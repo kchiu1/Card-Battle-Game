@@ -38,7 +38,7 @@ func _ready():
 		bg_dropdown.add_item(bg_files[i], i)  # filename as label, index as ID
 
 	for i in range(bg_dropdown.get_item_count()):
-		if bg_dropdown.get_item_id(i) == Global.background_id:
+		if bg_dropdown.get_item_text(i) == Global.background_id:
 			bg_dropdown.select(i)
 			break
 
@@ -49,7 +49,7 @@ func _on_enemy_selected(index):
 	Global.selected_enemy_id = id
 	
 func _on_bg_selected(index):
-	var id = $"Background Select".get_item_id(index)
+	var id = $"Background Select".get_item_text(index)
 	Global.background_id = id
 
 func _on_quit_pressed():

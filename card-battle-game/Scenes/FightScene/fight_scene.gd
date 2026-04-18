@@ -4,8 +4,10 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var bg_id = Global.background_id 
-	var texture = load("res://assets/backgrounds/" + str(bg_id) + ".png")
+	var texture = load("res://assets/backgrounds/" + Global.background_id)
+
 	$Background.texture = texture
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

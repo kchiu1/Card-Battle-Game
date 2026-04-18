@@ -25,6 +25,11 @@
 [node name="MainMenu" type="Node2D" unique_id=2067582231]
 script = ExtResource("1_q6prn")
 
+[node name="0Field" type="Sprite2D" parent="." unique_id=340879386]
+z_index = -1
+position = Vector2(957, 538)
+texture = ExtResource("9_6lnv6")
+
 [node name="explore" type="Button" parent="." unique_id=245594825]
 offset_left = 194.0
 offset_top = 697.0
@@ -114,11 +119,6 @@ scale = Vector2(0.8135594, 0.6634146)
 position = Vector2(934.00006, 542)
 scale = Vector2(0.6001965, 0.6001965)
 texture = ExtResource("8_uco4v")
-
-[node name="0Field" type="Sprite2D" parent="." unique_id=340879386]
-z_index = -1
-position = Vector2(957, 538)
-texture = ExtResource("9_6lnv6")
 
 [connection signal="pressed" from="explore" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
