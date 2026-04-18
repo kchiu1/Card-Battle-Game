@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bylncqdtj8tie"]
+
+[ext_resource type="Texture2D" uid="uid://dyymj4i8d2420" path="res://Assets/Guild/TempBoard.png" id="1_odgou"]
+[ext_resource type="Script" uid="uid://burnifjviwfuq" path="res://Scenes/Guild/bounty_board.gd" id="1_oxj7k"]
+[ext_resource type="Texture2D" uid="uid://dvdqyfavuky1p" path="res://Assets/Menu Items/quit.png" id="2_oxj7k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2ox4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pu14"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu0x8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_30bom"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jymti"]
+
+[node name="BountyBoard" type="Node2D" unique_id=967851343]
+script = ExtResource("1_oxj7k")
+
+[node name="TempBoard" type="Sprite2D" parent="." unique_id=934882578]
+position = Vector2(960, 540)
+scale = Vector2(1.2499999, 1.1249999)
+texture = ExtResource("1_odgou")
+
+[node name="BackToMenu" type="Button" parent="." unique_id=1993169826]
+offset_left = 48.0
+offset_top = 40.0
+offset_right = 176.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="quit" type="Button" parent="." unique_id=620061892]
+offset_left = 1829.0
+offset_top = 13.0
+offset_right = 1991.7957
+offset_bottom = 57.50739
+scale = Vector2(0.46135178, 2.493968)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b2ox4")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7pu14")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fu0x8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_30bom")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jymti")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="quit" unique_id=1422034821]
+position = Vector2(104.04199, 30.874493)
+scale = Vector2(1.3151156, 0.26322863)
+texture = ExtResource("2_oxj7k")
+
+[connection signal="pressed" from="BackToMenu" to="." method="_on_back_to_menu_pressed"]

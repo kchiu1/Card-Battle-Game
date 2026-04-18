@@ -55,5 +55,9 @@ func _on_bg_selected(index):
 func _on_quit_pressed():
 	get_tree().quit()
 
-func _on_start_pressed() -> void:
+func _on_explore_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/FightScene/FightScene.tscn")
+
+
+func _on_guild_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Guild/Bounty Board.tscn")

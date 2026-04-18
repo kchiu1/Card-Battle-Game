@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dp388d5qhkvx7"]
 
 [ext_resource type="Script" uid="uid://cvxavuqa5hvy4" path="res://main/main_menu.gd" id="1_q6prn"]
-[ext_resource type="Texture2D" uid="uid://d3ec8rpnxsus3" path="res://Assets/Menu Items/Explore.png" id="2_7bk7q"]
-[ext_resource type="Texture2D" uid="uid://kuvq8hr4tr01" path="res://Assets/Menu Items/Shop.png" id="3_1l56o"]
-[ext_resource type="Texture2D" uid="uid://dm4e6glex5fjl" path="res://Assets/Menu Items/Guild.png" id="4_r0u5t"]
-[ext_resource type="Texture2D" uid="uid://dj05fr3c0ndo5" path="res://Assets/Menu Items/quit.png" id="5_r0u5t"]
-[ext_resource type="Texture2D" uid="uid://dyno20s3w32am" path="res://Assets/Menu Items/Icon.png" id="6_fghh7"]
-[ext_resource type="Script" uid="uid://cqi14cj8lcfho" path="res://main/icon.gd" id="7_nhatj"]
-[ext_resource type="Texture2D" uid="uid://dwnfbedhpc6tg" path="res://Assets/Menu Items/Title.png" id="8_uco4v"]
-[ext_resource type="Texture2D" uid="uid://dqj6gy8rp5h0y" path="res://Assets/Backgrounds/0 Field.png" id="9_6lnv6"]
+[ext_resource type="Texture2D" uid="uid://c44xrj6xxkpby" path="res://Assets/Menu Items/Explore.png" id="2_7bk7q"]
+[ext_resource type="Texture2D" uid="uid://vtd0a63ytok1" path="res://Assets/Menu Items/Shop.png" id="3_1l56o"]
+[ext_resource type="Texture2D" uid="uid://dvbg7qxd2cqsj" path="res://Assets/Menu Items/Guild.png" id="4_r0u5t"]
+[ext_resource type="Texture2D" uid="uid://dvdqyfavuky1p" path="res://Assets/Menu Items/quit.png" id="5_r0u5t"]
+[ext_resource type="Texture2D" uid="uid://do0nxtr5b8ud8" path="res://Assets/Menu Items/Icon.png" id="6_fghh7"]
+[ext_resource type="Script" uid="uid://cf75tncp3g2bs" path="res://main/icon.gd" id="7_nhatj"]
+[ext_resource type="Texture2D" uid="uid://b63vreplwgg8w" path="res://Assets/Menu Items/Title.png" id="8_uco4v"]
+[ext_resource type="Texture2D" uid="uid://c2i471f280jic" path="res://Assets/Backgrounds/0 Field.png" id="9_6lnv6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bk7q"]
 
@@ -120,5 +120,6 @@ position = Vector2(938, 514)
 scale = Vector2(0.6001965, 0.6001965)
 texture = ExtResource("8_uco4v")
 
-[connection signal="pressed" from="explore" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="explore" to="." method="_on_explore_pressed"]
+[connection signal="pressed" from="guild" to="." method="_on_guild_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
