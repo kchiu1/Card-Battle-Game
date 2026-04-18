@@ -22,6 +22,7 @@ events = [SubResource("InputEventKey_mhidy")]
 
 [node name="Board" type="Node2D" unique_id=959679200]
 metadata/_edit_vertical_guides_ = [816.0, 960.0, 1104.0]
+metadata/_edit_horizontal_guides_ = [543.0]
 
 [node name="CardManager" type="Node2D" parent="." unique_id=1535417751]
 script = ExtResource("1_37q8m")
@@ -31,11 +32,12 @@ script = ExtResource("1_37q8m")
 [node name="Clash 1" type="Label" parent="CardSlots" unique_id=246373479]
 visible = false
 offset_left = 796.0
-offset_top = 532.0
+offset_top = 526.0
 offset_right = 836.0
-offset_bottom = 555.0
+offset_bottom = 559.5
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -44,11 +46,12 @@ autowrap_mode = 2
 [node name="Clash 2" type="Label" parent="CardSlots" unique_id=480220999]
 visible = false
 offset_left = 940.0
-offset_top = 532.0
+offset_top = 526.0
 offset_right = 980.0
-offset_bottom = 555.0
+offset_bottom = 559.5
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -57,11 +60,12 @@ autowrap_mode = 2
 [node name="Clash 3" type="Label" parent="CardSlots" unique_id=1072026435]
 visible = false
 offset_left = 1084.0
-offset_top = 532.0
+offset_top = 526.0
 offset_right = 1124.0
-offset_bottom = 555.0
+offset_bottom = 559.5
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -69,10 +73,13 @@ autowrap_mode = 2
 
 [node name="Enemy Number 1" type="Label" parent="CardSlots" unique_id=1508181934]
 visible = false
+z_index = 11
 offset_left = 796.0
 offset_top = 421.0
 offset_right = 836.0
 offset_bottom = 444.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -80,10 +87,13 @@ autowrap_mode = 2
 
 [node name="Enemy Number 2" type="Label" parent="CardSlots" unique_id=1636487230]
 visible = false
+z_index = 11
 offset_left = 940.0
 offset_top = 421.0
 offset_right = 980.0
 offset_bottom = 444.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -91,43 +101,55 @@ autowrap_mode = 2
 
 [node name="Enemy Number 3" type="Label" parent="CardSlots" unique_id=302788672]
 visible = false
+z_index = 11
 offset_left = 1084.0
 offset_top = 421.0
 offset_right = 1124.0
 offset_bottom = 444.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Player Number1" type="Label" parent="CardSlots" unique_id=712434901]
+[node name="Player Number 1" type="Label" parent="CardSlots" unique_id=712434901]
 visible = false
+z_index = 11
 offset_left = 796.0
 offset_top = 645.0
 offset_right = 836.0
 offset_bottom = 668.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Player Number2" type="Label" parent="CardSlots" unique_id=1521803734]
+[node name="Player Number 2" type="Label" parent="CardSlots" unique_id=1521803734]
 visible = false
+z_index = 11
 offset_left = 940.0
 offset_top = 645.0
 offset_right = 980.0
 offset_bottom = 668.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Player Number3" type="Label" parent="CardSlots" unique_id=1493074489]
+[node name="Player Number 3" type="Label" parent="CardSlots" unique_id=1493074489]
 visible = false
+z_index = 11
 offset_left = 1084.0
 offset_top = 644.0
 offset_right = 1124.0
 offset_bottom = 667.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
