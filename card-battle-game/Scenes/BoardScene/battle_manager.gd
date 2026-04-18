@@ -48,12 +48,12 @@ func _ready() -> void:
 	$"../CardSlots/Card Slot2".pos = 2
 	player_card_slots.append($"../CardSlots/Card Slot3")
 	$"../CardSlots/Card Slot3".pos = 3
-	enemy_number_labels.append($"../CardSlots/Enemy Number1")
-	#enemy_number_labels.append($"../CardSlots/Enemy Number2")
-	#enemy_number_labels.append($"../CardSlots/Enemy Number3")
-	player_number_labels.append($"../CardSlots/Player Number1")
-	#player_number_labels.append($"../CardSlots/Player Number2")
-	#player_number_labels.append($"../CardSlots/Player Number3")
+	enemy_number_labels.append($"../CardSlots/Enemy Number 1")
+	enemy_number_labels.append($"../CardSlots/Enemy Number 2")
+	enemy_number_labels.append($"../CardSlots/Enemy Number 3")
+	player_number_labels.append($"../CardSlots/Player Number 1")
+	player_number_labels.append($"../CardSlots/Player Number 2")
+	player_number_labels.append($"../CardSlots/Player Number 3")
 	clash_labels.append($"../CardSlots/Clash 1")
 	clash_labels.append($"../CardSlots/Clash 2")
 	clash_labels.append($"../CardSlots/Clash 3")
@@ -114,9 +114,10 @@ func enemy_turn():
 	
 	# wait 1 second, clear lane numbers
 	battle_timer.start()
-	clash_labels[0].visible = false
-	clash_labels[1].visible = false
-	clash_labels[2].visible = false
+	for lane in range(len(player_card_slots)):
+		clash_labels[lane].visible = false
+		enemy_number_labels[lane].visible = false
+		player_number_labels[lane].visible = false
 	await battle_timer.timeout
 	
 	# Play Enemy cards
@@ -177,13 +178,14 @@ func clash(player_card, enemy_card, lane):
 	else: #clash
 		var p_roll = _get_roll(player_card, PLAYER_ID)
 		var e_roll = _get_roll(enemy_card, ENEMY_ID)
-		#print("proll %d, eroll %d" %[p_roll, e_roll])
-		#player_number_labels[lane].text = str(p_roll)
-		#player_number_labels[lane].visible = true
-		#await lanewait()
-		#enemy_number_labels[lane].text = str(e_roll)
-		#enemy_number_labels[lane].visible = true
-		#await lanewait()
+		enemy_number_labels[lane].text = str(e_roll)
+		enemy_number_labels[lane].add_theme_color_override("font_color", Color(1, 0.2, 0.2))
+		enemy_number_labels[lane].visible = true
+		await lanewait()
+		player_number_labels[lane].text = str(p_roll)
+		player_number_labels[lane].add_theme_color_override("font_color", Color(0, 0.5, 1))
+		player_number_labels[lane].visible = true
+		await lanewait()
 		if player_card.type == "util":
 			resolve(player_card, null, p_roll, lane, PLAYER_ID)
 		if enemy_card.type == "util":
