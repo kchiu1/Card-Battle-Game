@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://264mbhm1yrui"]
+
+[ext_resource type="Script" uid="uid://dtm08420xj063" path="res://Scripts/transition_scene.gd" id="1_nhdqp"]
+
+[node name="TransitionScene" type="CanvasLayer" unique_id=2140960983]
+script = ExtResource("1_nhdqp")
+
+[node name="TopBar" type="ColorRect" parent="." unique_id=1603507365]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1128.0
+offset_top = 1087.0
+offset_right = 1294.0
+offset_bottom = 2250.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBar" type="ColorRect" parent="." unique_id=1373650622]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1166.0
+offset_top = -2261.0
+offset_right = 1256.0
+offset_bottom = -1088.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)

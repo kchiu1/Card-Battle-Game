@@ -5,8 +5,9 @@ extends Node2D
 func _ready() -> void:
 	var bg_id = Global.background_id 
 	var texture = load("res://assets/backgrounds/" + Global.background_id)
-
 	$Background.texture = texture
+	#$Loss.visible = false
+	
 	
 
 

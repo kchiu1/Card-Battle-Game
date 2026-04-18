@@ -29,6 +29,7 @@ var enemy_scene = preload("res://Scenes/Entities/Enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_node("/root/Fight Scene/Loss").visible = false
 	player_health_bar = $"../../Player Health"
 	enemy_health_bar =$"../../Enemy Health"
 	
@@ -95,6 +96,9 @@ func _on_end_turn_pressed() -> void:
 	# wait 1 second
 	battle_timer.start()
 	await battle_timer.timeout
+	
+	if await check_battle_end():
+		return
 	
 	e_def_mod = 0
 	e_atk_mod = 0
@@ -283,3 +287,14 @@ func get_random_empty_enemy_slot():
 	if empty_slots.is_empty():
 		return null
 	return empty_slots.pick_random()
+	
+func check_battle_end() -> bool:
+	if enemy_health_bar.value <= 0:
+		#get_tree().change_scene_to_file("res://Scenes/Victory.tscn")
+		#get_tree().change_scene_to_file("/root/Fight Scene/Loss")
+		return true
+	if player_health_bar.value <= 0:
+		#get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
+		get_node("/root/Fight Scene/Loss").visible = true
+		return true
+	return false
