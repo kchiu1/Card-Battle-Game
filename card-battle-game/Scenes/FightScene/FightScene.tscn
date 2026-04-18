@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://dvuiqd31xytkr" path="res://Scenes/BoardScene/Board.tscn" id="2_7gx8k"]
 [ext_resource type="Texture2D" uid="uid://dqj6gy8rp5h0y" path="res://Assets/Backgrounds/0 Field.png" id="3_7d0qi"]
 [ext_resource type="PackedScene" uid="uid://0fwur3ydjji7" path="res://Scenes/Entities/Enemy.tscn" id="4_7d0qi"]
+[ext_resource type="Texture2D" uid="uid://xfglyu71y885" path="res://Assets/Menu Items/Win.png" id="4_08x25"]
 [ext_resource type="Texture2D" uid="uid://dm6hfpm2cm6l6" path="res://Assets/Menu Items/Loss.png" id="5_di4nr"]
 [ext_resource type="Script" uid="uid://82fyhq2jlpep" path="res://Scenes/FightScene/loss.gd" id="6_0n0gq"]
+[ext_resource type="Script" uid="uid://26wevf6rti6s" path="res://Scenes/FightScene/win.gd" id="8_sqp11"]
 
 [node name="Fight Scene" type="Node2D" unique_id=6102632]
 script = ExtResource("1_vfxem")
@@ -15,6 +17,12 @@ z_index = 5
 position = Vector2(962, 557)
 texture = ExtResource("5_di4nr")
 script = ExtResource("6_0n0gq")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=989451768]
+z_index = -50
+position = Vector2(960, 544)
+scale = Vector2(0.8135594, 0.6634146)
+texture = ExtResource("3_7d0qi")
 
 [node name="Enemy Health" type="ProgressBar" parent="." unique_id=49813715]
 offset_left = 576.0
@@ -41,14 +49,30 @@ text = "Esc"
 
 [node name="Board" parent="." unique_id=1321408482 instance=ExtResource("2_7gx8k")]
 
-[node name="Background" type="Sprite2D" parent="." unique_id=989451768]
-z_index = -50
-position = Vector2(960, 544)
-scale = Vector2(0.8135594, 0.6634146)
-texture = ExtResource("3_7d0qi")
-
 [node name="Enemy" parent="." unique_id=57286093 instance=ExtResource("4_7d0qi")]
 z_index = -5
 position = Vector2(961, 556)
+
+[node name="Win" type="Sprite2D" parent="." unique_id=800905829]
+z_index = 5
+position = Vector2(964, 558)
+texture = ExtResource("4_08x25")
+script = ExtResource("8_sqp11")
+
+[node name="New Battle" type="Button" parent="Win" unique_id=963665243]
+offset_left = -214.0
+offset_top = 118.0
+offset_right = -15.0
+offset_bottom = 199.0
+theme_override_font_sizes/font_size = 30
+text = "New Battle"
+
+[node name="Main Menu" type="Button" parent="Win" unique_id=1094158965]
+offset_left = 13.0
+offset_top = 118.0
+offset_right = 212.0
+offset_bottom = 199.0
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
 
 [connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]
