@@ -164,8 +164,14 @@ func end_opponent_turn():
 func lanewait():
 	battle_timer.start()
 	await battle_timer.timeout
-# TODO -V
-# work on individual card numbers
+
+func card_label_roll(label, roll, card):
+	label.text = str(roll)
+	if card.type == "util":
+		label.text += "+"
+		label.add_theme_color_override("font_color", Color(0.0, 0.668, 0.376, 1.0))
+	
+	
 func clash(player_card, enemy_card, lane):
 	if(player_card==null and enemy_card == null):
 		return
@@ -178,19 +184,18 @@ func clash(player_card, enemy_card, lane):
 	else: #clash
 		var p_roll = _get_roll(player_card, PLAYER_ID)
 		var e_roll = _get_roll(enemy_card, ENEMY_ID)
-		enemy_number_labels[lane].text = str(e_roll)
 		enemy_number_labels[lane].add_theme_color_override("font_color", Color(1, 0.2, 0.2))
+		card_label_roll(enemy_number_labels[lane], e_roll, enemy_card)
 		enemy_number_labels[lane].visible = true
 		await lanewait()
-		player_number_labels[lane].text = str(p_roll)
 		player_number_labels[lane].add_theme_color_override("font_color", Color(0, 0.5, 1))
+		card_label_roll(player_number_labels[lane], p_roll, player_card)
 		player_number_labels[lane].visible = true
 		await lanewait()
 		if player_card.type == "util":
 			resolve(player_card, null, p_roll, lane, PLAYER_ID)
 		if enemy_card.type == "util":
 			resolve(enemy_card, null, e_roll, lane, ENEMY_ID)
-		
 		if player_card.type != "util" and enemy_card.type != "util":
 			if p_roll > e_roll:
 				resolve(player_card, enemy_health_bar, p_roll, lane, PLAYER_ID)
@@ -206,9 +211,6 @@ func clash(player_card, enemy_card, lane):
 			resolve(player_card, enemy_health_bar, p_roll, lane, PLAYER_ID)
 		elif enemy_card.type != "util":
 			resolve(enemy_card, player_health_bar, e_roll, lane, ENEMY_ID)
-
-		#player_number_labels[lane].visible = false
-		#enemy_number_labels[lane].visible = false
 		await lanewait()
 
 func resolve(card, health_bar, roll, lane, user):
