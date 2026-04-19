@@ -16,7 +16,10 @@ func _ready():
 	_refresh_available()
 	_refresh_deck()
 	$BackButton.pressed.connect(func():
-		get_tree().change_scene_to_file("res://main/Main Menu.tscn")
+		if Global.player_deck.size() == 9:
+			get_tree().change_scene_to_file("res://main/Main Menu.tscn")
+		else:
+			print("Deck must have 9 cards!")
 	)
 
 
@@ -48,7 +51,10 @@ func _remove_from_deck(card_data: Dictionary):
 	Global.player_deck.erase(id)
 	_refresh_deck()
 
-
+func _on_clear_button_pressed() -> void:
+	Global.player_deck.clear()
+	_refresh_deck()
+	print("Deck cleared.")
 
 func _make_card_instance(card_data: Dictionary, in_deck: bool) -> Control:
 	var wrapper = CardWrapper.new()
