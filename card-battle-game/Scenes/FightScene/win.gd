@@ -1,8 +1,13 @@
 extends Node2D
 
-func _ready():
+func _ready():	
+	visibility_changed.connect(_on_visibility_changed)
 	$"New Battle".pressed.connect(_on_new_battle)
 	$"Main Menu".pressed.connect(_on_main_menu)
+
+func _on_visibility_changed():
+	if visible:
+		get_parent()._toggle_battle_ui(false)
 
 func _disable_buttons():
 	$"New Battle".disabled = true

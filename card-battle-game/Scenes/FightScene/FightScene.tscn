@@ -55,7 +55,7 @@ position = Vector2(961, 556)
 
 [node name="Win" type="Sprite2D" parent="." unique_id=800905829]
 z_index = 44
-position = Vector2(1001, 265)
+position = Vector2(998, 356)
 texture = ExtResource("4_08x25")
 script = ExtResource("8_sqp11")
 

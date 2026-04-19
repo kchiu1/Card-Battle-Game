@@ -22,29 +22,31 @@ func _ready():
 			print("Deck must have 9 cards!")
 	)
 
-
 func _refresh_available():
 	var grid = $VBoxContainer/AvailablePanel/AvailableVBox/ScrollContainer/CardGrid
 	for child in grid.get_children():
 		child.queue_free()
 	
-	# 1. Count how many of each card are already in the deck
+	var is_deck_full = Global.player_deck.size() >= MAX_DECK
+	
 	var deck_counts = {}
 	for id in Global.player_deck:
-		deck_counts[id] = deck_counts.get(id, 0) + 1
+		var int_id = int(id)
+		deck_counts[int_id] = deck_counts.get(int_id, 0) + 1
 
-	# 2. Loop through your owned inventory
 	for id in Global.player_inventory.keys():
 		var total_owned = Global.player_inventory[id]
-		var used_in_deck = deck_counts.get(id, 0)
+		var used_in_deck = deck_counts.get(int(id), 0)
 		var remaining = total_owned - used_in_deck
 		
-		var card_data = card_db.cards[id]
-		# Pass 'remaining' so the label shows the updated number
+		var card_data = card_db.cards[int(id)]
 		var card_slot = _make_card_instance(card_data, false, remaining)
+		
+		if remaining <= 0 or is_deck_full:
+			card_slot.modulate = Color(0.3, 0.3, 0.3, 1)
+			card_slot.mouse_filter = Control.MOUSE_FILTER_IGNORE 
+			
 		grid.add_child(card_slot)
-
-
 
 func _refresh_deck():
 	var grid = $VBoxContainer/DeckPanel/DeckVBox/ScrollContainer/DeckGrid
@@ -140,8 +142,6 @@ func _make_card_instance(card_data: Dictionary, in_deck: bool, count: int = -1) 
 	else:
 		c_lab.text = "+" + str(card_data["max"])
 
-	# 5. QUANTITY COUNTER (Bottom Right)
-	# Only show this for cards in the 'Available' section
 	if not in_deck and count != -1:
 		var count_label = Label.new()
 		count_label.text = "x" + str(count)
@@ -149,12 +149,10 @@ func _make_card_instance(card_data: Dictionary, in_deck: bool, count: int = -1) 
 		count_label.add_theme_color_override("font_outline_color", Color.BLACK)
 		count_label.add_theme_constant_override("outline_size", 6)
 		
-		# Position relative to wrapper (adjust if 100, 150 is too far)
 		count_label.position = Vector2(95, 155) 
 		count_label.z_index = 20 # Ensure it is on top of everything
 		wrapper.add_child(count_label)
 		
-		# Gray out logic if no copies are left
 		if count <= 0:
 			wrapper.modulate = Color(0.3, 0.3, 0.3, 1)
 
@@ -164,7 +162,6 @@ func _make_card_instance(card_data: Dictionary, in_deck: bool, count: int = -1) 
 		if in_deck: 
 			_remove_from_deck(card_data)
 		else: 
-			# Only add if we have at least 1 copy remaining
 			if count > 0:
 				_add_to_deck(card_data)
 			else:
