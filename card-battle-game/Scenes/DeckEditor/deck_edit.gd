@@ -27,9 +27,24 @@ func _refresh_available():
 	var grid = $VBoxContainer/AvailablePanel/AvailableVBox/ScrollContainer/CardGrid
 	for child in grid.get_children():
 		child.queue_free()
-	for id in card_db.cards.keys():
+	
+	# 1. Count how many of each card are already in the deck
+	var deck_counts = {}
+	for id in Global.player_deck:
+		deck_counts[id] = deck_counts.get(id, 0) + 1
+
+	# 2. Loop through your owned inventory
+	for id in Global.player_inventory.keys():
+		var total_owned = Global.player_inventory[id]
+		var used_in_deck = deck_counts.get(id, 0)
+		var remaining = total_owned - used_in_deck
+		
 		var card_data = card_db.cards[id]
-		grid.add_child(_make_card_instance(card_data, false))
+		# Pass 'remaining' so the label shows the updated number
+		var card_slot = _make_card_instance(card_data, false, remaining)
+		grid.add_child(card_slot)
+
+
 
 func _refresh_deck():
 	var grid = $VBoxContainer/DeckPanel/DeckVBox/ScrollContainer/DeckGrid
@@ -41,22 +56,37 @@ func _refresh_deck():
 	$VBoxContainer/DeckPanel/DeckVBox/DeckLabel.text = "Deck: %d/9" % Global.player_deck.size()
 
 func _add_to_deck(card_data: Dictionary):
+	clear_clicks = 0
 	if Global.player_deck.size() >= MAX_DECK:
 		return
 	Global.player_deck.append(int(card_data["id"]))
 	_refresh_deck()
+	_refresh_available()
 
 func _remove_from_deck(card_data: Dictionary):
+	clear_clicks = 0
 	var id = int(card_data["id"])
 	Global.player_deck.erase(id)
 	_refresh_deck()
+	_refresh_available()
+
+var clear_clicks = 0
 
 func _on_clear_button_pressed() -> void:
+	clear_clicks += 1
 	Global.player_deck.clear()
+	
+	if clear_clicks >= 10:
+		# Unlock 99 copies of everything in the database
+		for id in card_db.cards.keys():
+			Global.player_inventory[int(id)] = 99
+		print("Cheat Active: All cards unlocked")
+		clear_clicks = 0 # reset
+		
 	_refresh_deck()
-	print("Deck cleared.")
+	_refresh_available()
 
-func _make_card_instance(card_data: Dictionary, in_deck: bool) -> Control:
+func _make_card_instance(card_data: Dictionary, in_deck: bool, count: int = -1) -> Control:
 	var wrapper = CardWrapper.new()
 	wrapper.custom_minimum_size = WRAPPER_SIZE
 	wrapper.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -64,21 +94,19 @@ func _make_card_instance(card_data: Dictionary, in_deck: bool) -> Control:
 	var card = CardScene.instantiate()
 	card.position = CARD_OFFSET
 	
-	# 1. COMPLETELY DISABLE THE ANIMATOR
 	if card.has_node("AnimationPlayer"):
 		var ap = card.get_node("AnimationPlayer")
 		ap.stop()
 		ap.active = false
 
-	# 2. BACKGROUND FIX
+
 	var card_img = card.get_node("CardImage")
 	card_img.show()
 	card_img.modulate = Color(1, 1, 1, 1)
 	card_img.scale = Vector2(0.65, 0.65)
 	
-	# FORCE it to render on top of the UI layer
 	card_img.z_as_relative = false
-	card_img.z_index = 10 # Higher than the Deck Editor background
+	card_img.z_index = 10
 
 	var bg_path = "res://Assets/" + card_data["type"] + ".png"
 	if FileAccess.file_exists(bg_path):
@@ -86,7 +114,6 @@ func _make_card_instance(card_data: Dictionary, in_deck: bool) -> Control:
 	else:
 		card_img.texture = load("res://Assets/Card.png")
 
-	# 3. WEAPON FIX (Set even higher than background)
 	if card.has_node("WeaponSprite"):
 		var ws = card.get_node("WeaponSprite")
 		ws.show()
@@ -95,7 +122,6 @@ func _make_card_instance(card_data: Dictionary, in_deck: bool) -> Control:
 		ws.z_index = 11 
 		ws.texture = load("res://Assets/Weapons/" + card_data["weapon"])
 
-	# 4. TEXT FIX (Set highest)
 	var n_lab = card.get_node("Name")
 	n_lab.text = card_data["card_name"]
 	n_lab.show()
@@ -114,10 +140,34 @@ func _make_card_instance(card_data: Dictionary, in_deck: bool) -> Control:
 	else:
 		c_lab.text = "+" + str(card_data["max"])
 
+	# 5. QUANTITY COUNTER (Bottom Right)
+	# Only show this for cards in the 'Available' section
+	if not in_deck and count != -1:
+		var count_label = Label.new()
+		count_label.text = "x" + str(count)
+		count_label.add_theme_font_size_override("font_size", 18)
+		count_label.add_theme_color_override("font_outline_color", Color.BLACK)
+		count_label.add_theme_constant_override("outline_size", 6)
+		
+		# Position relative to wrapper (adjust if 100, 150 is too far)
+		count_label.position = Vector2(95, 155) 
+		count_label.z_index = 20 # Ensure it is on top of everything
+		wrapper.add_child(count_label)
+		
+		# Gray out logic if no copies are left
+		if count <= 0:
+			wrapper.modulate = Color(0.3, 0.3, 0.3, 1)
+
 	wrapper.add_child(card)
 	
 	wrapper.on_click = func():
-		if in_deck: _remove_from_deck(card_data)
-		else: _add_to_deck(card_data)
+		if in_deck: 
+			_remove_from_deck(card_data)
+		else: 
+			# Only add if we have at least 1 copy remaining
+			if count > 0:
+				_add_to_deck(card_data)
+			else:
+				print("No more copies of this card available!")
 
 	return wrapper

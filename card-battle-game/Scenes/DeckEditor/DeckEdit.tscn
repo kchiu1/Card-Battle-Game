@@ -83,7 +83,15 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
-text = "All Cards  —  click to add"
+text = "Inventory"
+
+[node name="Label" type="Label" parent="VBoxContainer/AvailablePanel/AvailableVBox/AllCards" unique_id=1243901786]
+layout_mode = 0
+offset_left = 1594.0
+offset_top = 596.0
+offset_right = 1878.0
+offset_bottom = 619.0
+text = "A full deck is requied to exit (9 cards)"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/AvailablePanel/AvailableVBox" unique_id=1656800720]
 layout_mode = 2

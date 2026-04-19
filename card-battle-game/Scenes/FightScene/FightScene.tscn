@@ -13,7 +13,6 @@
 script = ExtResource("1_vfxem")
 
 [node name="Loss" type="Sprite2D" parent="." unique_id=262128078]
-visible = false
 z_index = 5
 position = Vector2(962, 557)
 texture = ExtResource("5_di4nr")
@@ -55,9 +54,8 @@ z_index = -5
 position = Vector2(961, 556)
 
 [node name="Win" type="Sprite2D" parent="." unique_id=800905829]
-visible = false
 z_index = 44
-position = Vector2(964, 558)
+position = Vector2(1001, 265)
 texture = ExtResource("4_08x25")
 script = ExtResource("8_sqp11")
 
