@@ -7,7 +7,7 @@ const MAX_HAND_SIZE = 7
 const DECK_X = 360
 const DECK_Y = 760
 
-var player_deck = [1, 1, 1, 1, 2, 2, 2, 3, 4]
+var player_deck = Global.player_deck
 var deck_cards = []
 var discard = []
 var hand

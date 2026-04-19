@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://b2mmgqs0f7bet"]
+
+[ext_resource type="Script" uid="uid://bieorefynetnb" path="res://Scenes/DeckEditor/deck_edit.gd" id="1_yg8cu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_deck_panel"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.41981313, 0.41981313, 0.41981304, 1)
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_available_panel"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.4584052, 0.45840496, 0.4584049, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_btn"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.18, 0.1, 0.1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.25, 0.25, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_btn_hover"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.35, 0.12, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.3, 0.3, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="DeckEditor" type="Node2D" unique_id=1991760332]
+script = ExtResource("1_yg8cu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=66722173]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.06, 0.06, 0.1, 1)
+
+[node name="Title" type="Label" parent="." unique_id=415547163]
+offset_top = 8.0
+offset_right = 1920.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(18.892157, 18.892157, 18.892157, 1)
+theme_override_font_sizes/font_size = 26
+text = "Deck Editor"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2037395011]
+offset_top = 55.0
+offset_right = 1920.0
+offset_bottom = 1020.0
+
+[node name="DeckPanel" type="PanelContainer" parent="VBoxContainer" unique_id=497138080]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+theme_override_styles/panel = SubResource("StyleBoxFlat_deck_panel")
+
+[node name="DeckVBox" type="VBoxContainer" parent="VBoxContainer/DeckPanel" unique_id=1899867110]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DeckLabel" type="Label" parent="VBoxContainer/DeckPanel/DeckVBox" unique_id=1019760100]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Deck: 0/9"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/DeckPanel/DeckVBox" unique_id=269804036]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DeckGrid" type="GridContainer" parent="VBoxContainer/DeckPanel/DeckVBox/ScrollContainer" unique_id=2099515840]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 9
+
+[node name="AvailablePanel" type="PanelContainer" parent="VBoxContainer" unique_id=698930182]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+theme_override_styles/panel = SubResource("StyleBoxFlat_available_panel")
+
+[node name="AvailableVBox" type="VBoxContainer" parent="VBoxContainer/AvailablePanel" unique_id=1154701535]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AllCards" type="Label" parent="VBoxContainer/AvailablePanel/AvailableVBox" unique_id=250177764]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "All Cards  —  click to add"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/AvailablePanel/AvailableVBox" unique_id=1656800720]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardGrid" type="GridContainer" parent="VBoxContainer/AvailablePanel/AvailableVBox/ScrollContainer" unique_id=1829018397]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 9
+
+[node name="BackButton" type="Button" parent="." unique_id=1348456958]
+offset_left = 20.0
+offset_top = 1030.0
+offset_right = 140.0
+offset_bottom = 1070.0
+theme_override_colors/font_color = Color(0.9, 0.5, 0.5, 1)
+theme_override_colors/font_hover_color = Color(1, 0.6, 0.6, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_back_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_back_btn_hover")
+text = "← Back"

@@ -17,7 +17,7 @@ var in_card_slot = false
 
 #initialization
 func _init( _card_name: String = "", _min: int = 0, _max: int = 0, _type: String = "", _effects: Array = [], _weapon: String = ""):
-	card_name = card_name
+	card_name = _card_name
 
 	min = _min
 	max = _max

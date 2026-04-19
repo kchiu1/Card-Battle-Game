@@ -58,6 +58,9 @@ func _on_quit_pressed():
 func _on_explore_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/FightScene/FightScene.tscn")
 
+func _on_deckedit_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/DeckEditor/DeckEdit.tscn")
+	
 
 func _on_guild_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Guild/Bounty Board.tscn")

@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://dp388d5qhkvx7"]
 
 [ext_resource type="Script" uid="uid://cvxavuqa5hvy4" path="res://main/main_menu.gd" id="1_q6prn"]
-[ext_resource type="Texture2D" uid="uid://c44xrj6xxkpby" path="res://Assets/Menu Items/Explore.png" id="2_7bk7q"]
-[ext_resource type="Texture2D" uid="uid://vtd0a63ytok1" path="res://Assets/Menu Items/Shop.png" id="3_1l56o"]
-[ext_resource type="Texture2D" uid="uid://dvbg7qxd2cqsj" path="res://Assets/Menu Items/Guild.png" id="4_r0u5t"]
-[ext_resource type="Texture2D" uid="uid://dvdqyfavuky1p" path="res://Assets/Menu Items/quit.png" id="5_r0u5t"]
-[ext_resource type="Texture2D" uid="uid://do0nxtr5b8ud8" path="res://Assets/Menu Items/Icon.png" id="6_fghh7"]
-[ext_resource type="Script" uid="uid://cf75tncp3g2bs" path="res://main/icon.gd" id="7_nhatj"]
-[ext_resource type="Texture2D" uid="uid://b63vreplwgg8w" path="res://Assets/Menu Items/Title.png" id="8_uco4v"]
-[ext_resource type="Texture2D" uid="uid://c2i471f280jic" path="res://Assets/Backgrounds/0 Field.png" id="9_6lnv6"]
+[ext_resource type="Texture2D" uid="uid://d3ec8rpnxsus3" path="res://Assets/Menu Items/Explore.png" id="2_7bk7q"]
+[ext_resource type="Texture2D" uid="uid://kuvq8hr4tr01" path="res://Assets/Menu Items/Shop.png" id="3_1l56o"]
+[ext_resource type="Texture2D" uid="uid://dm4e6glex5fjl" path="res://Assets/Menu Items/Guild.png" id="4_r0u5t"]
+[ext_resource type="Texture2D" uid="uid://dj05fr3c0ndo5" path="res://Assets/Menu Items/quit.png" id="5_r0u5t"]
+[ext_resource type="Texture2D" uid="uid://dyno20s3w32am" path="res://Assets/Menu Items/Icon.png" id="6_fghh7"]
+[ext_resource type="Texture2D" uid="uid://b1dyxxgjpcdp2" path="res://Assets/Menu Items/Deck_edit.png" id="7_6pci8"]
+[ext_resource type="Script" uid="uid://cqi14cj8lcfho" path="res://main/icon.gd" id="7_nhatj"]
+[ext_resource type="Texture2D" uid="uid://dwnfbedhpc6tg" path="res://Assets/Menu Items/Title.png" id="8_uco4v"]
+[ext_resource type="Texture2D" uid="uid://dqj6gy8rp5h0y" path="res://Assets/Backgrounds/0 Field.png" id="9_6lnv6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bk7q"]
 
@@ -86,9 +87,23 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_6lnv6")
 flat = true
 
 [node name="Sprite2D" type="Sprite2D" parent="quit" unique_id=2005957435]
-position = Vector2(104.04199, 30.874493)
+position = Vector2(88.86919, 22.454178)
 scale = Vector2(1.3151156, 0.26322863)
 texture = ExtResource("5_r0u5t")
+
+[node name="deckedit" type="Button" parent="." unique_id=1640231690]
+offset_left = 1647.0
+offset_top = 14.000001
+offset_right = 1819.8856
+offset_bottom = 155.17033
+scale = Vector2(0.8155677, 0.80045134)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7bk7q")
+flat = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="deckedit" unique_id=1157824466]
+position = Vector2(115.2572, 74.9577)
+scale = Vector2(0.82231826, 0.8484504)
+texture = ExtResource("7_6pci8")
 
 [node name="Enemy Select" type="OptionButton" parent="." unique_id=1735795595]
 offset_left = 31.0
@@ -123,3 +138,4 @@ texture = ExtResource("8_uco4v")
 [connection signal="pressed" from="explore" to="." method="_on_explore_pressed"]
 [connection signal="pressed" from="guild" to="." method="_on_guild_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="deckedit" to="." method="_on_deckedit_pressed"]
