@@ -10,3 +10,4 @@ id,card_name,type,min,max,effects,attached_items,weapon
 10,M. Missile,attack,3,5,[def_pen],[],Shield.png
 11,M. Shield,defense,4,5,[atk_down],[],Shield.png
 12,Fireball,attack,4,6,[burn;def_pen],[],Shield.png
+13,Gun+,attack,99,999,[],[],gun+.png

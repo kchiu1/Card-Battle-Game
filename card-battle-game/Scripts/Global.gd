@@ -6,8 +6,10 @@ var background_id: String = "0 Field.png"
 var player_deck = [1, 1, 1, 1, 2, 2, 2, 3, 4]
 
 var player_inventory = {
-	6: 99
+	13: 99
 }
+
+var gold: int = 0;
 
 func _ready():
 	for card_id in player_deck:

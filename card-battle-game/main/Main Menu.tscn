@@ -55,7 +55,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7bk7q")
 flat = true
 
 [node name="Sprite2D" type="Sprite2D" parent="guild" unique_id=1978564854]
-position = Vector2(282.01212, 209.88159)
+position = Vector2(294.27353, 207.38301)
 scale = Vector2(1.2261398, 1.2492951)
 texture = ExtResource("4_r0u5t")
 
