@@ -2,17 +2,50 @@
 
 [ext_resource type="Script" uid="uid://3v1flw4tc1q1" path="res://Scenes/FightScene/fight_scene.gd" id="1_vfxem"]
 [ext_resource type="PackedScene" uid="uid://dvuiqd31xytkr" path="res://Scenes/BoardScene/Board.tscn" id="2_7gx8k"]
-[ext_resource type="Texture2D" uid="uid://dqj6gy8rp5h0y" path="res://Assets/Backgrounds/0 Field.png" id="3_7d0qi"]
+[ext_resource type="Texture2D" uid="uid://c2i471f280jic" path="res://Assets/Backgrounds/0 Field.png" id="3_7d0qi"]
 [ext_resource type="PackedScene" uid="uid://0fwur3ydjji7" path="res://Scenes/Entities/Enemy.tscn" id="4_7d0qi"]
 [ext_resource type="Texture2D" uid="uid://xfglyu71y885" path="res://Assets/Menu Items/Win.png" id="4_08x25"]
-[ext_resource type="Texture2D" uid="uid://dm6hfpm2cm6l6" path="res://Assets/Menu Items/Loss.png" id="5_di4nr"]
-[ext_resource type="Script" uid="uid://82fyhq2jlpep" path="res://Scenes/FightScene/loss.gd" id="6_0n0gq"]
-[ext_resource type="Script" uid="uid://26wevf6rti6s" path="res://Scenes/FightScene/win.gd" id="8_sqp11"]
+[ext_resource type="Texture2D" uid="uid://4hovlmry86m2" path="res://Assets/Menu Items/Loss.png" id="5_di4nr"]
+[ext_resource type="Script" uid="uid://bwvlix5rq1l5c" path="res://Scenes/FightScene/loss.gd" id="6_0n0gq"]
+[ext_resource type="Script" uid="uid://cpgiq3qsjuva" path="res://Scenes/FightScene/win.gd" id="8_sqp11"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqp11"]
+bg_color = Color(0.2901961, 0, 0, 0.5411765)
+skew = Vector2(0.8, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwfv5"]
+bg_color = Color(0.7882353, 0, 0.14117648, 1)
+skew = Vector2(0.8, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvua"]
+bg_color = Color(0.2901961, 0, 0, 0.5411765)
+skew = Vector2(0.8, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogosy"]
+bg_color = Color(0.7882353, 0, 0.14117648, 1)
+skew = Vector2(0.8, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="Fight Scene" type="Node2D" unique_id=6102632]
 script = ExtResource("1_vfxem")
 
 [node name="Loss" type="Sprite2D" parent="." unique_id=262128078]
+visible = false
 z_index = 5
 position = Vector2(962, 557)
 texture = ExtResource("5_di4nr")
@@ -29,6 +62,8 @@ offset_left = 576.0
 offset_top = 256.0
 offset_right = 870.452
 offset_bottom = 283.0
+theme_override_styles/background = SubResource("StyleBoxFlat_sqp11")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xwfv5")
 max_value = 10.0
 value = 10.0
 
@@ -37,6 +72,8 @@ offset_left = 576.0
 offset_top = 768.0
 offset_right = 870.452
 offset_bottom = 795.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1bvua")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ogosy")
 max_value = 10.0
 value = 10.0
 
@@ -54,6 +91,7 @@ z_index = -5
 position = Vector2(961, 556)
 
 [node name="Win" type="Sprite2D" parent="." unique_id=800905829]
+visible = false
 z_index = 44
 position = Vector2(998, 356)
 texture = ExtResource("4_08x25")
