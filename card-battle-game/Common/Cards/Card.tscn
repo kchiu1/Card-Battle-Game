@@ -346,9 +346,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ClashValue" type="RichTextLabel" parent="." unique_id=754436974]
 modulate = Color(0, 0, 0, 0)
-offset_left = -24.0
+offset_left = -48.0
 offset_top = 48.0
-offset_right = 24.0
+offset_right = 48.0
 offset_bottom = 96.0
 text = "2-3"
 horizontal_alignment = 1
