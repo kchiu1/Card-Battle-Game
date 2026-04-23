@@ -186,15 +186,17 @@ script = ExtResource("3_37q8m")
 script = ExtResource("6_vu8wt")
 
 [node name="Deck" parent="." unique_id=1626436590 instance=ExtResource("4_ld0d1")]
+position = Vector2(544, 760)
 
 [node name="Discard" parent="." unique_id=692782994 instance=ExtResource("8_mhidy")]
-position = Vector2(496, 760)
+position = Vector2(664, 760)
 
 [node name="EnemyDeck" parent="." unique_id=1320519155 instance=ExtResource("6_5gban")]
+position = Vector2(1376, 328)
 script = ExtResource("10_cllvr")
 
 [node name="EnemyDiscard" parent="." unique_id=1172135608 instance=ExtResource("13_uqcn3")]
-position = Vector2(1424, 328)
+position = Vector2(1256, 328)
 
 [node name="InputManager" type="Node2D" parent="." unique_id=817540955]
 script = ExtResource("6_d28g4")

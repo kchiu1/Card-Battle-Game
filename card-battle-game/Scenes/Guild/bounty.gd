@@ -3,6 +3,8 @@ extends Node2D
 var texture
 var target_box_size = Vector2(102, 61)
 
+var id
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -32,3 +34,7 @@ func fit_sprite_to_box(texture_path: String):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/FightScene/FightScene.tscn")
