@@ -4,7 +4,6 @@ func _ready():
 	visibility_changed.connect(_on_visibility_changed)
 	$"New Battle".pressed.connect(_on_new_battle)
 	$"Main Menu".pressed.connect(_on_main_menu)
-	Global.gold += 10
 
 func _on_visibility_changed():
 	if visible:

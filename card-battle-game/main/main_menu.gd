@@ -7,6 +7,9 @@ func _ready():
 	enemy_db = EnemyDB_Script.new()
 	enemy_db.load_enemies()
 	
+	update_gold()
+	Global.gold_changed.connect(update_gold)
+	
 	var dropdown = $"Enemy Select"
 	dropdown.clear()
 	var keys = enemy_db.enemies.keys()
@@ -51,6 +54,9 @@ func _on_enemy_selected(index):
 func _on_bg_selected(index):
 	var id = $"Background Select".get_item_text(index)
 	Global.background_id = id
+
+func update_gold():
+	$Gold.text = str(Global.gold) + "g"
 
 func _on_quit_pressed():
 	get_tree().quit()

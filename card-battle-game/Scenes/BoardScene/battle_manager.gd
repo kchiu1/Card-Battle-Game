@@ -22,6 +22,7 @@ var player_number_labels = []
 var enemy_number_labels = []
 var clash_labels = []
 signal ended_turn()
+signal battle_won
 
 const EnemyDB_Script = preload("res://Scenes/Entities/EnemyDatabase.gd") 
 var enemy_db
@@ -292,6 +293,7 @@ func get_random_empty_enemy_slot():
 	
 func check_battle_end() -> bool:
 	if enemy_health_bar.value <= 0:
+		emit_signal("battle_won")
 		get_node("/root/Fight Scene/Win").visible = true
 
 		return true

@@ -9,7 +9,10 @@ var player_inventory = {
 	13: 99
 }
 
-var gold: int = 0;
+var gold: int = 0
+var bounty: int = 0
+
+signal gold_changed
 
 func _ready():
 	for card_id in player_deck:
