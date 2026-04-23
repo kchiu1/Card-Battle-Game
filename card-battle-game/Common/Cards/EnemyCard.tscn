@@ -312,7 +312,6 @@ _data = {
 }
 
 [node name="Card" type="Node2D" unique_id=215121470]
-position = Vector2(1560, 328)
 script = ExtResource("1_cpoup")
 
 [node name="CardBackImage" type="Sprite2D" parent="." unique_id=2145139486]

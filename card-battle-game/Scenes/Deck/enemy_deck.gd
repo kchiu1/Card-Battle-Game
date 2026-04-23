@@ -4,8 +4,6 @@ const CARD_SCENE_PATH = "res://Common/Cards/EnemyCard.tscn"
 const CARD_DRAW_SPEED = 0.35
 const STARTING_ENEMY_HAND_SIZE = 3
 const MAX_HAND_SIZE = 7
-const DECK_X = 1560
-const DECK_Y = 328
 
 var enemy_deck = []
 var deck_cards = []
@@ -51,11 +49,12 @@ func populate_deck(deck_ids):
 		if not new_card.is_inside_tree():
 			$"../CardManager".add_child(new_card)
 			new_card.name = "EnemyCard_" + str(new_card.id)
+		new_card.global_position = global_position
 		
 		deck_cards.append(new_card)
 	
 func add_card_to_deck(card, speed):
-	var new_position = Vector2(DECK_X, DECK_Y)
+	var new_position = Vector2(global_position.x, global_position.y)
 	hand.animate_card_to_position(card, new_position, speed)
 
 func draw_card():
