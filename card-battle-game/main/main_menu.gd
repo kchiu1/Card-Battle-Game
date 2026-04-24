@@ -58,6 +58,9 @@ func _on_bg_selected(index):
 func update_gold():
 	$Gold.text = str(Global.gold) + "g"
 
+func _on_shop_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Shop/Shop.tscn")
+
 func _on_quit_pressed():
 	get_tree().quit()
 

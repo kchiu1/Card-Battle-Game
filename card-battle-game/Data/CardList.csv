@@ -1,6 +1,6 @@
 id,card_name,type,min,max,effects,attached_items,weapon
 1,Slash,attack,1,4,[],[],Sword.png
-2,Block,defense,2,3,[],[],Shield.png
+2,Block,defense,2,4,[],[],Shield.png
 3,Atk Up,util,2,2,[],[],atk_up.png
 4,Def Up,util,2,2,[],[],def_up.png
 5,Heal,util,3,3,[],[],heal.png

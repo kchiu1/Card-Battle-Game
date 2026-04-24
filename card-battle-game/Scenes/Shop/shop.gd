@@ -31,7 +31,6 @@ var shop_stock : Array = []
 
 
 func _ready() -> void:
-	PlayerWallet.init()
 
 	card_db = CardDB.new()
 	card_db.load_cards()
@@ -49,7 +48,7 @@ func _roll_shop() -> void:
 	# Build pool: all card ids
 	var pool : Array = []
 	for id in card_db.cards.keys():
-		if id == 13 and PlayerWallet.gold < 40:
+		if id == 13 and Global.gold < 40:
 			continue
 		pool.append(id)
 	pool.shuffle()
@@ -73,7 +72,7 @@ func _refresh_ui() -> void:
 	_populate_grid()
 
 func _update_gold_label() -> void:
-	$GoldLabel.text = "Gold: %d g" % PlayerWallet.gold
+	$GoldLabel.text = "Gold: %d g" % Global.gold
 
 func _populate_grid() -> void:
 	var grid = $ShopGrid
@@ -157,7 +156,7 @@ func _make_slot(entry: Dictionary, index: int) -> Control:
 	if sold:
 		buy_btn.text     = "Sold"
 		buy_btn.disabled = true
-	elif not PlayerWallet.can_afford(price):
+	elif not Global.gold >= price:
 		buy_btn.text     = "Can't Afford"
 		buy_btn.disabled = true
 	else:
@@ -180,10 +179,8 @@ func _on_buy_pressed(index: int) -> void:
 		return
 
 	var price : int = entry["price"]
-	if not PlayerWallet.spend_gold(price):
-		# Gold changed between render and click
-		_refresh_ui()
-		return
+	
+	_update_gold_label()
 
 	# Add card to player inventory
 	var card_id = int(entry["card_data"]["id"])
@@ -198,7 +195,7 @@ func _on_buy_pressed(index: int) -> void:
 	])
 
 func _on_refresh_pressed() -> void:
-	if not PlayerWallet.spend_gold(REFRESH_COST):
+	if not Global.gold < REFRESH_COST:
 		print("Not enough gold to refresh shop (costs %d g)" % REFRESH_COST)
 		return
 	_roll_shop()
