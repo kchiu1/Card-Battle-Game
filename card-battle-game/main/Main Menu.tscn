@@ -148,4 +148,3 @@ horizontal_alignment = 1
 [connection signal="pressed" from="guild" to="." method="_on_guild_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="deckedit" to="." method="_on_deckedit_pressed"]
-[connection signal="pressed" from="shop" to="." method="_on_shop_pressed"]
