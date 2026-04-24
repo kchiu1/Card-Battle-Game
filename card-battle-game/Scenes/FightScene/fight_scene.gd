@@ -20,8 +20,8 @@ func _on_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://main/Main Menu.tscn")
 
 func _won():
-	Global.gold += randi_range(1,4) + Global.bounty
-	Global.gold_changed.emit()
+	var earned = randi_range(1,4) + Global.bounty
+	PlayerWallet.add_gold(earned)
 	Global.bounty = 0
 	
 func _toggle_battle_ui(is_visible: bool):
