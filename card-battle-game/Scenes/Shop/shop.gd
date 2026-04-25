@@ -108,7 +108,14 @@ func _make_slot(entry: Dictionary, index: int) -> Control:
 	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	vbox.size_flags_vertical   = Control.SIZE_EXPAND_FILL
 	panel.add_child(vbox)
-
+	
+	var name_label := Label.new()
+	name_label.text = cd["card_name"]
+	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name_label.add_theme_font_size_override("font_size", 16)
+	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	vbox.add_child(name_label)
+	
 	var card_wrap := Control.new()
 	card_wrap.custom_minimum_size = Vector2(SLOT_W, 200)
 	card_wrap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
