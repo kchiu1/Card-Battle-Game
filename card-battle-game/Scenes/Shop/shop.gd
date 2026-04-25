@@ -62,6 +62,7 @@ func _build_ui() -> void:
 	grid.position = Vector2(grid_x, grid_y)
 	grid.add_theme_constant_override("h_separation", int(SLOT_GAP))
 	grid.add_theme_constant_override("v_separation", 16)
+	
 
 func _roll_shop() -> void:
 	shop_stock.clear()
@@ -118,6 +119,9 @@ func _make_slot(entry: Dictionary, index: int) -> Control:
 	card_node.scale    = CARD_SCALE
 	card_node.position = Vector2(SLOT_W / 2.0, 100)
 	card_wrap.add_child(card_node)
+
+	if card_node.has_node("CardBackImage"):
+		card_node.get_node("CardBackImage").hide()
 
 	if card_node.has_node("AnimationPlayer"):
 		var ap = card_node.get_node("AnimationPlayer")
