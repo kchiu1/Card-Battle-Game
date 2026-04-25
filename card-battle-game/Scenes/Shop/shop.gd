@@ -180,6 +180,8 @@ func _on_buy_pressed(index: int) -> void:
 
 	var price : int = entry["price"]
 	
+	Global.gold -= price
+	
 	_update_gold_label()
 
 	# Add card to player inventory
@@ -195,7 +197,7 @@ func _on_buy_pressed(index: int) -> void:
 	])
 
 func _on_refresh_pressed() -> void:
-	if not Global.gold < REFRESH_COST:
+	if Global.gold < REFRESH_COST:
 		print("Not enough gold to refresh shop (costs %d g)" % REFRESH_COST)
 		return
 	_roll_shop()
