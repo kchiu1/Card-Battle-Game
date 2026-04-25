@@ -77,7 +77,11 @@ func spawn_enemy(id: int):
 	enemy_instance.deck = enemy_data["deck"]
 	enemy_instance.sprite_path = enemy_data["sprite_path"]
 	enemy_instance.apply_sprite()
-	
+
+	var hp = int(enemy_data.get("hp", 30))
+	enemy_health_bar.max_value = hp
+	enemy_health_bar.value = hp
+
 	get_parent().get_node("EnemyDeck").setup(enemy_data["deck"])
 	
 	
