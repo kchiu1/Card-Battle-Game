@@ -207,12 +207,21 @@ func on_buy_pressed(index: int) -> void:
 
 func on_refresh_pressed() -> void:
 	if Global.gold < REFRESH_COST:
-		print("Not enough gold to refresh (costs %d g)" % REFRESH_COST)
+		_show_popup("Not enough gold! (Need %d g)" % REFRESH_COST)
 		return
 	Global.gold -= REFRESH_COST
 	Global.gold_changed.emit()
 	roll_shop()
 	refresh_ui()
+
+func _show_popup(message: String) -> void:
+	var popup = AcceptDialog.new()
+	popup.dialog_text = message
+	popup.title = "Can't Refresh"
+	add_child(popup)
+	popup.popup_centered()
+	popup.confirmed.connect(popup.queue_free)
+	popup.canceled.connect(popup.queue_free)
 
 func on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://main/Main Menu.tscn")
