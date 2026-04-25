@@ -32,11 +32,14 @@ const TOP_BAR_H  : float = 60.0
 func _ready() -> void:
 	card_db = CardDB.new()
 	card_db.load_cards()
-	_build_ui()
-	_roll_shop()
-	_refresh_ui()
+	build_ui()
+	
+	
+	if Global.shop_stock.is_empty():
+		roll_shop()
+	refresh_ui()
 
-func _build_ui() -> void:
+func build_ui() -> void:
 	var vp := get_viewport().get_visible_rect().size
 
 	var gl : Label = $GoldLabel
@@ -46,12 +49,12 @@ func _build_ui() -> void:
 	var back : Button = $BackButton
 	back.position = Vector2(20, 50)
 	back.custom_minimum_size = Vector2(160, 34)
-	back.pressed.connect(_on_back_pressed)
+	back.pressed.connect(on_back_pressed)
 
 	var refresh : Button = $RefreshButton
 	refresh.position = Vector2(20, 90)
 	refresh.custom_minimum_size = Vector2(200, 34)
-	refresh.pressed.connect(_on_refresh_pressed)
+	refresh.pressed.connect(on_refresh_pressed)
 
 	var total_w : float = SHOP_SLOTS * SLOT_W + (SHOP_SLOTS - 1) * SLOT_GAP
 	var grid_x  : float = (vp.x - total_w) / 2.0
@@ -64,8 +67,8 @@ func _build_ui() -> void:
 	grid.add_theme_constant_override("v_separation", 16)
 	
 
-func _roll_shop() -> void:
-	shop_stock.clear()
+func roll_shop() -> void:
+	Global.shop_stock.clear()
 	var pool : Array = []
 	for id in card_db.cards.keys():
 		if id == 13 and Global.gold < 40:
@@ -76,26 +79,26 @@ func _roll_shop() -> void:
 	for i in range(count):
 		var id    = pool[i]
 		var cd    = card_db.cards[id]
-		var price = _price_for(id, cd["type"])
-		shop_stock.append({ "card_data": cd, "price": price, "sold": false })
+		var price = price_for(id, cd["type"])
+		Global.shop_stock.append({ "card_data": cd, "price": price, "sold": false })
 
-func _price_for(id: int, type: String) -> int:
+func price_for(id: int, type: String) -> int:
 	if PRICE_OVERRIDES.has(id):
 		return PRICE_OVERRIDES[id]
 	return BASE_PRICES.get(type, 10)
 
-func _refresh_ui() -> void:
+func refresh_ui() -> void:
 	$GoldLabel.text = "Gold: %d g" % Global.gold
-	_populate_grid()
+	populate_grid()
 
-func _populate_grid() -> void:
+func populate_grid() -> void:
 	var grid = $ShopGrid
 	for child in grid.get_children():
 		child.queue_free()
-	for i in range(shop_stock.size()):
-		grid.add_child(_make_slot(shop_stock[i], i))
+	for i in range(Global.shop_stock.size()):
+		grid.add_child(make_slot(Global.shop_stock[i], i))
 
-func _make_slot(entry: Dictionary, index: int) -> Control:
+func make_slot(entry: Dictionary, index: int) -> Control:
 	var cd    : Dictionary = entry["card_data"]
 	var price : int        = entry["price"]
 	var sold  : bool       = entry["sold"]
@@ -177,7 +180,7 @@ func _make_slot(entry: Dictionary, index: int) -> Control:
 		buy_btn.disabled = true
 	else:
 		buy_btn.text = "Buy"
-		buy_btn.pressed.connect(_on_buy_pressed.bind(index))
+		buy_btn.pressed.connect(on_buy_pressed.bind(index))
 	vbox.add_child(buy_btn)
 
 	if sold:
@@ -185,33 +188,33 @@ func _make_slot(entry: Dictionary, index: int) -> Control:
 
 	return panel
 
-func _on_buy_pressed(index: int) -> void:
-	var entry : Dictionary = shop_stock[index]
+func on_buy_pressed(index: int) -> void:
+	var entry : Dictionary = Global.shop_stock[index]
 	if entry["sold"]:
 		return
 	var price : int = entry["price"]
 	if Global.gold < price:
-		_refresh_ui()
+		refresh_ui()
 		return
 	Global.gold -= price
 	Global.gold_changed.emit()
 	var card_id = int(entry["card_data"]["id"])
 	Global.add_to_inventory(card_id)
 	entry["sold"]     = true
-	shop_stock[index] = entry
-	_refresh_ui()
+	Global.shop_stock[index] = entry
+	refresh_ui()
 	print("Bought: %s for %d g — gold remaining: %d" % [entry["card_data"]["card_name"], price, Global.gold])
 
-func _on_refresh_pressed() -> void:
+func on_refresh_pressed() -> void:
 	if Global.gold < REFRESH_COST:
 		print("Not enough gold to refresh (costs %d g)" % REFRESH_COST)
 		return
 	Global.gold -= REFRESH_COST
 	Global.gold_changed.emit()
-	_roll_shop()
-	_refresh_ui()
+	roll_shop()
+	refresh_ui()
 
-func _on_back_pressed() -> void:
+func on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://main/Main Menu.tscn")
 
 func connect_card_signals(_card) -> void:

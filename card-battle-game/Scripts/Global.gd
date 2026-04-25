@@ -11,6 +11,7 @@ var player_inventory = {
 
 var gold: int = 0
 var bounty: int = 0
+var shop_stock: Array = []
 
 signal gold_changed
 
