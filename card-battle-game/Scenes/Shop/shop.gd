@@ -98,6 +98,7 @@ func populate_grid() -> void:
 	for i in range(Global.shop_stock.size()):
 		grid.add_child(make_slot(Global.shop_stock[i], i))
 
+
 func make_slot(entry: Dictionary, index: int) -> Control:
 	var cd    : Dictionary = entry["card_data"]
 	var price : int        = entry["price"]
@@ -141,6 +142,9 @@ func make_slot(entry: Dictionary, index: int) -> Control:
 	var card_img = card_node.get_node("CardImage")
 	card_img.show()
 	card_img.modulate = Color(1, 1, 1, 1)
+	card_img.scale = Vector2(0.65, 0.65)
+	card_img.z_as_relative = false
+	card_img.z_index = 10
 	var bg_path = "res://Assets/" + cd["type"] + ".png"
 	if FileAccess.file_exists(bg_path):
 		card_img.texture = load(bg_path)
@@ -150,18 +154,20 @@ func make_slot(entry: Dictionary, index: int) -> Control:
 	if card_node.has_node("WeaponSprite"):
 		var ws = card_node.get_node("WeaponSprite")
 		ws.show()
+		ws.z_as_relative = false
+		ws.z_index = 11
 		ws.texture = load("res://Assets/Weapons/" + cd["weapon"])
 
-	var n_lab = card_node.get_node("Name")
-	n_lab.text = cd["card_name"]
-	n_lab.show()
-
-	var c_lab = card_node.get_node("ClashValue")
-	c_lab.show()
-	if cd["min"] != cd["max"]:
-		c_lab.text = str(cd["min"]) + "-" + str(cd["max"])
-	else:
-		c_lab.text = "+" + str(cd["max"])
+	var overlay_clash := Label.new()
+	var clash_text = str(cd["min"]) + "-" + str(cd["max"]) if cd["min"] != cd["max"] else "+" + str(cd["max"])
+	overlay_clash.text = clash_text
+	overlay_clash.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	overlay_clash.add_theme_font_size_override("font_size", 16)
+	overlay_clash.add_theme_color_override("font_color", Color.WHITE)
+	overlay_clash.position = Vector2(0, 145)
+	overlay_clash.size = Vector2(SLOT_W, 28)
+	overlay_clash.z_index = 10
+	card_wrap.add_child(overlay_clash)
 
 	var price_label := Label.new()
 	price_label.text = "%d g" % price
@@ -207,14 +213,14 @@ func on_buy_pressed(index: int) -> void:
 
 func on_refresh_pressed() -> void:
 	if Global.gold < REFRESH_COST:
-		_show_popup("Not enough gold! (Need %d g)" % REFRESH_COST)
+		show_popup("Not enough gold! (Need %d g)" % REFRESH_COST)
 		return
 	Global.gold -= REFRESH_COST
 	Global.gold_changed.emit()
 	roll_shop()
 	refresh_ui()
 
-func _show_popup(message: String) -> void:
+func show_popup(message: String) -> void:
 	var popup = AcceptDialog.new()
 	popup.dialog_text = message
 	popup.title = "Can't Refresh"
