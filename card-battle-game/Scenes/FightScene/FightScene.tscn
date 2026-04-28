@@ -6,8 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://0fwur3ydjji7" path="res://Scenes/Entities/Enemy.tscn" id="4_7d0qi"]
 [ext_resource type="Texture2D" uid="uid://xfglyu71y885" path="res://Assets/Menu Items/Win.png" id="4_08x25"]
 [ext_resource type="Texture2D" uid="uid://4hovlmry86m2" path="res://Assets/Menu Items/Loss.png" id="5_di4nr"]
-[ext_resource type="Script" uid="uid://jl7wm4j3qy8a" path="res://Scenes/FightScene/loss.gd" id="6_0n0gq"]
-[ext_resource type="Script" uid="uid://6tmw2wi2d3am" path="res://Scenes/FightScene/win.gd" id="8_sqp11"]
+[ext_resource type="Script" uid="uid://bwvlix5rq1l5c" path="res://Scenes/FightScene/loss.gd" id="6_0n0gq"]
+[ext_resource type="Script" uid="uid://cpgiq3qsjuva" path="res://Scenes/FightScene/win.gd" id="8_sqp11"]
+[ext_resource type="Texture2D" uid="uid://buymv430r5xd7" path="res://Assets/Weapons/peak0.png" id="9_ogosy"]
+[ext_resource type="Texture2D" uid="uid://bseq8mr7wlacv" path="res://Assets/Weapons/peak1.png" id="10_ql1th"]
+[ext_resource type="Texture2D" uid="uid://br178ujelpwgq" path="res://Assets/Weapons/peak2.png" id="11_vngl3"]
+[ext_resource type="Script" uid="uid://h575e5v0o7v" path="res://Scenes/FightScene/loop.gd" id="12_ql1th"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqp11"]
 bg_color = Color(0.2901961, 0, 0, 0.5411765)
@@ -40,6 +44,28 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogosy"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ogosy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ql1th")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vngl3")
+}],
+"loop": true,
+"name": &"loop",
+"speed": 5.0
+}]
 
 [node name="Fight Scene" type="Node2D" unique_id=6102632]
 script = ExtResource("1_vfxem")
@@ -91,11 +117,18 @@ z_index = -5
 position = Vector2(1576, 560)
 
 [node name="Win" type="Sprite2D" parent="." unique_id=800905829]
-visible = false
 z_index = 44
 position = Vector2(998, 356)
 texture = ExtResource("4_08x25")
 script = ExtResource("8_sqp11")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Win" unique_id=1884262584]
+position = Vector2(-1, 431)
+sprite_frames = SubResource("SpriteFrames_ogosy")
+animation = &"loop"
+frame_progress = 0.058961574
+speed_scale = 1.2
+script = ExtResource("12_ql1th")
 
 [node name="New Battle" type="Button" parent="Win" unique_id=963665243]
 offset_left = -214.0
